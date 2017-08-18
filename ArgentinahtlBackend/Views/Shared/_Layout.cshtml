@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Argentinahtl - @ViewBag.Title</title>
+@Html.Partial("_HeadScripts")
+</head>
+
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title">
+                <a href="@Url.Content("~/Management/Menu")"><img src="@Url.Content("~/Content/logo_min.jpg")" alt="Argentinahtl" style="width:19em;margin-left:1em;" /></a>
+            </div>
+            
+            <div id="logindisplay">
+                @Html.Partial("_LogInPartial")
+            </div>
+            @Html.Partial("_TopMenu")
+            <div id="messages"></div>
+            <div class="clear"></div>
+            <hr />
+        </div>
+
+        <div id="main">
+            @RenderBody()
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

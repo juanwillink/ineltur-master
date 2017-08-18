@@ -1,0 +1,159 @@
+﻿@model ArgentinahtlMVC.Models.TarifasModel
+
+@{
+    ViewBag.Title = "Listado de Tarifas";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+@using ArgentinahtlMVC.Models;
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Atrás", "Menu", "Lodging")</span></h2>
+
+@*@Html.ValidationSummary(false, "Búsqueda incorrecta. Por favor, corrija los siguientes errores:")*@
+
+<script type="text/javascript">
+    $(function () {
+        $('#provinces').change(function () {
+            loadCities();
+        });
+
+        $('#cities').change(function () {
+            loadLodgings();
+        });
+
+        $('#lodgings').change(function () {
+            loadTarifasList('{' + $('#lodgings > option:selected').attr('value') + '}');
+        });
+
+        $('#lodgingId').change(function () {
+            loadTarifasList('{' + $('#lodgingId').val() + '}');
+        });
+
+        $('#provinces').change();
+
+        $('input[type="radio"]').change(function () {
+            if ($(this).attr('value') == 'byDestination') {
+                $('.byDestination *').enable();
+                $('.byLodging *').disable();
+            }
+            else {
+                $('.byDestination *').disable();
+                $('.byLodging *').enable();
+            }
+
+        });
+        $('.byDestination *').disable();
+    });
+
+    function loadCities() {
+        $.getJSON('@Url.Content("~/Lodging/GetCities/{")' + $('#provinces > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.DestinationId + "\">" + state.DestinationName + "</option>";
+            });
+            $('#cities').html(items);
+        });
+    }
+
+    function loadLodgings() {
+        $.getJSON('@Url.Content("~/Lodging/GetLodgings/{")' + $('#cities > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.LodgingId + "\">" + state.FirstName + state.LastName + "</option>";
+            });
+            $('#lodgings').html(items);
+        });
+    }
+
+    function loadTarifasList(lodgingId) {
+        debugger;
+        if (lodgingId != null && lodgingId != '' && lodgingId != '{}') {
+            $('#transaction_list').fadeTo('slow', '0.3');
+            var notification = showNotification('Actualizando lista...', 'info');
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Content("~/Lodging/TarifasList")',
+                data: { lodgingId: lodgingId },
+                dataType: "html",
+                traditional: true,
+                success: function (data) {
+                    debugger;
+                    $('#tarifa_list').html(data);
+                    $('#transaction_list').fadeTo('slow', '1');
+                    notification.close();
+                    showNotification('Lista actualizada', 'info');
+                },
+                error: function (data) {
+                    debugger;
+                    $('#transaction_list').fadeTo('slow', '1');
+                    notification.close();
+                    showNotification('Error al actualizar la lista', 'error');
+                }
+            });
+        }
+    }
+
+    function refreshTarifasList() {
+        loadTarifasList($('#lodgingId').val());
+        return false;
+    }
+</script>
+
+<div class="filter-container">
+    <div class="filter-group">
+        @Html.RadioButton("filter", "byLodging", true) @Html.Label("Por Alojamiento") @*.AddAttribute("onclick", "javascript:$('input[type=\"radio\"][value=\"byLodging\"]').attr('checked', true)")*@
+        <div id="filters_by_hotel" class="byLodging radio-filter">
+            @Html.Label("Alojamiento"): @Html.TextBox("lodging")
+            @Html.Hidden("lodgingId")
+            <script type="text/javascript">
+                $('#lodging').autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '@Url.Action("SearchLodgings", "Lodging")',
+                            dataType: 'json',
+                            data: { lodgingName: request.term },
+                            success: function (data) {
+                                if (data.length == 0) {
+                                    data.push({ LodgingId: null, LodgingName: 'No encontrado.' });
+                                    $('#lodgingId').val(null).change();
+                                };
+                                response($.map(data, function (item) {
+                                    return { label: item.FirstName, value: item.FirstName, id: item.LodgingId };
+                                }));
+                            }
+                        });
+                    },
+                    minLength: 1,
+                    select: function (event, ui) {
+                        if (ui.item.id == null) return false;
+                        $('#lodgingId').val(ui.item.id).change();
+                    }
+                });
+            </script>
+        </div>
+    </div>
+
+    <div class="filter-group">
+        @Html.RadioButton("filter", "byDestination", false) @Html.Label("Por destino") @*.AddAttribute("onclick", "javascript:$('input[type='radio'][value='byDestination']').attr('checked', true)")*@
+        <div id="filters_by_destination" class="byDestination radio-filter">
+            @Html.Label("Provincia"): @Html.DropDownList("provinces",
+                Model.Provinces.Select(d => new SelectListItem { Text = d.DestinationName, Value = d.DestinationId.ToString() }))
+
+            @Html.Label("Ciudad"): @Html.DropDownList("cities", new List<SelectListItem>())
+
+            <br />
+
+            @Html.Label("Alojamiento"): @Html.DropDownList("lodgings", new List<SelectListItem>())
+        </div>
+    </div>
+</div>
+
+<br /><br />
+<a class="link-button" href="#" onclick="refreshTarifasList()" style="float:left;clear:both;margin-bottom:2em;">Refrescar</a>
+<br /><br />
+
+<div id="tarifa_list" style="float:left;clear:both;">
+    @Html.Partial("TarifasList", new TarifasListModel())
+</div>

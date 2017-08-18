@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRoomType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT</Code>
+        <Description>Apartamento</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A-D</Code>
+        <Description>Apartamento-Duplex</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A-D.AD3</Code>
+        <Description>Apto. Duplex 3 Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A-D.AD4</Code>
+        <Description>Apto. Duplex 4 Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A1D</Code>
+        <Description>Apartamento 1 Dormitorio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A1D.A14</Code>
+        <Description>Apartamento 1 Dormitorio 4 Pasajeros</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A2D</Code>
+        <Description>Apartamento 2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A3D</Code>
+        <Description>Apartamento 3 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.A4D</Code>
+        <Description>Apartamento 4 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.AKT</Code>
+        <Description>Apartamento con Kitchenette</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.APF</Code>
+        <Description>Apartamento Semiabierto Cabina</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.APT.CAP</Code>
+        <Description>Apartamento conectado</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ATC</Code>
+        <Description>Atico</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ATC.A4X</Code>
+        <Description>Atico-Duplex (4 Dormitorios)</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ATC.PNH</Code>
+        <Description>Habitación Atico</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED</Code>
+        <Description>Dormitorio (s)</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.2BD</Code>
+        <Description>2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.3BD</Code>
+        <Description>3 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.3BD.3BP</Code>
+        <Description>3 Dormitorios con calor de la piscina</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.4BD</Code>
+        <Description>4 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.5BD</Code>
+        <Description>5 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BED.6BD</Code>
+        <Description>6 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BUN</Code>
+        <Description>Bungalow</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BUN.B1D</Code>
+        <Description>Bungalow 1 Dormitorio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BUN.B2D</Code>
+        <Description>Bungalow 2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BUN.B3D</Code>
+        <Description>Bungalow 3 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.BUN.B4D</Code>
+        <Description>Bungalow 4 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CAM</Code>
+        <Description>Cama</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CAM.D14</Code>
+        <Description>Dormitorio 14 camas</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CAM.D1B</Code>
+        <Description>Cama Doble</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CAM.D2B</Code>
+        <Description>Dos Camas Doble</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CAM.D6B</Code>
+        <Description>Dormitorio 6 camas</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CFA</Code>
+        <Description>Connection Family</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CHA</Code>
+        <Description>Chalet</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.CON</Code>
+        <Description>Condominio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.COT</Code>
+        <Description>Cabaña</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.COT.C1B</Code>
+        <Description>Cabaña 1 Habitación</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.COT.C2B</Code>
+        <Description>Cabaña 2 Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.D1X</Code>
+        <Description>Duplex</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.D1X.D2X</Code>
+        <Description>Duplex 2 dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL</Code>
+        <Description>Doble</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.DB2</Code>
+        <Description>Dos Habitaciones Dobles</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.TSD</Code>
+        <Description>Doble de uso individual</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.TSU</Code>
+        <Description>Doble de uso individual</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.TWN</Code>
+        <Description>Doble (con dos camas)</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.TWN.TW2</Code>
+        <Description>2 Habitaciones dobles</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBL.TWN.TW4</Code>
+        <Description>Twin 4 Capacity</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBT</Code>
+        <Description>Doble/Twin</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DBT.DPR</Code>
+        <Description>Doble Premier</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DEC</Code>
+        <Description>Decuplo</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.DLL</Code>
+        <Description>Deluxe Lodge</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.EFI</Code>
+        <Description>Efficiency</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.EXT</Code>
+        <Description>External Room Type</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.HAB</Code>
+        <Description>Habitacion Interface 2</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.HEX</Code>
+        <Description>Sextuplo</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.HOM</Code>
+        <Description>Casa</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.MAS</Code>
+        <Description>Maisonette</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.MAS.MT2</Code>
+        <Description>Maisonette 2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.MAS.MTE</Code>
+        <Description>Maisonette 1 Dormitorio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.MBH</Code>
+        <Description>Mobil Home</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.NON</Code>
+        <Description>Nonuplo</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.NSM</Code>
+        <Description>No fumadores</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.NZH</Code>
+        <Description>Nazar House</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.OCT</Code>
+        <Description>Octuplo</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.PEN</Code>
+        <Description>Quintuple</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.PIT</Code>
+        <Description>Picth</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.QUA</Code>
+        <Description>Cuadruple</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO</Code>
+        <Description>Habitación</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.DLX</Code>
+        <Description>Habitación de lujo</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.DXT</Code>
+        <Description>Habitación de lujo estándar</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM</Code>
+        <Description>Habitación Familiar</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.FA4</Code>
+        <Description>Habitación Familiar 4</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.FAA</Code>
+        <Description>Habitación Familiar (1 Habitación)</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.FAB</Code>
+        <Description>Habitación Familiar (2 Dormitorios)</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.FJU</Code>
+        <Description>Habitación Familiar Junior</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.FSE</Code>
+        <Description>Habitación Familiar Senior</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.FAM.TRF</Code>
+        <Description>Triple Familiar</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.MUL</Code>
+        <Description>Multi Habitación</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.PRR</Code>
+        <Description>Premier</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.RO2</Code>
+        <Description>2 Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.ROO.RO2.2RO</Code>
+        <Description>Dos habitaciones comunicadas</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SEP</Code>
+        <Description>Septuplo</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SGL</Code>
+        <Description>Simple</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP</Code>
+        <Description>Barco</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B1C</Code>
+        <Description>Barco un Camarote</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B2C</Code>
+        <Description>Barco 2 Camarotes</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B3C</Code>
+        <Description>Barco 3 Camarotes</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B4C</Code>
+        <Description>Barco 4 Camarotes</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B5C</Code>
+        <Description>Barco 5 Camarotes</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SHP.B6C</Code>
+        <Description>Barco 6 Camarotes</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SPR</Code>
+        <Description>Individual Premier</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SPS</Code>
+        <Description>Super Select</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STA</Code>
+        <Description>Standard</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STA.ST3</Code>
+        <Description>Standard 3 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STA.ST4</Code>
+        <Description>Standard 4 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STA.ST5</Code>
+        <Description>Standard 5 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STA.ST6</Code>
+        <Description>Standard 6 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.STU</Code>
+        <Description>Estudio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI</Code>
+        <Description>Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.1BS</Code>
+        <Description>Suite Una Habitación</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.2BS</Code>
+        <Description>Suite Dos Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.3BS</Code>
+        <Description>Suite Tres Habitaciones</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.DXS</Code>
+        <Description>Suite de lujo</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.EXC</Code>
+        <Description>Excellence Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.GSJ</Code>
+        <Description>Suite Jardin</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.GSU</Code>
+        <Description>Gran Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.HMS</Code>
+        <Description>HoneyMoon Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.J1D</Code>
+        <Description>Junior Suite 1 Dormitorio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.J2D</Code>
+        <Description>Junior Suite 2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.JSU</Code>
+        <Description>Junior Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.KSB</Code>
+        <Description>Kid Suite B</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.KST</Code>
+        <Description>Kid Suite A</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.MAS</Code>
+        <Description>Master Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.MSU</Code>
+        <Description>MiniSuite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.PRS</Code>
+        <Description>Suite presidencial</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.PSU</Code>
+        <Description>Parlour Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.ROY</Code>
+        <Description>Royal Suite</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.SSU</Code>
+        <Description>Suite senior</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUI.SUF</Code>
+        <Description>Suite Familiar</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.SUP</Code>
+        <Description>Superior</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.T2C</Code>
+        <Description>Triple Two Beds</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.TEN</Code>
+        <Description>Tentalow</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.TPL</Code>
+        <Description>Triple</Description>
+        <ForSearch>true</ForSearch>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.TPX</Code>
+        <Description>Triplex</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL</Code>
+        <Description>Villa</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL.V1D</Code>
+        <Description>Villa 1 Dormitorio</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL.V2D</Code>
+        <Description>Villa 2 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL.V3D</Code>
+        <Description>Villa 3 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL.V4D</Code>
+        <Description>Villa 4 Dormitorios</Description>
+    </RoomType>
+    <RoomType>
+        <Code>NMO.HTL.RMT.VIL.V5D</Code>
+        <Description>Villa 5 Dormitorios</Description>
+    </RoomType>
+</ArrayOfRoomType>

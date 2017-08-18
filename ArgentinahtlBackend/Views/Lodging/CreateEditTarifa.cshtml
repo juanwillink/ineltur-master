@@ -1,0 +1,111 @@
+﻿@model ArgentinahtlMVC.Models.TarifaModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Crear/Modificar Tarifa";
+
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        var options = {
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-1:+0'
+        };
+
+        $.datepicker.setDefaults({
+            dateFormat: options.dateFormat,
+            yearRange: options.yearRange
+        });
+
+        $('#StartDate, #EndDate').datepicker();
+
+        $('#StartDate').change(function () {
+            $('#EndDate').datepicker('option', { minDate: addTimeToDate(1, 'd', $(this).datepicker('getDate'), false) });
+        });
+
+        $('#StartDate').change();
+
+        $('#NationalityId').focus();
+    });
+
+    function createEditTarifa() {
+        var message = 'Error al guardar la tarifa.';
+        var messageType = 'error';
+
+        var dateParts = $('#StartDate').val().split('/');
+        var startDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        dateParts = $('#EndDate').val().split('/');
+        var endDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+
+        $.ajax({
+            type: "POST",
+            url: '@(Model.TarifaId != null ? Url.Action("EditTarifa", "Lodging") : Url.Action("CreateTarifa", "Lodging"))',
+            data: {
+                TarifaId: $("#TarifaId").val(),
+                NationalityId: $("#NationalityId").val(),
+                LodgingId: $('#LodgingId').val(),
+                TarifaTypeId: $('#TarifaTypeId').val(),
+                StartDate: startDate.toDateString(),
+                EndDate: endDate.toDateString()
+            },
+            dataType: "json",
+            traditional: true,
+            success: function (data) {
+                if (data.success) {
+                    message = 'Tarifa guardada con éxito';
+                    messageType = 'success';
+                    $.colorbox.close();
+                }
+
+                $.colorbox.close();
+                showNotification(message, messageType);
+            },
+            error: function (data) {
+                $.colorbox.close();
+                showNotification(message, messageType);
+            }
+        });
+
+
+        refreshTarifasList();
+
+        return false;
+    }
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreateTarifa", "Lodging", FormMethod.Post, new { id = "tarifa_data" }))
+{
+    @Html.HiddenFor(m => m.TarifaId)
+    @Html.HiddenFor(m => m.LodgingId)
+
+    <table class="borderless">
+        <tr><td>@Html.LabelFor(m => m.NationalityId):</td><td>@Html.TextBoxFor(m => m.NationalityId)</td></tr>
+        <tr>
+            <td>Tipo de Moneda:</td>
+            <td>
+                @Html.DropDownListFor(m => m.TarifaTypeId,
+            @Model.TarifasTypes.Select(st => new SelectListItem { Text = st.TarifaTypeSimbolo, Value = st.TarifaTypeId.ToString() }))
+        </td>
+    </tr>
+    <tr><td>@Html.LabelFor(m => m.StartDate):</td><td>@Html.TextBoxFor(m => m.StartDate, "{0:dd/MM/yyyy}")</td></tr>
+    <tr><td>@Html.LabelFor(m => m.EndDate):</td><td>@Html.TextBoxFor(m => m.EndDate, "{0:dd/MM/yyyy}")</td></tr>
+
+    <tr><td colspan="2"><a href="#" onclick="createEditTarifa()" class="link-button">Guardar</a></td></tr>
+
+    @if (ViewBag.Message != null)
+    {
+        <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+    }
+</table>
+
+    @Html.ValidationSummary(false, "La Tarifa no pudo ser guardada. Por favor, revise los siguientes errores:")
+
+    Html.EndForm();
+}

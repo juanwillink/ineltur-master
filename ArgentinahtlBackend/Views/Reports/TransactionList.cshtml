@@ -1,0 +1,112 @@
+﻿@model ArgentinahtlMVC.Models.TransactionListModel
+
+@{
+    ViewBag.Title = "Listado de Reservas";
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('.link_options').colorbox();
+
+        // Transaction reports
+
+        var transactionsTable = $('table#Transactions');
+
+        if (transactionsTable.length) {
+            transactionsTable.addClass('tablesorter').tablesorter({
+                widgets: ['zebra', 'hover'],
+                headers: {
+                    0: { sorter: 'digit' },
+                    1: { sorter: 'text' },
+                    2: { sorter: 'text' },
+                    3: { sorter: 'text' },
+                    4: { sorter: 'text' },
+                    5: { sorter: 'digit' },
+                    6: { sorter: 'text' },
+                    7: { sorter: 'datetime' },
+                    8: { sorter: 'datetime' },
+                    9: { sorter: 'datetime' }
+                }
+            }).children('thead').children('tr:first').find('*').removeClass('header').unbind('click');
+            transactionsTable.tablesorter();
+            $('#StartDate, #EndDate').datepicker();
+        }
+    });
+
+    function cancelTransaction(reservationCode) {
+        showConfirmDialog('¿Seguro de que desea cancelar la reserva?', 'Sí', 'No',
+            function ($noty) {
+                $noty.close();
+                $.get('@Url.Action("ProcessTransactionCancellation", "Transaction")/' + reservationCode, function (data) {
+                    showNotification(data, 'info');
+                });
+            },
+            function ($noty) {
+                $noty.close();
+                showNotification('La operación fue cancelada.', 'info');
+            });
+
+        return false;
+    }
+</script>
+
+<br /><b>@Html.Label("Reservas"): @Model.Count</b><br />
+
+<table id="Transactions">
+<thead>
+<tr>
+    <th class="narrow"><span>Cód. Reserva</span></th>
+    <th><span>Titular</span></th>
+    <th><span>Estado</span></th>
+    <th><span>Agencia</span></th>
+    <th><span>Alojamiento</span></th>
+    <th><span>Monto</span></th>
+    <th><span>Forma de Pago</span></th>
+    <th class="narrow"><span>Fecha de Alta</span></th>
+    <th class="narrow"><span>Checkin</span></th>
+    <th class="narrow"><span>Checkout</span></th>
+    <th class="narrow"><span>Acciones</span></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var t in Model.Transactions)
+{
+<tr reservationCode="@t.ReservationCode">
+    <td>@(t.ReservationCode)</td>
+    <td>@(t.Owner.FirstName + " " + t.Owner.LastName)</td>
+    <td>@(t.StatusDescription)</td>
+    <td>@(t.Agency.FirstName + " " + t.Agency.LastName)</td>
+    <td>@(t.Lodging.FirstName + " " + t.Lodging.LastName)</td>
+    <td>@(t.Currency.CurrencySymbol + " " + t.Amount.ToString("######.00"))</td>
+    <td>@(t.PaymentMethod)</td>
+    <td>@(t.StartDate != null ? t.StartDate.ToString("dd/MM/yyyy") : "-")</td>
+    <td>@(t.Checkin != null ? t.Checkin.Value.ToString("dd/MM/yyyy") : "-")</td>
+    <td>@(t.Checkout != null ? t.Checkout.Value.ToString("dd/MM/yyyy") : "-")</td>
+    <td>
+        @*<a class="link_options" href="@Url.Content("~/Reports/TransactionDetails/"+t.ReservationCode)">Detalles</a><br />*@
+        <a class="link_options" href="@Url.Content("~/Reports/TransactionDetails/"+t.ReservationCode)"><img src="@Url.Content("~/Content/edit.png")" title="Ver detalles" /></a>
+        
+        @*@if (SessionData.UserProfile >= UserProfile.Administrator && t.Checkin > DateTime.Now)
+        {
+            <a href="#" onclick="cancelTransaction(@t.ReservationCode)" ><img src="@Url.Content("~/Content/delete.png")" title="Cancelar reserva" /></a>
+        }
+        
+        @if (t.PaymentMethodId == Guid.Parse("7D5192CA-FE10-455E-B051-D1023A07BA75") &&
+            SessionData.UserProfile >= UserProfile.Administrator && t.Checkin > DateTime.Now) 
+        {
+            // Es Cuenta Corriente
+            <a class="link_options" href="@Url.Content("~/Transaction/ChangePaymentMethod/" + t.ReservationCode)"><img src="@Url.Content("~/Content/creditcard.png")" title="Cambiar a Tarjeta de Crédito" /></a>
+        }*@
+    </td>
+</tr>
+}
+</tbody>
+</table>
+@*
+<div id="details_div">
+</div>
+
+<div id="aux_div" style="display:none;"><a id="link_details" href="TransactionDetails"></a></div>*@

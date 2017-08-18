@@ -1,0 +1,1131 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Turismo-ProduccionV3" EntityNamespace="Ineltur.Datos.Entidades" ContextNamespace="Ineltur.Datos.Entidades" Class="WebServiceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=test.argentinahtl.com,1433;Initial Catalog=Turismo-ProduccionV3;Persist Security Info=True;User ID=itiers" SettingsObjectName="Ineltur.Datos.Properties.Settings" SettingsPropertyName="Turismo_ProduccionV3ConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CIUDADES" Member="Ciudades">
+    <Type Name="Ciudad">
+      <Column Name="IDCIUDAD" Member="IdCiudad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPROVINCIA" Member="IdProvincia" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="WEB" Member="Web" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ZIP" Member="Zip" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ABREVIATURA" Member="Abreviatura" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Ciudad_Alojamiento" Member="Alojamientos" ThisKey="IdCiudad" OtherKey="IdCiudad" Type="Alojamiento" />
+      <Association Name="Ciudad_Usuario" Member="Usuarios" ThisKey="IdCiudad" OtherKey="IdCiudad" Type="Usuario" />
+      <Association Name="Ciudad_PASAJERO" Member="PASAJEROs" ThisKey="IdCiudad" OtherKey="IDCIUDAD" Type="PASAJERO" />
+      <Association Name="Provincia_Ciudad" Member="Provincia" ThisKey="IdProvincia" OtherKey="IdProvincia" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PROVINCIAS" Member="Provincias">
+    <Type Name="Provincia">
+      <Column Name="IDPROVINCIA" Member="IdProvincia" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDREGION" Member="IdRegion" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Provincia_Ciudad" Member="Ciudades" Storage="_Ciudads" ThisKey="IdProvincia" OtherKey="IdProvincia" Type="Ciudad" />
+      <Association Name="Provincia_Usuario" Member="Usuarios" ThisKey="IdProvincia" OtherKey="IdProvincia" Type="Usuario" />
+      <Association Name="Region_Provincia" Member="Region" ThisKey="IdRegion" OtherKey="IdRegion" Type="Region" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REGIONES" Member="Regiones">
+    <Type Name="Region">
+      <Column Name="IDREGION" Member="IdRegion" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Region_Provincia" Member="Provincias" ThisKey="IdRegion" OtherKey="IdRegion" Type="Provincia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ALOJAMIENTOS" Member="Alojamientos">
+    <Type Name="Alojamiento">
+      <Column Name="IDALOJ" Member="IdAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDCIUDAD" Member="IdCiudad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOALOJ" Member="IdTipoAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUSUARIO" Member="IdUsuario" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDPAIS" Member="IdPais" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPO_PERFIL" Member="IdTipoPerfil" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDMONEDA" Member="IdMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="RAZONSOCIAL" Member="RazonSocial" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="DESCRIPCION2" Member="Descripcion2" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="POLITICASCANCELACION" Member="PoliticasCancelacion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="DIRECCION" Member="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TELEFONO" Member="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Member="Email" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="WEB" Member="Web" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FAX" Member="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CUIT" Member="Cuit" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="AGENDARESERVAS" Member="AgendaReservas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="URLSUBDOMINIO" Member="UrlSubdominio" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ALTACONFIRMADA" Member="AltaConfirmada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SITIOPUBLICADO" Member="SitioPublicado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOESTRELLAALOJ" Member="IdTipoEstrellaAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CODIGOBLOQUEO" Member="CodigoBloqueo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="COMISION" Member="Comision" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DIASCANCELACIONCARGO" Member="DiasCancelacionCargo" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="LATITUD" Member="Latitud" Type="System.Single" DbType="float" CanBeNull="true" />
+      <Column Name="LONGITUD" Member="Longitud" Type="System.Single" DbType="float" CanBeNull="true" />
+      <Association Name="Alojamiento_UnidadAlojamiento" Member="UnidadAlojamientos" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="UnidadAlojamiento" />
+      <Association Name="Alojamiento_Temporada" Member="Temporadas" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="Temporada" />
+      <Association Name="Alojamiento_Transaccion" Member="Transaccions" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="Transaccion" />
+      <Association Name="Alojamiento_ServicioAlojamiento" Member="ServicioAlojamientos" ThisKey="IdAlojamiento" OtherKey="IdAloj" Type="ServicioAlojamiento" />
+      <Association Name="Alojamiento_Tarifas_Alojamientos" Member="Tarifas_Alojamientos" ThisKey="IdAlojamiento" OtherKey="IDALOJ" Type="Tarifas_Alojamientos" />
+      <Association Name="Ciudad_Alojamiento" Member="Ciudad" ThisKey="IdCiudad" OtherKey="IdCiudad" Type="Ciudad" IsForeignKey="true" />
+      <Association Name="TipoEstrellasAlojamiento_Alojamiento" Member="TipoEstrellasAlojamiento" ThisKey="IdTipoEstrellaAlojamiento" OtherKey="IdTipoEstrellasAlojamiento" Type="TipoEstrellasAlojamiento" IsForeignKey="true" />
+      <Association Name="TipoAlojamiento_Alojamiento" Member="TipoAlojamiento" ThisKey="IdTipoAlojamiento" OtherKey="IdTipoAlojamiento" Type="TipoAlojamiento" IsForeignKey="true" />
+      <Association Name="Pais_Alojamiento" Member="Pais" ThisKey="IdPais" OtherKey="IdPais" Type="Pais" IsForeignKey="true" />
+      <Association Name="Moneda_Alojamiento" Member="Moneda" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Moneda" IsForeignKey="true" />
+      <Association Name="Usuario_Alojamiento" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPOS_ESTRELLASALOJ" Member="TiposEstrellasAlojamiento">
+    <Type Name="TipoEstrellasAlojamiento">
+      <Column Name="IDTIPOESTRELLAALOJ" Member="IdTipoEstrellasAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PRIORIDAD" Member="Prioridad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TipoEstrellasAlojamiento_Alojamiento" Member="Alojamientos" ThisKey="IdTipoEstrellasAlojamiento" OtherKey="IdTipoEstrellaAlojamiento" Type="Alojamiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UNIDADES_ALOJ" Member="UnidadesAlojamientos">
+    <Type Name="UnidadAlojamiento">
+      <Column Name="IDUNIDAD_ALOJ" Member="IdUnidadAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDTIPOUNIDAD" Member="IdTipoUnidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Member="IdAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CUPOPORDEFECTO" Member="CupoPorDefecto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTOPORDEFECTO" Member="MontoPorDefecto" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="CANTPERSONAS" Member="CantidadPersonas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CANTCAMAS" Member="CantidadCamas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="UnidadAlojamiento_CupoUnidad" Member="CupoUnidades" Storage="_CupoUnidads" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="CupoUnidad" />
+      <Association Name="UnidadAlojamiento_UnidadTemporada" Member="UnidadTemporadas" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="UnidadTemporada" />
+      <Association Name="UnidadAlojamiento_ReservaUnidad" Member="ReservaUnidads" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="ReservaUnidad" />
+      <Association Name="Alojamiento_UnidadAlojamiento" Member="Alojamiento" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="Alojamiento" IsForeignKey="true" />
+      <Association Name="TipoUnidad_UnidadAlojamiento" Member="TipoUnidad" ThisKey="IdTipoUnidad" OtherKey="IdTipoUnidad" Type="TipoUnidad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPOS_UNIDADES" Member="TiposUnidad">
+    <Type Name="TipoUnidad">
+      <Column Name="IDTIPOUNIDAD" Member="IdTipoUnidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CANTPERSONAS" Member="CantidadPersonas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CANTCAMAS" Member="CantidadCamas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TipoUnidad_UnidadAlojamiento" Member="UnidadAlojamientos" ThisKey="IdTipoUnidad" OtherKey="IdTipoUnidad" Type="UnidadAlojamiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CUPOS_UNIDADES" Member="CuposUnidades">
+    <Type Name="CupoUnidad">
+      <Column Name="IDCUPOUNIDAD" Member="IdCupoUnidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Member="IdUnidadAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA" Member="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOMAXIMO" Member="CupoMaximo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUPORESERVADO" Member="CupoReservado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Member="Monto" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MARCA_TEMPORADA" Member="MarcaTemporada" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BLOQUEADOPORPROMO" Member="BloqueadoPorPromocion" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="UnidadAlojamiento_CupoUnidad" Member="UnidadAlojamiento" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="UnidadAlojamiento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TEMPORADAS" Member="Temporadas">
+    <Type Name="Temporada">
+      <Column Name="IDTEMPORADA" Member="IdTemporada" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDALOJ" Member="IdAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TIPO_TEMPORADA" Member="TipoTemporada" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_INICIO" Member="FechaInicio" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_FIN" Member="FechaFin" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Temporada_UnidadTemporada" Member="UnidadTemporadas" ThisKey="IdTemporada" OtherKey="IdTemporada" Type="UnidadTemporada" />
+      <Association Name="Alojamiento_Temporada" Member="Alojamiento" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="Alojamiento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UNIDADES_TEMPORADAS" Member="UnidadesTemporadas">
+    <Type Name="UnidadTemporada">
+      <Column Name="IDUNIDAD_TEMPORADA" Member="IdUnidadTemporada" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDTEMPORADA" Member="IdTemporada" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Member="IdUnidadAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Member="Monto" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Temporada_UnidadTemporada" Member="Temporada" ThisKey="IdTemporada" OtherKey="IdTemporada" Type="Temporada" IsForeignKey="true" />
+      <Association Name="UnidadAlojamiento_UnidadTemporada" Member="UnidadAlojamiento" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="UnidadAlojamiento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RESERVAS_UNIDADES" Member="ReservasUnidades">
+    <Type Name="ReservaUnidad">
+      <Column Name="IDRESERVAUNIDAD" Member="IdReservaUnidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Member="IdUnidadAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDTRANSACCION" Member="IdTransaccion" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAINICIAL" Member="FechaInicial" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAFINAL" Member="FechaFinal" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Member="Monto" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ReservaUnidad_RESERVA_UNIDAD_PASAJERO" Member="RESERVA_UNIDAD_PASAJEROs" ThisKey="IdReservaUnidad" OtherKey="IDRESERVAUNIDAD" Type="RESERVA_UNIDAD_PASAJERO" />
+      <Association Name="UnidadAlojamiento_ReservaUnidad" Member="UnidadAlojamiento" ThisKey="IdUnidadAlojamiento" OtherKey="IdUnidadAlojamiento" Type="UnidadAlojamiento" IsForeignKey="true" />
+      <Association Name="Transaccion_ReservaUnidad" Member="Transaccion" ThisKey="IdTransaccion" OtherKey="IdTransaccion" Type="Transaccion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TRANSACCIONES" Member="Transacciones">
+    <Type Name="Transaccion">
+      <Column Name="IDTRANSACCION" Member="IdTransaccion" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDFORMAPAGO" Member="IdFormaPago" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Member="IdUsuario" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDCLIENTE" Member="IdCliente" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="MONTOTOTALCONDESC" Member="MontoTotalConDescuento" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CODIGO_RESERVA" Member="CodigoReserva" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ESTADORESERVA" Member="EstadoReserva" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CODIGO_CONFIRMACION" Member="CodigoConfirmacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOTOTALSINDESC" Member="MontoTotalSinDescuento" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COTIZACION" Member="Cotizacion" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDMONEDA" Member="IdMoneda" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDPU" Member="IdPU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCUOTAS" Member="CantidadCuotas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ESTADOPAGO" Member="EstadoPago" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDALOJ" Member="IdAlojamiento" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDSITIOORIGEN" Member="IdSitioOrigen" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TIPOTRANSACCION" Member="TipoTransaccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="true" />
+      <Column Name="MONTO_DEBE" Member="MontoDebe" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_HABER" Member="MontoHaber" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDPASAJERO" Member="IdPasajero" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PASAJEROAPELLIDO" Member="PasajeroApellido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="PASAJERONOMBRE" Member="PasajeroNombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Transaccion_ReservaUnidad" Member="ReservaUnidades" Storage="_ReservaUnidads" ThisKey="IdTransaccion" OtherKey="IdTransaccion" Type="ReservaUnidad" />
+      <Association Name="Alojamiento_Transaccion" Member="Alojamiento" ThisKey="IdAlojamiento" OtherKey="IdAlojamiento" Type="Alojamiento" IsForeignKey="true" />
+      <Association Name="FormaPago_Transaccion" Member="FormaPago" ThisKey="IdFormaPago" OtherKey="IdFormaPago" Type="FormaPago" IsForeignKey="true" />
+      <Association Name="Moneda_Transaccion" Member="Moneda" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Moneda" IsForeignKey="true" />
+      <Association Name="Usuario_Transaccion" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPO_FORMAS_PAGO" Member="FormasPago">
+    <Type Name="FormaPago">
+      <Column Name="IDTIPOFORMAPAGO" Member="IdFormaPago" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TALOJ_TUNIDADES" Member="TiposAlojamientoTiposUnidad">
+    <Type Name="TipoAlojamientoTipoUnidad">
+      <Column Name="IDTALOJ_TUNIDAD" Member="IdTipoAlojamientoTipoUnidad" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDTIPOALOJ" Member="IdTipoAlojamiento" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDTIPOUNIDAD" Member="IdTipoUnidad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TipoUnidad_TipoAlojamientoTipoUnidad" Member="TipoUnidad" ThisKey="IdTipoUnidad" OtherKey="IdTipoUnidad" Type="TipoUnidad" IsForeignKey="true" />
+      <Association Name="TipoAlojamiento_TipoAlojamientoTipoUnidad" Member="TipoAlojamiento" ThisKey="IdTipoAlojamiento" OtherKey="IdTipoAlojamiento" Type="TipoAlojamiento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPOS_ALOJ" Member="TiposAlojamiento">
+    <Type Name="TipoAlojamiento">
+      <Column Name="IDTIPOALOJ" Member="IdTipoAlojamiento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TipoAlojamiento_Alojamiento" Member="Alojamientos" ThisKey="IdTipoAlojamiento" OtherKey="IdTipoAlojamiento" Type="Alojamiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PAISES" Member="Paises">
+    <Type Name="Pais">
+      <Column Name="IDPAIS" Member="IdPais" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Pais_Alojamiento" Member="Alojamientos" ThisKey="IdPais" OtherKey="IdPais" Type="Alojamiento" />
+      <Association Name="Pais_Usuario" Member="Usuarios" ThisKey="IdPais" OtherKey="IdPais" Type="Usuario" />
+      <Association Name="Pais_PASAJERO" Member="PASAJEROs" ThisKey="IdPais" OtherKey="IDPAIS" Type="PASAJERO" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MONEDAS" Member="Monedas">
+    <Type Name="Moneda">
+      <Column Name="IDMONEDA" Member="IdMoneda" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SIMBOLO" Member="Simbolo" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="COTIZACION" Member="Cotizacion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="Moneda_Alojamiento" Member="Alojamientos" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Alojamiento" />
+      <Association Name="Moneda_Transaccion" Member="Transaccions" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Transaccion" />
+      <Association Name="Moneda_Usuario" Member="Usuarios" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Usuario" />
+      <Association Name="Moneda_Tarifas_Alojamientos" Member="Tarifas_Alojamientos" ThisKey="IdMoneda" OtherKey="IDMONEDA" Type="Tarifas_Alojamientos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MOVIMIENTO_CTA_CTE" Member="MovimientosCuentaCorriente">
+    <Type Name="MovimientoCuentaCorriente">
+      <Column Name="IDMOVIMIENTO_CTA_CTE" Member="IdMovimientoCuentaCorriente" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDUSUARIO" Member="IdUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDTRANSACCION" Member="IdTransaccion" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FECHA_MOVIMIENTO" Member="FechaMovimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IDMONEDA" Member="IdMoneda" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO_DEBE" Member="MontoDebe" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_HABER" Member="MontoHaber" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COTIZACION" Member="Cotizacion" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="Moneda_MovimientoCuentaCorriente" Member="Moneda" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Moneda" IsForeignKey="true" />
+      <Association Name="Transaccion_MovimientoCuentaCorriente" Member="Transaccion" ThisKey="IdTransaccion" OtherKey="IdTransaccion" Type="Transaccion" IsForeignKey="true" />
+      <Association Name="Usuario_MovimientoCuentaCorriente" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USUARIOS" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="IDUSUARIO" Member="IdUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDTIPOUSUARIO" Member="IdTipoUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDCIUDAD" Member="IdCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="OTRACIUDAD" Member="OtraCiudad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="IDPAIS" Member="IdPais" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDOCUPACION" Member="IdOcupacion" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="APELLIDO" Member="Apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_NACIMIENTO" Member="FechaNacimiento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="DIRECCION" Member="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TELEFONO" Member="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAX" Member="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Member="Email" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBREUSUARIO" Member="NombreUsuario" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="CLAVE" Member="Clave" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SEXO" Member="Sexo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IDTIPODOCUMENTO" Member="IdTipoDocumento" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DESEAPROPAGANDA" Member="DeseaPropaganda" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NRODOCUMENTO" Member="NroDocumento" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="IDPROVINCIA" Member="IdProvincia" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CP" Member="CodigoPostal" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ULTIMOACCESO" Member="UltimoAcceso" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CANTIDADACCESOS" Member="CantidadAccesos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAMAILPUBLICIDAD" Member="FechaMailPublicidad" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HABILITARCUENTACORRIENTE" Member="HabilitarCuentaCorriente" Type="System.Boolean" DbType="bit" CanBeNull="true" />
+      <Column Name="MARKUPAAGENCIA" Member="MarkupAAgencia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MARKUPACONSUMIDORFINAL" Member="MarkupAConsumidorFinal" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="URLLOGO" Member="UrlLogo" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="IDMONEDA" Member="IdMoneda" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_Alojamiento" Member="Alojamientos" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Alojamiento" />
+      <Association Name="Usuario_Transaccion" Member="Transacciones" Storage="_Transaccions" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Transaccion" />
+      <Association Name="Usuario_MovimientoCuentaCorriente" Member="MovimientosCuentaCorriente" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="MovimientoCuentaCorriente" />
+      <Association Name="Usuario_UsuarioWebService" Member="UsuarioWebService" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="UsuarioWebService" Cardinality="One" />
+      <Association Name="Provincia_Usuario" Member="Provincia" ThisKey="IdProvincia" OtherKey="IdProvincia" Type="Provincia" IsForeignKey="true" />
+      <Association Name="Ciudad_Usuario" Member="Ciudad" ThisKey="IdCiudad" OtherKey="IdCiudad" Type="Ciudad" IsForeignKey="true" />
+      <Association Name="Pais_Usuario" Member="Pais" ThisKey="IdPais" OtherKey="IdPais" Type="Pais" IsForeignKey="true" />
+      <Association Name="Moneda_Usuario" Member="Moneda" ThisKey="IdMoneda" OtherKey="IdMoneda" Type="Moneda" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CONSULTORA" Member="Consultoras">
+    <Type Name="Consultora">
+      <Column Name="IDCONSULTORA" Member="IdConsultora" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE_COMPLETO" Member="NombreCompleto" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE_COMERCIAL" Member="NombreParcial" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CUIT" Member="Cuit" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="LIMITEAGENDARESERVA" Member="LimiteAgendaReserva" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TELEFONO" Member="Telefono" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FAX" Member="Fax" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Member="Email" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="WEB" Member="Web" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="DIRECCION" Member="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="HORARIO_ATENCION" Member="HorarioAtencion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CBU" Member="Cbu" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CUENTADEPOSITO" Member="CuentaDeposito" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TITULARCUENTA" Member="TitularCuenta" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BANCO" Member="Banco" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TOPEDIASDEPOSITO" Member="TopeDiasDeposito" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ANTICIPODIASDEPOSITO" Member="AnticipoDiasDeposito" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PRECIOBUSQPROMO" Member="PrecioBusquedaPromo" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="COMISIONALOJ" Member="ComisionAlojamiento" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.USUARIOS_WS" Member="UsuariosWebService">
+    <Type Name="UsuarioWebService">
+      <Column Name="IDUSUARIO" Member="IdUsuario" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MARGEN" Member="Margen" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FORMAPAGO" Member="FormaPago" Type="global::Ineltur.Datos.FormaPago" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Usuario_UsuarioWebService" Member="Usuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="PASAJEROS" Member="PASAJEROs">
+    <Type Name="PASAJERO">
+      <Column Name="IDPASAJERO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDOCUPACION" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDPAIS" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDCIUDAD" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="OTRACIUDAD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="APELLIDO" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DIRECCION" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FECHA_NACIMIENTO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TELEFONO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FAX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBREUSUARIO" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="SEXO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CLAVE" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="IDTIPODOCUMENTO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NRODOCUMENTO" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="PASAJERO_RESERVA_UNIDAD_PASAJERO" Member="RESERVA_UNIDAD_PASAJEROs" Storage="_TRANSACCION_PASAJEROs" ThisKey="IDPASAJERO" OtherKey="IDPASAJERO" Type="RESERVA_UNIDAD_PASAJERO" />
+      <Association Name="Pais_PASAJERO" Member="Pais" ThisKey="IDPAIS" OtherKey="IdPais" Type="Pais" IsForeignKey="true" />
+      <Association Name="Ciudad_PASAJERO" Member="Ciudad" ThisKey="IDCIUDAD" OtherKey="IdCiudad" Type="Ciudad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SERVICIOS" Member="Servicios">
+    <Type Name="Servicio">
+      <Column Name="IDSERV" Member="IdServ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Member="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="INDIVIDUAL" Member="Individual" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Member="Descripcion" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="EXCLUSIVO" Member="Exclusivo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Servicio_ServicioAlojamiento" Member="ServicioAlojamientos" ThisKey="IdServ" OtherKey="IdServ" Type="ServicioAlojamiento" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SERV_ALOJAMIENTOS" Member="ServicioAlojamientos">
+    <Type Name="ServicioAlojamiento">
+      <Column Name="IDSERVALOJ" Member="IdServAloj" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDSERV" Member="IdServ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Member="IdAloj" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOPORDEFECTO" Member="CupoPorDefecto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOPORDEFECTO" Member="MontoPorDefecto" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="FIJO" Member="Fijo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TARIFA_AFECTA" Member="TarifaAfecta" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ACTIVO" Member="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Member="FechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Member="FechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TIPOSERV" Member="TipoServ" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="RESERVABLE" Member="Reservable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Alojamiento_ServicioAlojamiento" Member="Alojamiento" ThisKey="IdAloj" OtherKey="IdAlojamiento" Type="Alojamiento" IsForeignKey="true" />
+      <Association Name="Servicio_ServicioAlojamiento" Member="Servicio" ThisKey="IdServ" OtherKey="IdServ" Type="Servicio" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="RESERVAS_UNIDADES_PASAJEROS" Member="RESERVA_UNIDAD_PASAJEROs">
+    <Type Name="RESERVA_UNIDAD_PASAJERO">
+      <Column Name="IDRESERVAUNIDAD" Storage="_IDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDPASAJERO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="PASAJERO_RESERVA_UNIDAD_PASAJERO" Member="PASAJERO" ThisKey="IDPASAJERO" OtherKey="IDPASAJERO" Type="PASAJERO" IsForeignKey="true" />
+      <Association Name="ReservaUnidad_RESERVA_UNIDAD_PASAJERO" Member="ReservaUnidad" ThisKey="IDRESERVAUNIDAD" OtherKey="IdReservaUnidad" Type="ReservaUnidad" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TARIFAS_ALOJAMIENTO" Member="Tarifas_Alojamientos">
+    <Type Name="Tarifas_Alojamientos">
+      <Column Name="IDTARIFASALOJ" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDNACIONALIDAD" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IDMONEDA" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_DESDE" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_HASTA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Alojamiento_Tarifas_Alojamientos" Member="Alojamiento" ThisKey="IDALOJ" OtherKey="IdAlojamiento" Type="Alojamiento" IsForeignKey="true" />
+      <Association Name="Moneda_Tarifas_Alojamientos" Member="Moneda" ThisKey="IDMONEDA" OtherKey="IdMoneda" Type="Moneda" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TIPO_PROMOCIONES_ALOJAMIENTO" Member="Tipo_Promociones_Alojamientos">
+    <Type Name="Tipo_Promociones_Alojamiento">
+      <Column Name="IDTIPOPROMOCION" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FECHAALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="TOPEDIASMAX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TOPEDIASMIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CODIGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PROMOCIONES_ALOJAMIENTO" Member="Promociones_Alojamientos">
+    <Type Name="Promociones_Alojamiento">
+      <Column Name="IDPROMOCION" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="DESCRIPCION2" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="FECHAINICIO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHAFIN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DIASACOBRAR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIASRESERVADOS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHAPUBLICACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHABAJAPUBLICACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IDUNIDADPROMO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="FINVIGENCIAINDEFINIDO" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FECHAFINPUBLICACION" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BLOQUEACUPOS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SLOGAN" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MINIMONOCHES" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MAXIMONOCHES" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DESCUENTO" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDTIPOPUBLICACIONPROMO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.addTransaccion" Method="AddTransaccion">
+    <Parameter Name="IDALOJ" Parameter="idAlojamiento" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDFORMAPAGO" Parameter="idFormaPago" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDUSUARIO" Parameter="idUsuario" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDCLIENTE" Parameter="idCliente" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DESCRIPCION" Parameter="descripcion" Type="System.String" DbType="VarChar(4000)" />
+    <Parameter Name="ESTADOPAGO" Parameter="estadoPago" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDPU" Parameter="idPU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CANTCUOTAS" Parameter="cantidadCuotas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MONTOTOTALCONDESC" Parameter="montoTotalConDescuento" Type="System.Single" DbType="Real" />
+    <Parameter Name="ESTADORESERVA" Parameter="estadoReserva" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ACTIVO" Parameter="activo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CODIGO_CONFIRMACION" Parameter="codigoConfirmacion" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="MONTOTOTALSINDESC" Parameter="montoTotalSinDescuento" Type="System.Single" DbType="Real" />
+    <Parameter Name="COTIZACION" Parameter="cotizacion" Type="System.Single" DbType="Real" />
+    <Parameter Name="IDMONEDA" Parameter="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDSITIOORIGEN" Parameter="idSitioOrigen" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="TIPOTRANSACCION" Parameter="tipoTransaccion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FECHA_VENCIMIENTO" Parameter="fechaVencimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="PASAJERONOMBRE" Parameter="pasajeroNombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PASAJEROAPELLIDO" Parameter="pasajeroApellido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MAILCONFALOJENVIADO" Parameter="mailConfAlojEnviado" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IDPASAJERO" Parameter="idPasajero" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDTRANSAC" Parameter="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addUsuario" Method="AddUsuario">
+    <Parameter Name="IDTIPOUSUARIO" Parameter="idTipoUsuario" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDCIUDAD" Parameter="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="OTRACIUDAD" Parameter="otraCiudad" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="IDPAIS" Parameter="idPais" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDOCUPACION" Parameter="idOcupacion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="NOMBRE" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="APELLIDO" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="FECHA_NACIMIENTO" Parameter="fechaNacimiento" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DIRECCION" Parameter="direccion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TELEFONO" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FAX" Parameter="fax" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="EMAIL" Parameter="email" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="NOMBREUSUARIO" Parameter="nombreUsuario" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="CLAVE" Parameter="clave" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="SEXO" Parameter="sexo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IDTIPODOCUMENTO" Parameter="idTipoDocumento" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DESEAPROPAGANDA" Parameter="deseaPropaganda" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NRODOCUMENTO" Parameter="nroDocumento" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="CP" Parameter="zip" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="IDPROVINCIA" Parameter="idProvincia" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="HABILITARCUENTACORRIENTE" Parameter="habilitarCuentaCorriente" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="identificador" Type="System.Guid" DbType="UniqueIdentifier" Direction="Out" />
+    <Parameter Name="error" Type="System.Int32" DbType="Int" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addReserva_Unidad" Method="AddReservaUnidad">
+    <Parameter Name="IDUNIDAD_ALOJ" Parameter="idUnidadAlojamiento" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDTRANSACCION" Parameter="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="FECHAINICIAL" Parameter="fechaInicial" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FECHAFINAL" Parameter="fechaFinal" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MONTO" Parameter="monto" Type="System.Single" DbType="Real" />
+    <Parameter Name="ACTIVO" Parameter="activo" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ERROR" Parameter="error" Type="System.Int32" DbType="Int" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.confirmarTransaccion" Method="ConfirmarTransaccion">
+    <Parameter Name="IDTRANSACCION" Parameter="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDUSUARIO" Parameter="idUsuario" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ESTADORESERVA" Parameter="estadoReserva" Type="System.Int32" DbType="Int" />
+    <Parameter Name="COD_ERROR" Parameter="error" Type="System.Int32" DbType="Int" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cancelarTransaccion" Method="CancelarTransaccion">
+    <Parameter Name="IDTRANSACCION" Parameter="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="ERROR" Parameter="error" Type="System.Int32" DbType="Int" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addMovimientoCtaCte" Method="AddMovimientoCtaCte">
+    <Parameter Name="IDUSUARIO" Parameter="idUsuario" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDTRANSACCION" Parameter="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDMONEDA" Parameter="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="MONTO_DEBE" Parameter="montoDebe" Type="System.Single" DbType="Real" />
+    <Parameter Name="MONTO_HABER" Parameter="montoHaber" Type="System.Single" DbType="Real" />
+    <Parameter Name="COTIZACION" Parameter="cotizacion" Type="System.Single" DbType="Real" />
+    <Parameter Name="identificador" Type="System.Guid" DbType="UniqueIdentifier" Direction="Out" />
+    <Parameter Name="fecha" Type="System.DateTime" DbType="DateTime" Direction="Out" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="addPasajero" Method="AddPasajero">
+    <Parameter Name="IDOCUPACION" Parameter="iDOCUPACION" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDPAIS" Parameter="iDPAIS" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDCIUDAD" Parameter="iDCIUDAD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="OTRACIUDAD" Parameter="oTRACIUDAD" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NOMBRE" Parameter="nOMBRE" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="APELLIDO" Parameter="aPELLIDO" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="DIRECCION" Parameter="dIRECCION" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="FECHA_NACIMIENTO" Parameter="fECHA_NACIMIENTO" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TELEFONO" Parameter="tELEFONO" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FAX" Parameter="fAX" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="EMAIL" Parameter="eMAIL" Type="System.String" DbType="VarChar(150)" />
+    <Parameter Name="NOMBREUSUARIO" Parameter="nOMBREUSUARIO" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="SEXO" Parameter="sEXO" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CLAVE" Parameter="cLAVE" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="ACTIVO" Parameter="aCTIVO" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IDTIPODOCUMENTO" Parameter="iDTIPODOCUMENTO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="NRODOCUMENTO" Parameter="nRODOCUMENTO" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="identificador" Type="System.Guid" DbType="UniqueIdentifier" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addReservaUnidadPasajero" Method="AddReservaUnidadPasajero">
+    <Parameter Name="IDRESERVAUNIDAD" Parameter="iDRESERVAUNIDAD" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDPASAJERO" Parameter="iDPASAJERO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.addReserva_Unidad" Method="AddReservaUnidad">
+    <Parameter Name="IDUNIDAD_ALOJ" Parameter="iDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDTRANSACCION" Parameter="iDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="FECHAINICIAL" Parameter="fECHAINICIAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FECHAFINAL" Parameter="fECHAFINAL" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MONTO" Parameter="mONTO" Type="System.Single" DbType="Real" />
+    <Parameter Name="ACTIVO" Parameter="aCTIVO" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ERROR" Parameter="eRROR" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="IDRESERVAUNIDAD" Parameter="iDRESERVAUNIDAD" Type="System.Guid" DbType="UniqueIdentifier" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getTransaccionesPorIdUsuario" Method="getTransaccionesPorIdUsuario">
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="getTransaccionesPorIdUsuarioResult">
+      <Column Name="IDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="MONTOTOTALCONDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CODIGO_RESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADORESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CODIGO_CONFIRMACION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOTOTALSINDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COTIZACION" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDMONEDA" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDPU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCUOTAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ESTADOPAGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDSITIOORIGEN" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="TIPOTRANSACCION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreFormaPago" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaUltimoCheckIn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHA_VENCIMIENTO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nombreAlojamiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="pasajero" Type="System.String" DbType="VarChar(102) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getTransaccionesPorIdUsuarioCodigoReserva" Method="getTransaccionesPorIdUsuarioCodigoReserva">
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="CODIGORESERVA" Parameter="cODIGORESERVA" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getTransaccionesPorIdUsuarioCodigoReservaResult">
+      <Column Name="IDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="MONTOTOTALCONDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CODIGO_RESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADORESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CODIGO_CONFIRMACION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOTOTALSINDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COTIZACION" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDMONEDA" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDPU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCUOTAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ESTADOPAGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDSITIOORIGEN" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="TIPOTRANSACCION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreFormaPago" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaUltimoCheckIn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHA_VENCIMIENTO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nombreAlojamiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="pasajero" Type="System.String" DbType="VarChar(102) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getTransaccionesNuevasPorIdUsuario" Method="getTransaccionesNuevasPorIdUsuario">
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="getTransaccionesNuevasPorIdUsuarioResult">
+      <Column Name="IDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="MONTOTOTALCONDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CODIGO_RESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ESTADORESERVA" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CODIGO_CONFIRMACION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MONTOTOTALSINDESC" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="COTIZACION" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDMONEDA" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDPU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCUOTAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ESTADOPAGO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IDSITIOORIGEN" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="TIPOTRANSACCION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombreFormaPago" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaUltimoCheckIn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FECHA_VENCIMIENTO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="nombreAlojamiento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="pasajero" Type="System.String" DbType="VarChar(102) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getReservas_UnidadesTransaccionesPorIdTransaccion" Method="getReservas_UnidadesTransaccionesPorIdTransaccion">
+    <Parameter Name="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="getReservas_UnidadesTransaccionesPorIdTransaccionResult">
+      <Column Name="idTransaccion" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cantPersonas" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idUnidad_Aloj" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="fechaInicial" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaFinal" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="monto" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoTotal" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getAlojamientosConDisponibilidad" Method="GetAlojamientosConDisponibilidad">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="orden" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idProvincia" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <ElementType Name="getAlojamientosConDisponibilidadResult">
+      <Column Name="montoTotalEstimadoEnPesos" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="urlsubdominio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="sitioPublicado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="prioridadEstrellas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombreEstrellas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="montoUnidadSingleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleSingle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadDobleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleDoble" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadTripleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleTriple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadCuadrupleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleCuadruple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad5PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible5Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad6PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible6Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoTotalEstimado" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="satisfacePedidoDisponibilidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agendaReservas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombreCiudad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nombreProvincia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getAlojamientosConDisponibilidadV2" Method="GetAlojamientosConDisponibilidadV2">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="orden" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idProvincia" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="nombreAloj" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="getAlojamientosConDisponibilidadV2Result">
+      <Column Name="montoTotalEstimadoEnPesos" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="urlsubdominio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="sitioPublicado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="prioridadEstrellas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombreEstrellas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="montoUnidadSingleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleSingle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadDobleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleDoble" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadTripleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleTriple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadCuadrupleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleCuadruple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad5PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible5Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad6PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible6Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoTotalEstimado" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="satisfacePedidoDisponibilidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agendaReservas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombreCiudad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nombreProvincia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechas" Method="GetCuposAlojamientoEnRangoFechas">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <ElementType Name="getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechasResult">
+      <Column Name="IDCUPOUNIDAD" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOMAXIMO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUPORESERVADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MARCA_TEMPORADA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BLOQUEADOPORPROMO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO_EXT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUNIDAD_ALOJ1" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MONTOTOTAL" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOTOTALPORUNIDAD" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOPROMEDIOPORDIA" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CUPODISPONIBLE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTPERSONAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTUNIDADESPEDIDAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCAMAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ES_TNR" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.updateTransaccion" Method="updateTransaccion">
+    <Parameter Name="IDTRANSACCION" Parameter="iDTRANSACCION" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDFORMAPAGO" Parameter="iDFORMAPAGO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDUSUARIO" Parameter="iDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDCLIENTE" Parameter="iDCLIENTE" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="DESCRIPCION" Parameter="dESCRIPCION" Type="System.String" DbType="VarChar(4000)" />
+    <Parameter Name="MONTOTOTALCONDESC" Parameter="mONTOTOTALCONDESC" Type="System.Single" DbType="Real" />
+    <Parameter Name="ESTADORESERVA" Parameter="eSTADORESERVA" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ACTIVO" Parameter="aCTIVO" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="CODIGO_CONFIRMACION" Parameter="cODIGO_CONFIRMACION" Type="System.Decimal" DbType="Decimal(18,0)" />
+    <Parameter Name="MONTOTOTALSINDESC" Parameter="mONTOTOTALSINDESC" Type="System.Single" DbType="Real" />
+    <Parameter Name="COTIZACION" Parameter="cOTIZACION" Type="System.Single" DbType="Real" />
+    <Parameter Name="IDMONEDA" Parameter="iDMONEDA" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDPU" Parameter="iDPU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CANTCUOTAS" Parameter="cANTCUOTAS" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ESTADOPAGO" Parameter="eSTADOPAGO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IDALOJ" Parameter="iDALOJ" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="IDSITIOORIGEN" Parameter="iDSITIOORIGEN" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="FECHA_VENCIMIENTO" Parameter="fECHA_VENCIMIENTO" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="PASAJERONOMBRE" Parameter="pASAJERONOMBRE" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PASAJEROAPELLIDO" Parameter="pASAJEROAPELLIDO" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MAILCONFALOJENVIADO" Parameter="mAILCONFALOJENVIADO" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="COTIZACIONALOJ" Parameter="cOTIZACIONALOJ" Type="System.Single" DbType="Real" />
+    <Parameter Name="ERROR" Parameter="eRROR" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getUnidades_AlojPorIdAloj" Method="getUnidades_AlojPorIdAloj">
+    <Parameter Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <ElementType Name="getUnidades_AlojPorIdAlojResult">
+      <Column Name="IDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDTIPOUNIDAD" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="CUPOPORDEFECTO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTOPORDEFECTO" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="CANTPERSONAS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CANTCAMAS" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_BAJA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ES_TNR" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getCuposUnidadesPorFecha" Method="getCuposUnidadesPorFecha">
+    <Parameter Name="idUnidad_Aloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="fecha" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="periodo" Type="System.Char" DbType="Char(1)" />
+    <ElementType Name="getCuposUnidadesPorFechaResult">
+      <Column Name="IDCUPOUNIDAD" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOMAXIMO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUPORESERVADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MARCA_TEMPORADA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BLOQUEADOPORPROMO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO_EXT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getAlojamientosPorNombre" Method="getAlojamientosPorNombre">
+    <Parameter Name="orden" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="nombreAloj" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="getAlojamientosPorNombreResult">
+      <Column Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="urlsubdominio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="sitioPublicado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="prioridadEstrellas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombreEstrellas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="agendaReservas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RAZONSOCIAL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="DESCRIPCION2" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="WEB" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FAX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CUIT" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="IDTIPOESTRELLAALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CODIGOBLOQUEO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadMasBarata" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cantPersonasUnidadMasBarata" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRECIUDAD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NOMBREPROVINCIA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getAlojamientosConfirmadosPorIdCiudad" Method="getAlojamientosConfirmadosPorIdCiudad">
+    <Parameter Name="orden" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idProvincia" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nombreAloj" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="getAlojamientosConfirmadosPorIdCiudadResult">
+      <Column Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="urlsubdominio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="sitioPublicado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="prioridadEstrellas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombreEstrellas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="agendaReservas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUSUARIO" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="RAZONSOCIAL" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="DESCRIPCION2" Type="System.String" DbType="VarChar(4000)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="WEB" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="FAX" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CUIT" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="IDTIPOESTRELLAALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CODIGOBLOQUEO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadMasBarata" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cantPersonasUnidadMasBarata" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOMBRECIUDAD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NOMBREPROVINCIA" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechasV2" Method="GetCuposAlojamientoEnRangoFechaV2">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <ElementType Name="getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechasV2Result">
+      <Column Name="IDCUPOUNIDAD" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOMAXIMO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUPORESERVADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MARCA_TEMPORADA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BLOQUEADOPORPROMO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO_EXT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUNIDAD_ALOJ1" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MONTOTOTAL" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOTOTALPORUNIDAD" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOPROMEDIOPORDIA" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CUPODISPONIBLE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTPERSONAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTUNIDADESPEDIDAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCAMAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ES_TNR" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getAlojamientosConDisponibilidadV3" Method="GetAlojamientosConDisponibilidadV3">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="orden" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idProvincia" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="nombreAloj" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="desayuno" Type="System.Int32" DbType="Int" />
+    <Parameter Name="tarifaReembolsable" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getAlojamientosConDisponibilidadV3Result">
+      <Column Name="montoTotalEstimadoEnPesos" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idCiudad" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="urlsubdominio" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="sitioPublicado" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idMoneda" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="prioridadEstrellas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nombreEstrellas" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="montoUnidadSingleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleSingle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadDobleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleDoble" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadTripleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleTriple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidadCuadrupleMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponibleCuadruple" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad5PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible5Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoUnidad6PersonasMasBarataPorDia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="cupoTotalDisponible6Personas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="montoTotalEstimado" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="satisfacePedidoDisponibilidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="agendaReservas" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idTipoAloj" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="nombreCiudad" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="nombreProvincia" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechasV3" Method="GetCuposAlojamientoEnRangoFechaV3">
+    <Parameter Name="cantUnidadesSimples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesDobles" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesTriples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidadesCuadruples" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades5Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="cantUnidades6Personas" Type="System.Int32" DbType="Int" />
+    <Parameter Name="fechaInicio" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="fechaFin" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="idAloj" Type="System.Guid" DbType="UniqueIdentifier" />
+    <Parameter Name="nacionalidad" Type="System.String" DbType="VarChar(3)" />
+    <Parameter Name="desayuno" Type="System.Int32" DbType="Int" />
+    <Parameter Name="tarifaReembolsable" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getUnidades_AlojCuposUnidadesPorIdAlojDisponiblesEnRangoDeFechasV3Result">
+      <Column Name="IDCUPOUNIDAD" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="IDUNIDAD_ALOJ" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CUPOMAXIMO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CUPORESERVADO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="MARCA_TEMPORADA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ACTIVO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_ALTA" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="BLOQUEADOPORPROMO" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MONTO_EXT" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_CD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_RA_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_EXT_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTO_MER_SD_TNR" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="IDALOJ" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IDUNIDAD_ALOJ1" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="NOMBRE" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MONTOTOTAL" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOTOTALPORUNIDAD" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="MONTOPROMEDIOPORDIA" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="CUPODISPONIBLE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTPERSONAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTUNIDADESPEDIDAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CANTCAMAS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ES_TNR" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

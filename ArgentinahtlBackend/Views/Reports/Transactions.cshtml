@@ -1,0 +1,173 @@
+﻿@model ArgentinahtlMVC.Models.TransactionsModel
+
+@{
+    ViewBag.Title = "Listado de Reservas";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Atrás", "Menu", "Management")</span></h2>
+
+@Html.ValidationSummary(false, "Búsqueda incorrecta. Por favor, corrija los siguientes errores:")
+
+<script type="text/javascript">
+    $(function () {
+        $('#users').multiselect();
+
+        $('#provinces').change(function () {
+            loadCities();
+        });
+
+        $('#cities').change(function () {
+            loadLodgings();
+        });
+
+        $('#lodgings').change(function () {
+            loadSeasonList('{' + $('#lodgings > option:selected').attr('value') + '}');
+        });
+
+        //        $('#lodgingId').change(function () {
+        //            loadTransactionList('{' + $('#lodgingId').val() + '}');
+        //        });
+
+        $('#provinces').change();
+
+        $('input[type="radio"]').change(function () {
+            if ($(this).attr('value') == 'byDestination') {
+                $('.byDestination *').enable();
+                $('.byLodging *').disable();
+            }
+            else {
+                $('.byDestination *').disable();
+                $('.byLodging *').enable();
+            }
+
+        });
+        $('.byDestination *').disable();
+
+        refreshTransactionList();
+    });
+
+    function loadCities() {
+        $.getJSON('@Url.Action("GetCities","Lodging")/{' + $('#provinces > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.DestinationId + "\">" + state.DestinationName + "</option>";
+            });
+            $('#cities').html(items);
+        });
+    }
+
+    function loadLodgings() {
+        $.getJSON('@Url.Action("GetLodgings","Lodging")/{' + $('#cities > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.LodgingId + "\">" + state.FirstName + state.LastName + "</option>";
+            });
+            $('#lodgings').html(items);
+        });
+    }
+
+    function loadTransactionList() {
+        $('#transaction_list').fadeTo('slow', '0.3');
+        var notification = showNotification('Actualizando lista...', 'info');
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("TransactionListFiltered", "Reports")',
+            data: {
+                UserId: $('#UserId').val(),
+                ProvinceId: $('#provinces > option:selected').attr('value'),
+                CityId: $('#cities > option:selected').attr('value'),
+                LodgingId: $('#lodgingId').val(),
+                Status: $('#statuses > option:selected').attr('value')
+            },
+            dataType: "html",
+            traditional: true,
+            success: function (data) {
+                $('#transaction_list').html(data);
+                $('#transaction_list').fadeTo('slow', '1');
+                notification.close();
+                showNotification('Lista actualizada', 'info');
+            },
+            error: function (data) {
+                $('#transaction_list').fadeTo('slow', '1');
+                notification.close();
+                showNotification('Error al actualizar la lista', 'error');
+            }
+        });
+    }
+
+    function refreshTransactionList() {
+        loadTransactionList();
+        return false;
+    }
+</script>
+
+<div class="filter-container">
+    @if (SessionData.UserProfile >= UserProfile.Administrator)
+    {
+        <div class="filter-group" style="float:left;clear:both;">
+            @Html.Label("Usuario"): @Html.DropDownListFor(m => m.UserId, 
+                Model.Agencys.Select(u => new SelectListItem { Text = string.Format("{0} {1} ({2})", u.FirstName, u.LastName, u.Username) , Value = u.AgencyId.ToString(), Selected = u.AgencyId == SessionData.UserId })
+                    .OrderBy(e => e.Text))
+            <a href="#" class="link-button" onclick="javascript:$('#UserId').val('@SessionData.UserId')">Mis reservas</a>
+        </div>
+    }
+    else
+    {
+        @Html.HiddenFor(m => m.UserId)
+    }
+
+    <div class="filter-group" style="float:left;clear:both;">
+        @Html.Label("Provincia"): @Html.DropDownList("provinces",
+            Model.Provinces.Select(d => new SelectListItem { Text = d.DestinationName, Value = d.DestinationId.ToString() })
+                .Union(new List<SelectListItem> { new SelectListItem { Text = "", Value = Guid.Empty.ToString(), Selected = true } })
+                .OrderBy(e => e.Text))
+
+        @Html.Label("Ciudad").AddInlineStyles("margin-left:2em;"): @Html.DropDownList("cities", new List<SelectListItem>())
+        
+        <br /><br />
+        @Html.Label("Alojamiento"): @Html.TextBox("lodging")
+        @Html.Hidden("lodgingId")
+        <script type="text/javascript">
+            $('#lodging').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("SearchLodgings", "Lodging")',
+                        dataType: 'json',
+                        data: { lodgingName: request.term },
+                        success: function (data) {
+                            if (data.length == 0) {
+                                data.push({ LodgingId: null, LodgingName: 'No encontrado.' });
+                                $('#lodgingId').val(null).change();
+                            };
+                            response($.map(data, function (item) {
+                                return { label: item.FirstName, value: item.FirstName, id: item.LodgingId };
+                            }));
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    if (ui.item.id == null) return false;
+                    $('#lodgingId').val(ui.item.id).change();
+                }
+            });
+        </script>
+    </div>
+    <div class="filter-group" style="float:left;clear:both;">
+        @Html.Label("Estado"): @Html.DropDownList("statuses",
+            Model.Statuses.Select(d => new SelectListItem { Text = DbAccess.MapReservationStatus(d), Value = ((int)d).ToString() })
+                .Union(new List<SelectListItem> { new SelectListItem { Text = "", Value = "-9999", Selected = true } })
+                .OrderBy(e => e.Text))
+    </div>
+</div>
+
+<br /><br />
+<a class="link-button" href="#" onclick="refreshTransactionList()" style="float:left;clear:both;margin-bottom:2em;">Refrescar</a>
+<br /><br />
+
+<div id="transaction_list" style="float:left;clear:both;">
+@Html.Partial("TransactionList", new TransactionListModel())
+</div>

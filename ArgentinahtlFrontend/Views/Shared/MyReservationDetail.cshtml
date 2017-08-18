@@ -1,0 +1,73 @@
+﻿@using CheckArgentina.Commons;
+@model CheckArgentina.Models.MyReservationModel
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-4">
+                Fecha de reserva: @Model.FechaAlta
+            </div>
+            <div class="col-lg-4">
+                Codigo reserva: @Model.CodigoReserva
+            </div>
+            <div class="col-lg-4">
+                Alojamiento: @Model.NombreAlojamiento
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                Estado de la reserva: @Model.EstadoReserva
+            </div>
+            <div class="col-lg-4">
+                Forma de Pago: @Model.NombreFormaDePago
+            </div>
+            <div class="col-lg-4">
+                Pasajero: @Model.NombrePasajero
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                Vencimiento: @Model.FechaVencimiento
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Detalle</h3>
+            </div>
+        </div>
+        <table class="table table-striped" style="margin: 5px;">
+            <tr>
+                <td>Cantidad</td>
+                <td>Reserva</td>
+                <td>Check In</td>
+                <td>Check Out</td>
+                <td>Tarifa</td>
+                <td>Tarifa Total</td>
+            </tr>
+            @foreach (var unidad in Model.Unidades.Vacancies)
+            {
+                <tr>
+                    <td>@unidad.VacancyCount</td>
+                    <td>@unidad.VacancyDescription</td>
+                    <td>@unidad.VacancyCheckin</td>
+                    <td>@unidad.VacancyCheckout</td>
+                    <td>@unidad.VacancyPrice</td>
+                    <td>@unidad.ConfirmedVacancyPrice</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @if (Model.EstadoReserva != "Cancelada" && Model.EstadoReserva != "A Cancelar")
+        {
+            <button onclick="openCancelationModal('@Model.NombreAlojamiento', '@Model.CodigoReserva')" class="btn btn-danger">Cancelar Reserva</button>
+        }
+        
+        
+        @if (Model.EstadoReserva == "A Constatar")
+        {
+            <button onclick="openPaymentModal('@Model.NombreAlojamiento', '@Model.CodigoReserva')" class="btn btn-success">Pagar Reserva</button>
+        }
+    </div>
+</div>

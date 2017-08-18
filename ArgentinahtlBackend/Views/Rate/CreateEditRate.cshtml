@@ -1,0 +1,260 @@
+﻿@model ArgentinahtlMVC.Models.RateModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Crear/Modificar Tarifa";
+
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+
+//    $.datepicker._findPos = function (obj) {
+//        var position,
+//            inst = this._getInst(obj),
+//            isRTL = this._get(inst, "isRTL");
+
+//        while (obj && (obj.type === "hidden" || obj.nodeType !== 1 || $.expr.filters.visible(obj))) {
+//            obj = obj[isRTL ? "previousSibling" : "nextSibling"];
+//        }
+
+//        position = $(obj).offset();
+//        // if element type isn't hidden, use show and hide to find offset
+//        if (!position) { position = $(obj).show().offset(); $(obj).hide(); }
+//        // or set position manually
+//        if (!position) position = { left: 999, top: 999 };
+//        return [position.left, position.top];
+//    };
+
+    $(function () {
+
+        $('#FechaAlta, #CupoReservado').disable();
+
+        if ($('#Id').val() != "" && $('#Id').val() != "00000000-0000-0000-0000-000000000000") 
+        {
+            $('#StartDate, #EndDate').disable();
+            $('#Lun, #Mar, #Mie, #Jue, #Vie, #Sab, #Dom').disable();  
+        }
+        else 
+        {
+            var options = {
+                dateFormat: 'dd/mm/yy',
+                yearRange: '-1:+0'
+            };
+
+            $.datepicker.setDefaults({
+                dateFormat: options.dateFormat,
+                yearRange: options.yearRange
+            });
+
+            $('#StartDate, #EndDate').datepicker({
+                beforeShow: function () { $(this).datepicker().addClass("datepickerBorder"); },
+                onClose: function () { $(this).datepicker().removeClass("datepickerBorder"); },
+                changeMonth: true,
+                changeYear: true,
+                showOn: "button",
+                buttonImage: "/Content/calendar.jpg",
+                buttonImageOnly: true,
+                minDate: new Date("01/01/2017"),
+                inline: true,
+                yearRange: "2017:2100"
+            });
+
+            $('#StartDate').change(function () {
+                $('#EndDate').datepicker('option', { minDate: addTimeToDate(1, 'd', $(this).datepicker('getDate'), false) });
+            });
+
+            $('#chkTodos').click(function () {
+                if ($(this).is(":checked")) {
+                    $('input[name="Lun"]').attr('checked', true);
+                    $('input[name="Mar"]').attr('checked', true);
+                    $('input[name="Mie"]').attr('checked', true);
+                    $('input[name="Jue"]').attr('checked', true);
+                    $('input[name="Vie"]').attr('checked', true);
+                    $('input[name="Sab"]').attr('checked', true);
+                    $('input[name="Dom"]').attr('checked', true);
+                    return;
+                }
+                else
+                {
+                    $('input[name="Lun"]').attr('checked', false);
+                    $('input[name="Mar"]').attr('checked', false);
+                    $('input[name="Mie"]').attr('checked', false);
+                    $('input[name="Jue"]').attr('checked', false);
+                    $('input[name="Vie"]').attr('checked', false);
+                    $('input[name="Sab"]').attr('checked', false);
+                    $('input[name="Dom"]').attr('checked', false);
+                    return;
+                }
+            });
+
+            $('#StartDate').change();
+            $('#StartDate').focus();
+        }
+    });
+
+    function createEditRate() {
+        //debugger;
+        var message = 'Error al guardar la tarifa.';
+        var messageType = 'error';
+        var guidDefaultValue = "00000000-0000-0000-0000-000000000000";
+        
+        var dateParts = $('#StartDate').val().split('/');
+        var startDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        dateParts = $('#EndDate').val().split('/');
+        var endDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        dateParts = $('#FechaAlta').val().split('/');
+        var dateOfRegistration = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        var cupoMax = 0;
+        var montoRACDTR = 0;
+        if ($('#Id').val() != guidDefaultValue) 
+        {
+            cupoMax = $('#CupoMaximo').val();
+            montoRACDTR = $('#MontoRACDTR').val();
+        }
+        else 
+        {
+            cupoMax = $('#UnidadAlojamiento_RoomCupo').val();
+            montoRACDTR = $('#UnidadAlojamiento_RoomCost').val();
+        }
+
+        var MontoEXTCDTR= $('#MontoEXTCDTR').val();
+        var MontoMERCDTR= $('#MontoMERCDTR').val();
+        var MontoRASDTR= $('#MontoRASDTR').val();
+        var MontoEXTSDTR= $('#MontoEXTSDTR').val();
+        var MontoMERSDTR= $('#MontoMERSDTR').val();
+        var MontoRACDTNR= $('#MontoRACDTNR').val();
+        var MontoEXTCDTNR= $('#MontoEXTCDTNR').val();
+        var MontoMERCDTNR= $('#MontoMERCDTNR').val();
+        var MontoRASDTNR= $('#MontoRASDTNR').val();
+        var MontoEXTSDTNR= $('#MontoEXTSDTNR').val();
+        var MontoMERSDTNR= $('#MontoMERSDTNR').val();
+
+        $.ajax({
+            type: "POST",
+            url: '@(Model.Id != default(Guid) ? Url.Action("EditRate", "Rate") : Url.Action("CreateOrUpdateRates", "Rate"))',
+            data: {
+                Id: $('#Id').val(),
+                RoomId: $('#UnidadAlojamiento_RoomId').val(),
+                CupoMaximo: cupoMax,
+                StartDate: startDate.toDateString(),
+                EndDate: endDate.toDateString(),
+                FechaAlta: dateOfRegistration.toDateString(),
+                MontoRACDTR: montoRACDTR.replace(".",","),
+                MontoEXTCDTR: MontoEXTCDTR.replace(".",","),
+                MontoMERCDTR: MontoMERCDTR.replace(".",","),
+                MontoRASDTR: MontoRASDTR.replace(".",","),
+                MontoEXTSDTR: MontoEXTSDTR.replace(".",","),
+                MontoMERSDTR: MontoMERSDTR.replace(".",","),
+                MontoRACDTNR: MontoRACDTNR.replace(".",","),
+                MontoEXTCDTNR: MontoEXTCDTNR.replace(".",","),
+                MontoMERCDTNR: MontoMERCDTNR.replace(".",","),
+                MontoRASDTNR: MontoRASDTNR.replace(".",","),
+                MontoEXTSDTNR: MontoEXTSDTNR.replace(".",","),
+                MontoMERSDTNR: MontoMERSDTNR.replace(".",","),
+                Lun: $('input[name="Lun"]').is(':checked') ? true : false,
+                Mar: $('input[name="Mar"]').is(':checked') ? true : false,
+                Mie: $('input[name="Mie"]').is(':checked') ? true : false,
+                Jue: $('input[name="Jue"]').is(':checked') ? true : false,
+                Vie: $('input[name="Vie"]').is(':checked') ? true : false,
+                Sab: $('input[name="Sab"]').is(':checked') ? true : false,
+                Dom: $('input[name="Dom"]').is(':checked') ? true : false
+            },
+            dataType: "json",
+            traditional: true,
+            success: function (data) {
+                if (data.success) {
+                    message = 'Tarifas guardadas con éxito';
+                    messageType = 'success';
+                    $.colorbox.close();
+                    refreshRateList();
+                }
+
+                //$.colorbox.close();
+                showNotification(message, messageType);
+            },
+            error: function (data) {
+                //$.colorbox.close();
+                showNotification(message, messageType);
+                refreshRateList();
+            }
+        });
+
+
+        //refreshRateList();
+
+        return false;
+    }
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreateRate", "Rate", FormMethod.Post, new { id = "rate_data" }))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.UnidadAlojamiento.RoomId)
+
+    <table class="borderless">
+        <tr><td>@Html.LabelFor(m => m.UnidadAlojamiento.RoomName):</td><td>@Html.TextBoxFor(m => m.UnidadAlojamiento.RoomName, new { style = "width:100%", disabled = "disabled" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.StartDate):</td><td>@Html.TextBoxFor(m => m.StartDate, "{0:dd/MM/yyyy}")</td></tr>
+        <tr><td>@Html.LabelFor(m => m.EndDate):</td><td>@Html.TextBoxFor(m => m.EndDate, "{0:dd/MM/yyyy}")</td></tr>
+        <tr><td>@Html.LabelFor(m => m.FechaAlta):</td><td>@Html.TextBoxFor(m => m.FechaAlta, "{0:dd/MM/yyyy}")</td></tr>
+        <tr><td>@Html.LabelFor(m => m.CupoMaximo):</td><td>@if (Model.Id != default(Guid))
+                                                           {
+                                                               @Html.TextBoxFor(m => m.CupoMaximo, new { style = "width:20%" })
+                                                           }
+                                                           else
+                                                           {
+                                                                @Html.TextBoxFor(m => m.UnidadAlojamiento.RoomCupo, new { style = "width:20%" })
+                                                           }
+                                                                </td></tr>
+        <tr><td>@Html.LabelFor(m => m.CupoReservado):</td><td>@Html.TextBoxFor(m => m.CupoReservado, new { style = "width:20%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoRACDTR):</td><td>@if (Model.Id != default(Guid))
+                                                           {
+                                                               @Html.TextBoxFor(m => m.MontoRACDTR, new { style = "width:40%" })
+                                                           }
+                                                           else
+                                                           {
+                                                                @Html.TextBoxFor(m => m.UnidadAlojamiento.RoomCost, new { style = "width:40%" })
+                                                           }
+                                                           </td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoEXTCDTR):</td><td>@Html.TextBoxFor(m => m.MontoEXTCDTR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoMERCDTR):</td><td>@Html.TextBoxFor(m => m.MontoMERCDTR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoRASDTR):</td><td>@Html.TextBoxFor(m => m.MontoRASDTR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoEXTSDTR):</td><td>@Html.TextBoxFor(m => m.MontoEXTSDTR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoMERSDTR):</td><td>@Html.TextBoxFor(m => m.MontoMERSDTR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoRACDTNR):</td><td>@Html.TextBoxFor(m => m.MontoRACDTNR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoEXTCDTNR):</td><td>@Html.TextBoxFor(m => m.MontoEXTCDTNR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoMERCDTNR):</td><td>@Html.TextBoxFor(m => m.MontoMERCDTNR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoRASDTNR):</td><td>@Html.TextBoxFor(m => m.MontoRASDTNR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoEXTSDTNR):</td><td>@Html.TextBoxFor(m => m.MontoEXTSDTNR, new { style = "width:40%" })</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MontoMERSDTNR):</td><td>@Html.TextBoxFor(m => m.MontoMERSDTNR, new { style = "width:40%" })</td></tr>
+        <tr>
+            <td>@Html.Label("Días"):</td>
+            <td>@Html.LabelFor(m => m.Lun):@Html.CheckBoxFor(m => m.Lun)
+                @Html.LabelFor(m => m.Mar):@Html.CheckBoxFor(m => m.Mar)
+                @Html.LabelFor(m => m.Mie):@Html.CheckBoxFor(m => m.Mie)
+                @Html.LabelFor(m => m.Jue):@Html.CheckBoxFor(m => m.Jue)
+                @Html.LabelFor(m => m.Vie):@Html.CheckBoxFor(m => m.Vie)
+                @Html.LabelFor(m => m.Sab):@Html.CheckBoxFor(m => m.Sab)
+                @Html.LabelFor(m => m.Dom):@Html.CheckBoxFor(m => m.Dom)
+            </td>
+        </tr>
+        <tr><td>@Html.Label("Todos"):</td><td>@Html.CheckBox("chkTodos")</td></tr>
+
+        <tr><td colspan="2"><a href="#" onclick="createEditRate()" class="link-button">Guardar</a></td></tr>
+
+        @if (ViewBag.Message != null)
+        {
+            <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+        }
+    </table>
+
+    @Html.ValidationSummary(false, "Las tarifas no pudieron ser guardadas. Por favor, revise los siguientes errores:")
+
+        Html.EndForm();
+}

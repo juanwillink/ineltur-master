@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Reserva</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+Dear @Model.NombreCliente,
+<br /><br />
+through this mail we would like to inform you that your reservation with code @Model.CodigoReserva
+has been completed. Below we provide you with the detailed data of your reservation. Please this as a voucher
+at the hotel on your arrival:
+<br /><br />
+<table border="1">
+<tr>
+    <td><b>Traveler:</b></td>
+    <td colspan="3">@Model.NombreCliente</td>
+</tr>
+<tr>
+    <td><b>Lodging:</b></td>
+    <td colspan="3">@Model.Alojamiento</td>
+</tr>
+<tr>
+    <td><b>Reservation Code:</b></td>
+    <td>@Model.CodigoReserva</td>
+    <td><b>Confirmation Code:</b></td>
+    <td>@Model.CodigoConfirmacion</td>
+</tr>
+<tr>
+    <td><b>Agency:</b></td>
+    <td colspan="3">@Model.Agencia</td>
+</tr>
+<tr>
+    <td><b>Observations:</b></td>
+    <td colspan="3">@Model.Observaciones</td>
+</tr>
+<tr>
+    <td><b>Cancelation Policies:</b></td>
+    <td colspan="3">@Model.PoliticasCancelacion</td>
+</tr>
+</table>
+<table border="1">
+<tr>
+<th>Description</th><th># of units</th><th>Check in</th>
+<th>Check out</th><th>Travelers</th><th>Amount</th><th>Total</th>
+</tr>
+@for (int i = 0; i < Model.Detalles.Length; i++)
+{
+    var detalle = Model.Detalles[i];
+<tr>
+<td>@detalle.Descripcion</td><td>@detalle.Cantidad</td>
+<td>@detalle.FechaInicial.ToShortDateString()</td><td>@detalle.FechaFinal.ToShortDateString()</td>
+<td>@Model.CantidadPasajeros[i].ToString()</td>
+<td>@Model.Moneda @String.Format("{0:0.00}", detalle.PorUnidad)</td><td>@Model.Moneda @String.Format("{0:0.00}", detalle.Subtotal)</td>
+</tr>
+}
+<tr>
+<th colspan="6" align="center">Total</th>
+<td>@Model.Moneda @Model.Total</td>
+</tr>
+</table>
+<br /><br />
+Yours sincerely,
+<br /><br />
+@*<a href=http://200.85.184.11:8090"><img src="http://200.85.184.11:8090/Content/Images/Logo.png" alt="Check Argentina" style="width:200px"/></a>*@
+<img src="http://www.argentinahtl.com/Imagenes/logo.jpg" alt="Argentinahtl" style="width:200px"/>
+</body>
+</html>

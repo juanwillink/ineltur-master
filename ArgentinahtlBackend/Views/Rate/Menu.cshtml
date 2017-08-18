@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Menú";
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Atrás", "Menu", "Management")</span></h2>
+
+<div id="Menu">
+
+    @if (SessionData.UserProfile >= UserProfile.Administrator)
+    {
+        @Html.ActionLink("Tarifas", "Rates", "Rate")<br />
+    }
+
+</div>

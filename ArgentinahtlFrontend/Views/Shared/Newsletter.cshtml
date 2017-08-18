@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "ArgentinaHTl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using CheckArgentina.Commons
+    <div class="container">
+        <div class="col-md-12">
+            <div class="panel" style="margin-top: 20px;">
+                <div class="panel-heading">
+                    <h2>Desea recibir nuestro newsletter?</h2>
+                </div>
+                <div class="panel-body">
+                    <form action="/Home/SendNewsletter" method="post" data-toggle="validator" role="form">
+                        <div class="form-group">
+                            <label>Porfavor escriba el correo a donde desea recibir el newsletter</label>
+                            <input type="email" class="form-control" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default btn-main">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

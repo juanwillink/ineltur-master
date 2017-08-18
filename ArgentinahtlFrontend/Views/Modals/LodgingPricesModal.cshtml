@@ -1,0 +1,42 @@
+﻿<div class="modal fade bs-example-modal-lg" id="lodging-prices-modal" tabindex="-1" role="dialog" aria-labelledby="lodging-prices-modalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="lodgingId" name="lodgingId" />
+                <input type="hidden" id="firstWeekDay" name="dateString" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="lodging-prices-modalLabel"></h4>
+            </div>
+            <div class="modal-body">
+
+                <button class="btn btn-sm btn-default" onclick="oneLessWeek()">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </button>
+                <label>Ver Fechas</label>
+                <button class="btn btn-sm btn-default" onclick="oneMoreWeek()">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </button>
+                <label style="display: inline-block; margin-left: 20px;">Seleccione fecha</label>
+                <input type="text" name="searchDate" value="" id="searchDate" class="form-control" style="display: inline-block; width: auto;" />
+                <button class="btn btn-sm btn-default" onclick="searchSpecificDate()">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button><br /><br />
+                <div id="spinnerModal" hidden style="margin-top: 50%;">
+
+                </div>
+                <table class="table table-curved" id="PricesTable" hidden></table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#searchDate').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>

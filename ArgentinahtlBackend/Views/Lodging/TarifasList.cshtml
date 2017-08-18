@@ -1,0 +1,107 @@
+﻿@model ArgentinahtlMVC.Models.TarifasListModel
+
+@{
+    ViewBag.Title = "Listado de Tarifas de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName;
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('.link_options').colorbox();
+
+        var tarifasTable = $('table#Tarifas');
+
+        if (tarifasTable.length) {
+            tarifasTable.addClass('tablesorter').tablesorter({
+                widgets: ['zebra', 'hover'],
+                headers: {
+                    0: { sorter: 'text' },
+                    1: { sorter: 'text' },
+                    2: { sorter: 'datetime' },
+                    3: { sorter: 'datetime' },
+                }
+            }).children('thead').children('tr:first').find('*').removeClass('header').unbind('click');
+            tarifasTable.tablesorter();
+        }
+    });
+
+    function deleteTarifa(id) {
+        var message = 'Error al guardar la Tarifa.';
+        var messageType = 'error';
+
+        showConfirmDialog('¿Seguro que desea eliminar la Tarifa?', 'Sí', 'No',
+            function($noty) {
+                // this = button element
+                // $noty = $noty element
+
+                $noty.close();
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("DeleteTarifa", "Lodging"))',
+                    data: {
+                        tarifaId: id
+                    },
+                    dataType: "json",
+                    traditional: true,
+                    success: function (data) {
+                        debugger;
+                        if (data.success) {
+                            debugger;
+                            message = 'Tarifa eliminada con éxito';
+                            messageType = 'success';
+                        }
+
+                        //showNotification(message, messageType);
+
+                        refreshTarifasList();
+                    },
+                    error: function (data) {
+                        //showNotification(message, messageType);
+
+                        refreshTarifasList();
+                    }
+                });
+            },
+            function($noty) {
+                $noty.close();
+                showNotification('La operación fue cancelada.', 'info');
+            });
+
+        return false;
+    }
+</script>
+
+<br /><b>@Html.Label("Tarifas de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName): @Model.Count</b><br />
+
+<table id="Tarifas">
+    <thead>
+        <tr>
+            <th><span>Nacionalidad</span></th>
+            <th><span>Moneda</span></th>
+            <th><span>Fecha Inicio</span></th>
+            <th><span>Fecha Fin</span></th>   
+            <th><span>Acciones</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.Tarifas)
+        {
+            <tr tarifaId="@s.TarifaId">
+                <td>@(s.NationalityId)</td>
+                <td>@(Model.TarifasTypes.Single(st => st.TarifaTypeId == s.TarifaTypeId).Description)</td>
+                <td>@(s.StartDate.ToString("dd/MM/yyyy"))</td>
+                <td>@(s.EndDate.ToString("dd/MM/yyyy"))</td>
+                
+                <td>
+                    <a class="link_options" href="@Url.Content("~/Lodging/EditTarifa?tarifaId="+s.TarifaId)"><img src="@Url.Content("~/Content/edit.png")" title="Editar" /></a>
+                    <a href="#" onclick="deleteTarifa('@s.TarifaId')"><img src="@Url.Content("~/Content/delete.png")" title="Eliminar" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="link_options link-button" href="@Url.Content("~/Lodging/CreateTarifa/" + Model.Lodging.LodgingId)">Nueva Tarifa</a>

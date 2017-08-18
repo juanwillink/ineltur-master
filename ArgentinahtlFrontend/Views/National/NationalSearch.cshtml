@@ -1,0 +1,120 @@
+﻿@model CheckArgentina.Models.SearchModel   
+<div class="panel panel-default"  id="search_panel">
+    <div class="panel-heading">
+        <h3>Bienvenido</h3>
+        <p><span class="glyphicon glyphicon-search"></span> Encuentre aqui todas nuestras ofertas!</p>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group ui-widget">
+                <label for="destinationName">Destino</label>
+                <input type="hidden" id="destinationIdSearch" />
+                <input type="hidden" id="currentUserKey" value="@Session["userkey"].ToString()" />
+                <input type="text" class="form-control autocomplete" id="destinationName" />
+            </div>
+            <div class="form-group">
+                <label for="hotelName">Hotel</label>
+                <input type="hidden" id="hotelNameSearch" />
+                <input type="text" class="form-control" id="hotelName" />
+            </div>
+            <div class="col-md-5" style="padding: 0;">
+                <div class="form-group text-center">
+                    <label for="checkinDate">Check-In</label>
+                    <div class='input-group date' id='datetimepickerCheckin'>
+                        <input type='text' class="form-control" id="checkinDate" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-2" style="padding: 0px 5px 0px 5px;">
+                <div class="form-group text-center">
+                    <label for="nightsCount">Noches</label>
+                    <input type="text" class="form-control" id="nightsCount" readonly="readonly" />
+                </div>
+               
+            </div>
+            <div class="col-md-5" style="padding: 0;">
+                <div class="form-group text-center">
+                    <label for="checkoutDate">Check-Out</label>
+                    <div class='input-group date' id='datetimepickerCheckout'>
+                        <input type='text' class="form-control" id="checkoutDate" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nacionalidad</label>
+                    <select class="form-control" id="nationalityFilter">
+                        <option value="arg">Argentina</option>
+                        <option value="mer">Mercosur</option>
+                        <option value="ext">Exterior</option>
+                    </select>
+                </div>        
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tipo de Habitacion</label>
+                    <select class="form-control" id="roomTypeFilter">
+                        <option selected value="">Todas</option>
+                        <option value="single">Single</option>
+                        <option value="doble">Doble</option>
+                        <option value="triple">Triple</option>
+                        <option value="cuadruple">Cuadruple</option>
+                    </select>
+                </div>     
+            </div>
+        </form>   
+        <button class="btn btn-default" id="searchHotelsButton" onclick="searchHotels();">
+            <span class="glyphicon glyphicon-search"></span> Buscar
+        </button> 
+    </div>
+</div>
+
+<script>
+    $.extend($.ui.autocomplete.prototype.options, {
+        open: function (event, ui) {
+            $(this).autocomplete("widget").css({
+                "width": ($(this).width() + "px")
+            });
+        }
+    });
+
+    //Auto complete destinations
+    $("#destinationName").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "/National/SearchDestinations",
+                dataType: "json",
+                data: { DestinationName: request.term, UserKey: "@Session["userkey"].ToString()" },
+                success: function (data) {
+                    debugger;
+                    if (data.length == 0) {
+                        data.push({ DestinationId: null, DestinationName: "No Encontrado."});
+                        $("#destinationIdSearch").val(null);
+                    }
+                    response($.map(data, function (item) {
+                        return { label: item.DestinationName, value: item.DestinationName, id: item.DestinationId};
+                    }));
+                },
+                error: function () {
+                    debugger;
+                    alert("Error");
+                }
+            });
+        },
+        minLength: 1,
+        select: function (event, ui) {
+            if (ui.item.id == null) {
+                return false;
+            }
+            $("#destinationIdSearch").val(ui.item.id);
+        }
+    });
+</script>
+

@@ -1,0 +1,52 @@
+﻿@model ArgentinahtlMVC.Models.UserListModel
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Back", "Menu", "Management")</span></h2>
+
+<table id="Users">
+<thead><tr><th>User name</th><th>User description</th><th>Associated Client</th><th>E-mail</th><th>Profile</th><th>Enabled?</th><th>Actions</th></tr></thead>
+<tbody>
+@foreach (var u in Model.Users) {
+    var id = new { id = u.UserName };
+    
+    <tr>
+        <td>@u.UserName</td>
+        <td>@u.UserDescription</td>
+        <td>@u.Client.Name</td>
+        <td>@u.Email</td>
+        <td>@u.Profile</td>
+        <td>@(u.Enabled.GetValueOrDefault() ? "yes" : "no")</td>
+        <td>
+            @if (u.Profile <= SessionData.UserProfile) {
+                @Html.ActionLink("Reset Password", "ResetUserPassword", id)
+                if (u.UserName != SessionData.UserName) {
+                    @: &#160;
+                    if (u.Enabled.GetValueOrDefault()) {
+                        @Html.ActionLink("Disable", "DisableUser", id)
+                    }
+                    else {
+                        @Html.ActionLink("Enable", "EnableUser", id)
+                    }
+                    if (SessionData.UserProfile == UserProfile.Superadmin) {
+                        @: &#160;
+                        @Html.ActionLink("Delete", "DeleteUser", id)
+                    }
+                }
+            }
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+@using (Html.BeginForm("NewUser", "Management", FormMethod.Get))
+{
+    <input type="submit" value="New user" />
+}
+
+@if (ViewBag.Message != null)
+{
+    <br /><span class="message">@ViewBag.Message</span>
+}

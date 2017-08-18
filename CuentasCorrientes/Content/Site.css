@@ -1,0 +1,505 @@
+﻿
+body
+{
+    background-color: #fff;
+    font-size: .7em;
+    font-family: Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+a:link, a:visited
+{
+    color: #474747;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    color: #b4b4b4;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #b4b4b4;
+}
+
+p, ul
+{
+    margin-bottom: 1em;
+    line-height: 1.6em;
+}
+
+p.justified
+{
+    text-align: justify;
+}
+
+ul 
+{
+    padding-left: 1.5em;
+}
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1
+{
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2
+{
+    padding: 0 0 10px 0;
+}
+
+h2 span 
+{
+    margin-left: 1em;
+    font-size: 75%;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0;
+}
+
+/* Primary layout */
+
+.page
+{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header
+{
+    position: relative;
+    margin-bottom: 0px;
+    color: #000;
+    padding: 0;
+}
+
+#header h1
+{
+    font-weight: bold;
+    padding: 5px 0;
+    margin: 0;
+    color: #fff;
+    border: none;
+    line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px !important;
+}
+
+#main
+{
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    _height: 1px;
+}
+
+#footer
+{
+    color: #999;
+    padding: 10px 0;
+    text-align: center;
+    line-height: normal;
+    margin: 0;
+    font-size: .9em;
+}
+
+/* Form layout elements */
+
+input[type="text"], input[type="password"], textarea
+{
+    width: 200px;
+    border: 1px solid #000;
+    background-color: #ffffff;
+    color: #696969;
+}
+
+textarea.wide
+{
+    width: 100%;
+}
+
+#Menu 
+{
+	display: block;
+	margin: 10px auto;
+	text-align: center;
+}
+
+#Menu a
+{
+	width: 40%;
+}
+
+#Menu a:first-child 
+{
+    margin-top: 0;
+}
+
+#Menu a, input[type="submit"], input[type="button"], div.button, span.button
+{
+	margin: 20px auto 0 auto;
+	border: 2px bevel #fff;
+	background-color: #b4b4b4;
+    -moz-border-radius: .5em;
+    -webkit-border-radius: .5em;
+    border-radius: .5em;
+	color: #fff;
+	text-decoration: none;
+	font: 12px bold verdana,arial,helvetica,sans-serif;
+	cursor: pointer;
+	display: inline-block;
+	padding: 4px;
+}
+
+td input[type="submit"], td input[type="button"], td div.button, td span.button
+{
+    margin-top: 0;
+}
+
+div.button, span.button 
+{
+	padding: 0;
+}
+
+div.button a, span.button a, div.button a:hover, span.button a:hover, div.button a:visited, span.button a:visited
+{
+    text-decoration: none;
+    color: #eee;
+    padding: 4px;
+    display: block;
+}
+
+#Menu a.hover, input.hover, button.hover, .button.hover
+{
+    text-decoration: none;
+}
+
+span.legend
+{
+    font-size: 1.25em;
+    line-height: 1.5em;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #d22;
+    color: #474747;
+}
+
+div.editable
+{
+    display: block;
+    width: 100% !important;
+    text-align: right;
+    padding: 0;
+}
+
+div.modified
+{
+    color: #f01111;
+}
+
+div.editable input 
+{
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+div.pag
+{
+    text-align: right;
+}
+
+div.pag a
+{
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 3px;
+    color: #a22;
+}
+
+/* Tables */
+
+table
+{
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td 
+{
+    padding: 5px;   
+    border: solid 1px #e8eef4;
+}
+
+th.narrow, td.narrow {
+	width: 1%;
+	white-space: nowrap;
+}
+
+th.datetime, td.datetime {
+	min-width: 10em;
+	max-width: 10em;
+	width: 10em;
+	white-space: nowrap;
+}
+
+tr.hover td 
+{
+    background-color: #fefef0 !important;
+}
+
+table th
+{
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4; 
+    border: solid 1px #e8eef4;   
+}
+
+table.borderless, table.borderless td, table.borderless th
+{
+    border: 0;
+}
+
+/* Misc */
+
+.clear
+{
+    clear: both;
+}
+
+.error
+{
+    color:Red;
+}
+
+#menucontainer
+{
+    margin-top: 40px;
+}
+
+div#title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    height: 42px;
+}
+
+#logindisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    margin: 10px;
+    color: #696969;
+}
+
+#logindisplay a
+{
+    color: #696969;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover
+{
+    text-decoration: none;
+}
+
+/* Styles for validation helpers */
+
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Styles for editor and display helpers */
+
+.display-label, .editor-label,
+.display-field, .editor-field
+{
+    margin: 0.5em 0;
+}
+
+.text-box
+{
+    width: 30em;
+}
+
+.text-box.multi-line
+{
+    height: 6.5em;
+}
+
+.tri-state
+{
+    width: 6em;
+}
+
+.message
+{
+    font-weight: bold;
+    color: #a22;
+}
+
+/* Login form */
+
+#loginform
+{
+    position: absolute;
+    top: 40%;
+    width: 90%;
+    margin: -170px 0 0;
+    text-align: center;
+    border: 0;
+}
+
+#loginform > #title
+{
+    display: block;
+    float: none;
+    text-align: center;
+    border: none;
+    height: auto;
+    background-color: #fff !important;
+}
+
+#loginform > div
+{
+    margin: 0 auto;
+    width: 202px;
+    text-align: left;
+    padding: 12px;
+}
+
+#loginform > div
+{
+    border: 2px solid #d22;
+    background: #b4b4b4;
+    -moz-border-radius: 1.2em;
+	-webkit-border-radius: 1.2em;
+    border-radius: 1.2em;
+}
+
+/* Tablesorter */
+
+table.tablesorter
+{
+	font-family: arial;
+	background-color: #CDCDCD;
+	margin: 10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+
+table.tablesorter thead tr th, table.tablesorter tfoot tr th
+{
+	background-color: #e6eeee;
+	border: 1px solid #fff;
+	font-size: 8pt;
+	padding: 4px;
+}
+
+table.tablesorter thead tr .header
+{
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.tablesorter thead tr .header span
+{
+    margin-right: 8px;
+    display: inline-block;
+}
+
+table.tablesorter tbody td
+{
+	color: #3d3d3d;
+	padding: 4px;
+	background-color: #f0f0f6;
+	vertical-align: top;
+}
+
+table.tablesorter tbody tr.odd td
+{
+	background-color: #fff;
+}
+
+table.tablesorter thead tr .headerSortUp
+{
+	background-image: url(asc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown
+{
+	background-image: url(desc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp
+{
+    background-color: #8dbdd8;
+}
+
+/* Named tables */
+
+#Transactions
+{
+    min-width: 1200px;
+}

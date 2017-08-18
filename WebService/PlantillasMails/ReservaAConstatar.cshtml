@@ -1,0 +1,77 @@
+﻿<html>
+<head>
+    <title>Reserva</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+    Estimad@@ @Model.Agencia,
+    <br /><br />
+    por medio del presente mail le informamos que su reserva con c&oacute;digo @Model.CodigoReserva ha sido
+    realizada. Debemos informarle que al haber seleccionado pago mediante deposito bancario, usted debera
+    enviar el comprobante del mismo antes de la fecha X o la reserva será dada de baja. Una vez corroborado
+    el comprobante, se le enviara un mail con el voucher y la confirmacion de la misma. A continuación los
+    datos de su reserva
+    <br /><br />
+    <table border="1">
+        <tr>
+            <td><b>Pasajero:</b></td>
+            <td colspan="3">@Model.NombreCliente</td>
+        </tr>
+        <tr>
+            <td><b>Hotel:</b></td>
+            <td colspan="3">@Model.Alojamiento.Nombre</td>
+        </tr>
+        <tr>
+            <td><b>C&oacute;d. Reserva:</b></td>
+            <td>@Model.CodigoReserva</td>
+        </tr>
+        <tr>
+            <td><b>Agencia:</b></td>
+            <td colspan="3">@Model.Agencia</td>
+        </tr>
+        <tr>
+            <td><b>Observaciones:</b></td>
+            <td colspan="3">@Model.Observaciones</td>
+        </tr>
+        <tr>
+            <td><b>Pol&iacute;tica de Cancelaci&oacute;n:</b></td>
+            <td colspan="3">@Model.PoliticasCancelacion</td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <th>Descripci&oacute;n</th>
+            <th>Cantidad</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Cant. Pasajeros</th>
+            <th>Subtotal</th>
+            <th>Total</th>
+        </tr>
+                @for (int i = 0; i < Model.Detalles.Length; i++)
+                {
+                    var detalle = Model.Detalles[i];
+                    <tr>
+                        <td>@detalle.Descripcion</td>
+                        <td>@detalle.Cantidad</td>
+                        <td>@detalle.FechaInicial.ToString("dd/MM/yyyy")</td>
+                        <td>@detalle.FechaFinal.ToString("dd/MM/yyyy")</td>
+                        <td>@Model.CantidadPasajeros[i].ToString()</td>
+                        <td>@Model.Moneda @String.Format("{0:0.00}", detalle.PorUnidad)</td>
+                        <td>@Model.Moneda @String.Format("{0:0.00}", detalle.Subtotal)</td>
+                    </tr>
+                }
+                    <tr>
+                        <th colspan="6" align="center">Total</th>
+                        <td>@Model.Moneda @Model.Total</td>
+                    </tr>
+          
+    </table>
+    * Reserva de alojamiento y desayuno a cargo de Ineltur Viajes. Extras a cargo del pasajero.
+    <br /><br />
+    Atentamente,
+    <br /><br />
+    @*<a href=http://200.85.184.11:8090"><img src="http://200.85.184.11:8090/Content/Images/Logo.png" alt="Check Argentina" style="width:200px"/></a>*@
+    <img src="http://www.argentinahtl.com/Content/Images/logoChico.jpg" alt="Ineltur Viajes" style="width:200px" />
+</body>
+</html>

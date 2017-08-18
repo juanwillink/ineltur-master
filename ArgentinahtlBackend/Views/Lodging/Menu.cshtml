@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Menú";
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Atrás", "Menu", "Management")</span></h2>
+
+@using ArgentinahtlMVC.Models;
+
+<div id="Menu">
+
+    @if (SessionData.UserProfile >= UserProfile.Administrator)
+    {
+        @Html.ActionLink("Temporadas", "Seasons", "Lodging")<br />
+    }
+
+    @if (SessionData.UserProfile >= UserProfile.Administrator)
+    {
+        @Html.ActionLink("Tarifas", "Tarifas", "Lodging") <br />
+    }
+
+    @if (SessionData.UserProfile >= UserProfile.Administrator)
+    {
+        @Html.ActionLink("Promociones", "Promociones", "Lodging") <br />
+    }
+
+</div>

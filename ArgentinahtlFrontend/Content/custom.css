@@ -1,0 +1,194 @@
+﻿
+body{
+  background: url("Images/fotohome.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 50px;
+}
+
+
+.main-background-color{
+    background-color: #162B66 !important;
+    color: white !important;
+}
+
+.navbar{
+    border-radius: 0px !important;
+    border: none;
+    background-color: #FFFFFF;
+    margin-bottom: 0px;
+    /*background-color: rgba(255, 255, 255, 0.89);*/
+}
+
+.navbar-collapse{
+    position: relative;
+}
+
+.navbar-collapse .nav{
+    position: absolute; 
+    bottom: 0; 
+    right: 0;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: #003882;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: #003882;
+    color: aliceblue;
+    transition-duration: 0.5s;
+}
+
+img.logo-image{
+    width: 100%;
+    max-width: 200px;
+}
+
+.btn-main{
+    background-color: #162B66;
+    color: white;
+}
+
+.btn-main:hover,
+.btn-main:active{
+    background-color: #223c86;
+    color: white;
+}
+
+/*Banners*/
+
+.banner_holder{
+    width: 100%;
+    height: 150px;
+    min-height: 50px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.banner_holder_bottom{
+    width: 100%;
+    height: 150px;
+    min-height: 50px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.add-banner-1{
+    background:   url("Images/Banners/banner3.jpg")no-repeat;
+}
+
+.add-banner-2{
+    background:   url("Images/Banners/banner2.jpg")no-repeat;
+}
+
+.add-banner-3{
+    background:   url("Images/Banners/banner1.jpg")no-repeat;
+}
+
+.add-banner-4{
+    background:   url("Images/Banners/banner4.jpg")no-repeat;
+}
+
+.add-banner-5{
+    background:   url("Images/Banners/banner5.jpg")no-repeat;
+}
+
+div[class^="add-banner-"], div[class*=" add-banner-"] {
+    height: 100%;
+    position:relative;
+    background-size: cover;
+    background-position: center; 
+    border-radius: 4px;
+}
+
+.banners-wrapper{
+    /*background: rgba(247, 247, 247, 0.94);*/
+    border-radius: 4px;
+    height: 100%;  
+}
+
+.hotel-photo{
+    border-radius: 2px;
+    margin: 10px 0px 0px 0px;
+    width: 100%;
+    height: 350px;
+    min-height: 50px;
+    position: relative;
+}
+
+/*Panels Styles*/
+#search_panel, .panel-default > .panel-heading {
+    background-color: #162B66 !important;
+    color: white !important;
+}
+
+.bootstrap-datetimepicker-widget{
+    color: black !important;
+    z-index: 99999;
+}
+
+#search_panel > .panel-heading {
+    border: none;
+    border-color: #ccc !important;
+}
+
+#search_panel, label{
+    font-weight: normal;
+}
+
+/*Ui autocomplete from jquery*/
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+       -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    max-height:200px; 
+    max-width: inherit; 
+
+    /* these make it scroll for anything outside */
+    overflow-x:scroll;
+    overflow-y:scroll;
+}
+.ui-autocomplete > li {
+  padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+  background-color: #DDD;
+}
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+/*lodging styles*/
+.lodging-panel{
+    box-shadow: rgba(0,0,0,0.3) 5px 5px;
+}
+
+.lodging-description-text{
+    height: 100px;
+    overflow: scroll;
+}
+
+/*Column Transitions*/
+div[class^="col-md-"], div[class*=" col-md-"]{
+    transition: all 200ms;
+}
+
+.carousel img {
+  min-width: 100%;
+}

@@ -1,0 +1,141 @@
+﻿@model CheckArgentina.Models.EmailReservationModel
+@using CheckArgentina.Commons
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4>Complete los campos para solicitar Reserva</h4>
+</div>
+<div class="modal-body">
+    <form action="/Payment/SendEmailReservation" method="post" class="form-inline"> 
+        <div class="form-group" hidden>
+            <label>Hotel</label>
+            @Html.TextBoxFor(m => m.LodgingName).AddClasses("form-control")
+        </div>
+        <div class="form-group" hidden>
+            <label>Destino</label>
+            @Html.TextBoxFor(m => m.DestinationName).AddClasses("form-control")
+        </div>
+        <div class="form-group">
+            <label>Nombre del pasajero</label>
+            @Html.TextBoxFor(m => m.TravelerName).AddClasses("form-control " + string.Format("TravelerName_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Email del Vendedor</label>
+            @Html.TextBoxFor(m => m.TravelerEmail).AddClasses("form-control " + string.Format("TravelerEmail_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Cantidad de pasajeros</label>
+            @Html.DropDownListFor(m => m.TravelersCount, new SelectList(new List<Object>
+                    {
+                        new { value = "1" , text = "1"  },
+                        new { value = "2" , text = "2" },
+                        new { value = "3" , text = "3" },
+                        new { value = "4" , text = "4" },
+                        new { value = "5" , text = "5" },
+                        new { value = "6" , text = "6" }
+                    }, "value", "text", Model.TravelersCount)
+                ).AddClasses("form-control " + string.Format("TravelersCount_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Nacionalidad</label>
+            @Html.TextBoxFor(m => m.Nationality).AddClasses("form-control " + string.Format("Nationality_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>DNI / PASS</label>
+            @Html.TextBoxFor(m => m.TravelerId).AddClasses("form-control " + string.Format("TravelerId_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Check In</label>
+            @Html.TextBoxFor(m => m.CheckinDate).AddClasses("form-control " + string.Format("CheckinDate_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Check Out</label>
+            @Html.TextBoxFor(m => m.CheckoutDate).AddClasses("form-control " + string.Format("CheckoutDate_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Cantidad de habitaciones</label>
+            @Html.DropDownListFor(m => m.RoomsCount, new SelectList(new List<Object>
+                    {
+                        new { value = "1" , text = "1"  },
+                        new { value = "2" , text = "2" },
+                        new { value = "3" , text = "3" },
+                        new { value = "4" , text = "4" },
+                        new { value = "5" , text = "5" },
+                        new { value = "6" , text = "6" }
+                    }, "value", "text", Model.RoomsCount)
+                ).AddClasses("form-control " + string.Format("RoomsCount_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Tipo de Habitacion</label>
+            @Html.TextBoxFor(m => m.RoomType).AddClasses("form-control " + string.Format("RoomType_{0}", Model.LodgingName) + "")
+        </div>
+        <div class="form-group">
+            <label>Observaciones</label>
+            @Html.TextAreaFor(m => m.Observations).AddClasses("form-control")
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-main @string.Format("reserveFor_{0}", Model.LodgingName)" >Pedir Reserva</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $('@string.Format(".CheckinDate_{0}", Model.LodgingName)').datetimepicker({
+                format: "DD/MM/YYYY"
+            });
+            $('@string.Format(".CheckoutDate_{0}",Model.LodgingName)').datetimepicker({
+                useCurrent: false, //Important! See issue #1075
+                format: "DD/MM/YYYY"
+            });
+            $('@string.Format(".CheckinDate_{0}", Model.LodgingName)').on("dp.change", function (e) {
+                $('@string.Format(".CheckoutDate_{0}", Model.LodgingName)').data("DateTimePicker").minDate(e.date);
+            });
+            $('@string.Format(".CheckoutDate_{0}", Model.LodgingName)').on("dp.change", function (e) {
+                $('@string.Format(".CheckinDate_{0}", Model.LodgingName)').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+
+
+        $(document).on('click', '@string.Format(".reserveFor_{0}", Model.LodgingName)', function (e) {
+            debugger;
+            if ($("@string.Format(".TravelerName_{0}", Model.LodgingName)").val() === "" || $("@string.Format(".TravelerName_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".TravelerName_{0}", Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".TravelerEmail_{0}", Model.LodgingName)").val() === "" || $("@string.Format(".TravelerEmail_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".TravelerEmail_{0}", Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".TravelersCount_{0}", Model.LodgingName)").val() === "" || $("@string.Format(".TravelersCount_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".TravelersCount_{0}", Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".Nationality_{0}", Model.LodgingName)").val() === "" || $("@string.Format(".Nationality_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".Nationality_{0}", Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".TravelerId_{0}",Model.LodgingName)").val() === "" || $("@string.Format(".TravelerId_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".TravelerId_{0}",Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".CheckinDate_{0}",Model.LodgingName)").val() === "" || $("@string.Format(".CheckinDate_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".CheckinDate_{0}",Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".CheckoutDate_{0}",Model.LodgingName)").val() === "" || $("@string.Format(".CheckoutDate_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".CheckoutDate_{0}",Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".RoomsCount_{0}",Model.LodgingName)").val() === "" || $("@string.Format(".RoomsCount_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".RoomsCount_{0}",Model.LodgingName)").val("Debe llenar este campo");
+            }
+            if ($("@string.Format(".RoomType_{0}",Model.LodgingName)").val() === "" || $("@string.Format(".RoomType_{0}",Model.LodgingName)").val() === "Debe llenar este campo") {
+                e.preventDefault();
+                $("@string.Format(".RoomType_{0}",Model.LodgingName)").val("Debe llenar este campo");
+            }
+        })
+    </script>
+</div>
+
+

@@ -1,0 +1,54 @@
+﻿@model CheckArgentina.Models.ReservationModel
+
+@using CheckArgentina.Commons;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Formas de pago";
+}
+<div class="container">
+    <div class="panel" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <h2>Seleccione su medio de pago</h2>
+            @if ((Model.Vacancies[0].VacancyCheckin.AddDays(-Model.DiasCancelacionCargo) < DateTime.Now.Date))
+            {
+                <div class="alert alert-danger" role="alert">
+                    <h4>
+                        <b>Atencion:</b> Esta reserva incurre en gastos de cancelacion
+                    </h4>
+                </div>
+            }
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#ctaCte" aria-controls="ctaCte" role="tab" data-toggle="tab">Cuenta Corriente</a></li>
+                <li role="presentation"><a href="#deposito" aria-controls="deposito" role="tab" data-toggle="tab">Deposito</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="ctaCte">
+                    @using (Html.BeginForm("ProcessPaymentCtaCte", "Payment", FormMethod.Post, new { id = "ctaCte_payment_form" }))
+                    {
+                        Html.RenderPartial("PaymentCtaCte", Model);
+                        <div class="pull-left">
+                            @Html.Button("Pagar", true).AddId("payment_continue_button").AddClasses("btn btn-success")
+                        </div>
+                        Html.EndForm();
+                    }
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="deposito">
+                    @using (Html.BeginForm("ProcessPaymentDeposito", "Payment", FormMethod.Post, new { id = "deposit_payment_form" }))
+                    {
+                        Html.RenderPartial("PaymentDeposito", Model);
+
+                        <div class="pull-left">
+                            @Html.Button("Pagar", true).AddId("payment_continue_button").AddClasses("btn btn-success")
+                        </div>
+
+                        Html.EndForm();
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

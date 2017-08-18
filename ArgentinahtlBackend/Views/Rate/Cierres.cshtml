@@ -1,0 +1,50 @@
+﻿@model ArgentinahtlMVC.Models.RateListModel
+
+@{
+    ViewBag.Title = "Cierres";
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+
+    function realizarCierre() {
+        $.ajax({
+            type: "POST",
+            url: "/Rate/RealizarCierre",
+            data: $("#frmCierres").serialize(),
+            datatype: "json",
+            success: function (result) {
+                if (result.OK == true) {
+                    alert("El cierre se realizó correctamente.");
+                    $.colorbox.close();
+                    refreshRateList();
+                    return;
+                }
+                else {
+                    alert("Error al realizar el cierre: " & result.Descripcion);
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $('table.tablesorter').floatThead({
+        position: 'fixed'
+    })
+</script>
+
+<form id="frmCierres" action="">
+<input id="roomid" name="roomid" type="hidden" value="@Model.Rates[0].RoomId" />
+<input id="anio" name="anio" type="hidden" value="@Model.Rates[0].Fecha.Year" />
+@Html.Label("Cupo alta grises"):<input id="cupogris" name="cupogris" type="text" value="@Model.Rates[0].UnidadAlojamiento.RoomCupo" style="width:30px"/>
+@Html.Label("Cupo alta rojos"):<input id="cuporojo" name="cuporojo" type="text" value="@Model.Rates[0].UnidadAlojamiento.RoomCupo" style="width:30px"/>
+
+@Html.Raw(Model.TablaCupos);
+
+<a id="cerrar" class="link_options link-button" onclick="realizarCierre()">Cerrar/Abrir días seleccionados</a>
+</form>
+
+

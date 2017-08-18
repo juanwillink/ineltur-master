@@ -1,0 +1,13 @@
+﻿<div id="loginInfo">
+@if (Request.IsAuthenticated) {
+    @:<span style="font-size:1.2em;">¡Bienvenido <b>@Context.User.Identity.Name</b>!</span>
+    <br />
+    @:[ @Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Users") ]<br /> 
+    @:[ <a style="cursor:pointer;" onclick="clearCache()">Borrar Cache</a> ]<br /> 
+    @:[ @Html.ActionLink("Salir", "LogOut", "Users") ]
+}
+else
+{
+    @:[ @Html.ActionLink("Entrar", "LogIn", "Users") ]
+}
+</div>

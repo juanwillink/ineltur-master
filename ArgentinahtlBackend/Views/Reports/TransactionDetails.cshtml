@@ -1,0 +1,39 @@
+﻿@model ArgentinahtlMVC.Models.ReservationListModel
+
+@{
+    ViewBag.Title = "Detalle de Reserva";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<h3>Reserva @Model.ReservationCode</h3>
+<table id="Reservations">
+<thead>
+<tr>
+    <th><span>Habitación</span></th>
+    <th><span>Checkin</span></th>
+    <th><span>Checkout</span></th>
+    <th><span>Monto</span></th>
+    <th><span>Pasajeros</span></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var t in Model.Reservations)
+{
+<tr reservationCode="@t.ReservationId">
+    <td>@(t.Room.RoomName)</td>
+    <td>@(t.Checkin != null ? t.Checkin.Value.ToString("dd/MM/yyyy") : "-")</td>
+    <td>@(t.Checkout != null ? t.Checkout.Value.ToString("dd/MM/yyyy") : "-")</td>
+    <td>@(t.Currency.CurrencySymbol + " " + t.Price.ToString("######.00"))</td>
+    <td>
+        <table>
+    @foreach (var p in t.Passengers)
+    {
+        <tr><td>@(p.FirstName + " " + p.LastName) (@p.BornDate.ToString("dd/MM/yyyy"))</td></tr>
+    }
+    </table>
+    </td>
+</tr>
+}
+</tbody>
+</table>

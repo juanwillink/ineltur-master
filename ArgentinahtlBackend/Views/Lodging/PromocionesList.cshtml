@@ -1,0 +1,125 @@
+﻿@model ArgentinahtlMVC.Models.PromocionesListModel
+
+@{
+    ViewBag.Title = "Listado de Tarifas de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName;
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('.link_options').colorbox();
+
+        var promocionesTable = $('table#Promociones');
+
+        if (promocionesTable.length) {
+            promocionesTable.addClass('tablesorter').tablesorter({
+                widgets: ['zebra', 'hover'],
+                headers: {
+                    0: { sorter: 'text' },
+                    1: { sorter: 'text' },
+                    2: { sorter: 'datetime' },
+                    3: { sorter: 'datetime' },
+                }
+            }).children('thead').children('tr:first').find('*').removeClass('header').unbind('click');
+            promocionesTable.tablesorter();
+        }
+    });
+
+    function deletePromocion(id) {
+        var message = 'Error al guardar la Promocion.';
+        var messageType = 'error';
+
+        showConfirmDialog('¿Seguro que desea eliminar la Promocion?', 'Sí', 'No',
+            function($noty) {
+                // this = button element
+                // $noty = $noty element
+
+                $noty.close();
+                debugger;
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("DeletePromocion", "Lodging"))',
+                    data: {
+                        promocionId: id
+                    },
+                    dataType: "json",
+                    traditional: true,
+                    success: function (data) {
+                        debugger;
+                        if (data.success) {
+                            debugger;
+                            message = 'Promocion eliminada con éxito';
+                            messageType = 'success';
+                        }
+
+                        //showNotification(message, messageType);
+
+                        refreshPromocionesList();
+                    },
+                    error: function (data) {
+                        //showNotification(message, messageType);
+
+                        refreshPromocionesList();
+                    }
+                });
+            },
+            function($noty) {
+                $noty.close();
+                showNotification('La operación fue cancelada.', 'info');
+            });
+
+        return false;
+    }
+</script>
+
+<br /><b>@Html.Label("Promociones de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName): @Model.Count</b><br />
+
+<table id="Promociones">
+    <thead>
+        <tr>
+            <th><span>Nombre</span></th>
+            <th><span>Descripcion</span></th>
+            <th><span>Descripcion 2</span></th>
+            <th><span>Fecha Inicio</span></th>
+            <th><span>Fecha Fin</span></th>
+            <th><span>Dias Reservados</span></th>
+            <th><span>Dias A Cobrar</span></th>
+            <th><span>Activo</span></th>
+            <th><span>Nombre Unidad Promo</span></th>
+            <th><span>Nombre Tipo Promo</span></th>
+            <th><span>Slogan</span></th>
+            <th><span>Minimo Noches</span></th>
+            <th><span>Maximo Noches</span></th>
+            <th><span>Descuento</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var s in Model.Promociones)
+        {
+            <tr promocionId="@s.PromocionId">
+                <td>@(s.Nombre)</td>
+                <td>@(s.Descripcion1)</td>
+                <td>@(s.Descripcion2)</td>
+                <td>@(s.StartDate)</td>
+                <td>@(s.EndDate)</td>
+                <td>@(s.DiasReservados)</td>
+                <td>@(s.DiasACobrar)</td>
+                <td>@(s.Activo)</td>
+                <td>@(Model.Lodging.Rooms.Single(rm => rm.RoomId == s.IdUnidadPromo).RoomName)</td>
+                <td>@(Model.PromocionesType.Single(pt => pt.PromocionTypeId == s.PromocionTypeId).Nombre)</td>
+                <td>@(s.Slogan)</td>
+                <td>@(s.MinimoNoches)</td>
+                <td>@(s.MaximoNoches)</td>
+                <td>@(s.Descuento)</td>
+                <td>
+                    <a class="link_options" href="@Url.Content("~/Lodging/EditPromocion?promocionId="+s.PromocionId)"><img src="@Url.Content("~/Content/edit.png")" title="Editar" /></a>
+                    <a href="#" onclick="deletePromocion('@s.PromocionId')"><img src="@Url.Content("~/Content/delete.png")" title="Eliminar" /></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="link_options link-button" href="@Url.Content("~/Lodging/CreatePromocion/" + Model.Lodging.LodgingId)">Nueva Promocion</a>

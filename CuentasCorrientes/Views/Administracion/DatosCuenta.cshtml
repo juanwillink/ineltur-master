@@ -1,0 +1,33 @@
+﻿@model Ineltur.CuentasCorrientes.Modelos.ModeloCuenta
+
+@{
+    ViewBag.Title = "Datos de Cuenta";
+
+    var @readonly = new { @readonly = "readonly" };
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Volver", "Cuentas", "Administracion")</span></h2>
+
+@using (Html.BeginForm()) {
+@Html.HiddenFor(m => m.IdUsuario)
+<table class="borderless">
+<tr>
+    <td>@Html.LabelFor(m => m.Nombre):</td><td>@Html.TextBoxFor(m => m.Nombre, @readonly)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.NombreUsuario):</td><td>@Html.TextBoxFor(m => m.NombreUsuario, @readonly)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.Contrasenya):</td><td>@Html.TextBoxFor(m => m.Contrasenya)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.FormaPago):</td><td>@Html.EnumDropDownListFor(m => m.FormaPago)</td>
+</tr>
+<tr>
+    <td colspan="2"><input type="submit" value="Guardar" /><br /></td>
+</tr>
+@if (ViewBag.Message != null) {
+    <tr><td colspan="3" class="message">@ViewBag.Message</td></tr>
+}
+</table>
+}

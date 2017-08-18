@@ -1,0 +1,2194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FDEA025B-2084-4261-9A61-DF92728323B3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CheckArgentina</RootNamespace>
+    <AssemblyName>CheckArgentina</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentEmail">
+      <HintPath>..\..\..\Users\virgi\Desktop\Checkargentinanuevo\CheckArgentina\bin\FluentEmail.dll</HintPath>
+    </Reference>
+    <Reference Include="jQueryExtensions">
+      <HintPath>..\..\..\Users\virgi\Desktop\Checkargentinanuevo\CheckArgentina\bin\jQueryExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.1.0.0\lib\net451\Microsoft.AspNetCore.Authentication.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Authentication.Cookies, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Authentication.Cookies.1.0.0\lib\net451\Microsoft.AspNetCore.Authentication.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.KeyDerivation.1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.1.0.0\lib\net451\Microsoft.AspNetCore.DataProtection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.DataProtection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.DataProtection.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.DataProtection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.1.0.0\lib\net451\Microsoft.AspNetCore.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Extensions.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.1.0.0\lib\net451\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Identity.1.0.0\lib\net451\Microsoft.AspNetCore.Identity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.1.0.0\lib\net451\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.0.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.1.0.0\lib\net451\Microsoft.Extensions.ObjectPool.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.WebEncoders, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.WebEncoders.1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPSWSClientCOM">
+      <HintPath>..\..\..\Users\virgi\Desktop\Checkargentinanuevo\CheckArgentina\bin\NPSWSClientCOM.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.0.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.0.0\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Xipton.Razor">
+      <HintPath>..\..\..\Users\virgi\Desktop\Checkargentinanuevo\CheckArgentina\bin\Xipton.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="commons\ConfigManager.cs" />
+    <Compile Include="commons\Extensions.cs" />
+    <Compile Include="commons\Helpers.cs" />
+    <Compile Include="commons\ImageResult.cs" />
+    <Compile Include="commons\RandomImage.cs" />
+    <Compile Include="commons\Registration.cs" />
+    <Compile Include="commons\SessionData.cs" />
+    <Compile Include="Controllers\AerealController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InternationalController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NationalController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\Config.cs" />
+    <Compile Include="Managers\LocalManager.cs" />
+    <Compile Include="Managers\Manager.cs" />
+    <Compile Include="Managers\NationalManager.cs" />
+    <Compile Include="Managers\ServiceManager.cs" />
+    <Compile Include="Models\Credential.cs" />
+    <Compile Include="Models\EmailReservationModel.cs" />
+    <Compile Include="Models\LodgingModels.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PaymentModels.cs" />
+    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\ReserveModels.cs" />
+    <Compile Include="Models\SearchModels.cs" />
+    <Compile Include="Models\ServiceModels.cs" />
+    <Compile Include="Models\Service\CacheData.cs" />
+    <Compile Include="Models\Turismo2.designer.cs">
+      <DependentUpon>Turismo.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LocalService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\NationalService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\assistcard-red.jpg" />
+    <Content Include="Content\Images\Banners\banner1.jpg" />
+    <Content Include="Content\Images\Banners\banner3.jpg" />
+    <Content Include="Content\Images\Banners\banner4.jpg" />
+    <Content Include="Content\Images\Banners\banner5.jpg" />
+    <Content Include="Content\Images\Ciudad-Buenos-Aires.png" />
+    <Content Include="Content\Images\fotohome.jpg" />
+    <Content Include="Content\Images\habitacion_hotel.jpg" />
+    <Content Include="Content\Images\habitacion_hotel_2.jpg" />
+    <Content Include="Content\Images\hotel.jpg" />
+    <Content Include="Content\Images\Hotels\00086ADF-C799-4EEE-A862-1D7B8CDA9D01.jpg" />
+    <Content Include="Content\Images\Hotels\002F160D-7B08-4618-80E8-21815EF2DEF0.jpg" />
+    <Content Include="Content\Images\Hotels\00FA63A3-C7F2-4663-8530-026082AAAC0C.jpg" />
+    <Content Include="Content\Images\Hotels\0117FD9D-90AD-4F3A-909E-6DE97D9867EA.jpg" />
+    <Content Include="Content\Images\Hotels\011A3A05-6771-49DE-AA37-3EA976F50451.jpg" />
+    <Content Include="Content\Images\Hotels\0145CCE0-A6DF-4393-B1C6-409AB1337A86.jpg" />
+    <Content Include="Content\Images\Hotels\01A622AB-E83C-486C-BC73-DABE1D8953EF.jpg" />
+    <Content Include="Content\Images\Hotels\01C082AE-C1E3-4CD7-8906-98C4C5DEEC08.jpg" />
+    <Content Include="Content\Images\Hotels\01C48F3A-72C3-419F-B00F-6C434D694B3C.jpg" />
+    <Content Include="Content\Images\Hotels\01D26B3D-0DE6-471A-BC23-9F79027EE34C.jpg" />
+    <Content Include="Content\Images\Hotels\01D6841E-C3D3-4D60-A725-A22AC21635B8.jpg" />
+    <Content Include="Content\Images\Hotels\01F049ED-E72C-4104-A976-D2E7EA05EAD8.jpg" />
+    <Content Include="Content\Images\Hotels\021F0FBF-31F4-467F-9456-9141328D3CEB.jpg" />
+    <Content Include="Content\Images\Hotels\0251B15D-3349-407D-B94C-7E1DFDA066E3.jpg" />
+    <Content Include="Content\Images\Hotels\028C7F31-22F0-47F7-9BD1-DCF4B6CF47E8.jpg" />
+    <Content Include="Content\Images\Hotels\029262B8-DA4E-43B0-90FA-3FC8309938E0.jpg" />
+    <Content Include="Content\Images\Hotels\0293BF88-1505-4DE8-BA66-308380245647.jpg" />
+    <Content Include="Content\Images\Hotels\02CC78A2-7902-4E45-8A86-4ACFAF96284A.jpg" />
+    <Content Include="Content\Images\Hotels\02DDCAEB-D92A-4421-8613-D91A4248E865.jpg" />
+    <Content Include="Content\Images\Hotels\031791A2-32DD-4843-ADEA-D0AE48E54AB5.jpg" />
+    <Content Include="Content\Images\Hotels\03B53645-ECFA-4999-9B6C-C96F51882C39.jpg" />
+    <Content Include="Content\Images\Hotels\03B53645-ECFA-4999-9B6C-C96F51882C39_1.jpg" />
+    <Content Include="Content\Images\Hotels\03B53645-ECFA-4999-9B6C-C96F51882C39_2.jpg" />
+    <Content Include="Content\Images\Hotels\03B53645-ECFA-4999-9B6C-C96F51882C39_3.jpg" />
+    <Content Include="Content\Images\Hotels\03B53645-ECFA-4999-9B6C-C96F51882C39_4.jpg" />
+    <Content Include="Content\Images\Hotels\03C40C78-3FD2-423E-AE16-BBD0258F8B92.jpg" />
+    <Content Include="Content\Images\Hotels\03C431E3-0B0D-4C3B-849D-8E383D133B78.jpg" />
+    <Content Include="Content\Images\Hotels\04758CC0-A93C-40D7-99BC-63C5BBC9FAAA.jpg" />
+    <Content Include="Content\Images\Hotels\04D6B90C-4A21-4F05-81EE-E1AD81C0D5E2.jpg" />
+    <Content Include="Content\Images\Hotels\04E6EBEC-1553-4F45-B48A-AC69A20BE412.jpg" />
+    <Content Include="Content\Images\Hotels\051DAFE7-B039-4DC2-9358-10F5FB406352.jpg" />
+    <Content Include="Content\Images\Hotels\055C6C1C-7C16-4945-B783-48519F7CB9C8.jpg" />
+    <Content Include="Content\Images\Hotels\0578FB13-6F98-4A66-954E-167E83C56074.jpg" />
+    <Content Include="Content\Images\Hotels\0578FB13-6F98-4A66-954E-167E83C56074_1.jpg" />
+    <Content Include="Content\Images\Hotels\0578FB13-6F98-4A66-954E-167E83C56074_2.jpg" />
+    <Content Include="Content\Images\Hotels\0578FB13-6F98-4A66-954E-167E83C56074_3.jpg" />
+    <Content Include="Content\Images\Hotels\0578FB13-6F98-4A66-954E-167E83C56074_4.jpg" />
+    <Content Include="Content\Images\Hotels\06118DCC-02B3-4704-8170-C6D63088E1A1.jpg" />
+    <Content Include="Content\Images\Hotels\061D7A81-D2D1-4EBF-9AB4-526F5EF8D2F6.jpg" />
+    <Content Include="Content\Images\Hotels\0647ACC5-0367-47A9-B6DF-B477949F78DF.jpg" />
+    <Content Include="Content\Images\Hotels\064FD941-5D67-4545-880D-33D7BAD176C5.jpg" />
+    <Content Include="Content\Images\Hotels\064FD941-5D67-4545-880D-33D7BAD176C5_1.jpg" />
+    <Content Include="Content\Images\Hotels\064FD941-5D67-4545-880D-33D7BAD176C5_2.jpg" />
+    <Content Include="Content\Images\Hotels\064FD941-5D67-4545-880D-33D7BAD176C5_3.jpg" />
+    <Content Include="Content\Images\Hotels\064FD941-5D67-4545-880D-33D7BAD176C5_4.jpg" />
+    <Content Include="Content\Images\Hotels\068C1A08-F187-4E73-966E-EA89B3C186F4.jpg" />
+    <Content Include="Content\Images\Hotels\06C3B2BC-CFF8-4F79-9609-AB3F7FB61059.jpg" />
+    <Content Include="Content\Images\Hotels\06D93FE5-93E1-4ABA-9CB6-984321488928.jpg" />
+    <Content Include="Content\Images\Hotels\070DC689-26DF-4FD0-9BED-CB417731EB98.jpg" />
+    <Content Include="Content\Images\Hotels\0743A009-B950-454D-9FBB-350E3A9DA8D9.jpg" />
+    <Content Include="Content\Images\Hotels\079247E4-A664-42C2-B9AA-2E5375A11957.jpg" />
+    <Content Include="Content\Images\Hotels\07DC66A7-0B62-4DDA-9C65-4369618C1CBE.jpg" />
+    <Content Include="Content\Images\Hotels\0800AD26-2D3B-4FAD-8526-B2019511AFB9.jpg" />
+    <Content Include="Content\Images\Hotels\086974E8-92CE-4BA4-A57C-158D5A699F9E.jpg" />
+    <Content Include="Content\Images\Hotels\088B497A-ACC7-4753-B6AA-9C6C674220D6.jpg" />
+    <Content Include="Content\Images\Hotels\0962AD22-AE27-49C8-B8C9-CD785A94FE71.jpg" />
+    <Content Include="Content\Images\Hotels\0967FBDD-A174-4C44-9183-BD2DAE93948B.jpg" />
+    <Content Include="Content\Images\Hotels\0992B622-F8CD-4E7B-B088-975A5DD54517.jpg" />
+    <Content Include="Content\Images\Hotels\099DCCC6-9CE0-4BA4-A675-0765F68F219D.jpg" />
+    <Content Include="Content\Images\Hotels\09A5BC94-6330-4A51-8C72-ACD67C51C0FE.jpg" />
+    <Content Include="Content\Images\Hotels\09AF341B-F982-4299-8D7C-F21A3FC39CA9.jpg" />
+    <Content Include="Content\Images\Hotels\0A7242E0-B5ED-4330-8A87-81D6B25AA600.jpg" />
+    <Content Include="Content\Images\Hotels\0AA56755-3DD1-440C-9A02-44EC17CC9FD5.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_1.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_2.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_3.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_4.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_5.jpg" />
+    <Content Include="Content\Images\Hotels\0B1C5553-FCF6-4461-B554-B74BBA9788E9_6.jpg" />
+    <Content Include="Content\Images\Hotels\0B276A22-82E6-44EB-9278-429C11EADBFF.jpg" />
+    <Content Include="Content\Images\Hotels\0B3AA6A4-F693-4DC9-94A1-3CF64F0AC1BE.jpg" />
+    <Content Include="Content\Images\Hotels\0B3AA6A4-F693-4DC9-94A1-3CF64F0AC1BE_1.jpg" />
+    <Content Include="Content\Images\Hotels\0B3AA6A4-F693-4DC9-94A1-3CF64F0AC1BE_2.jpg" />
+    <Content Include="Content\Images\Hotels\0B3AA6A4-F693-4DC9-94A1-3CF64F0AC1BE_3.jpg" />
+    <Content Include="Content\Images\Hotels\0B3AA6A4-F693-4DC9-94A1-3CF64F0AC1BE_4.jpg" />
+    <Content Include="Content\Images\Hotels\0C45CB82-A9B5-47E7-93B0-EBBB22F47F42.jpg" />
+    <Content Include="Content\Images\Hotels\0C51675E-DB0B-4DF4-A677-F083DEC3D830.jpg" />
+    <Content Include="Content\Images\Hotels\0D2D4BC2-8160-4E4A-A1D2-EA0E9ECB148F.jpg" />
+    <Content Include="Content\Images\Hotels\0DAA167E-C8B6-4756-9979-469AD9C0F39E.jpg" />
+    <Content Include="Content\Images\Hotels\0E10EE8A-7131-4895-A3CA-9333CEC4BD91.jpg" />
+    <Content Include="Content\Images\Hotels\0E961EEB-4C41-4E7E-BF7B-D593A2642215.jpg" />
+    <Content Include="Content\Images\Hotels\0EABE22C-3F4E-421F-BE99-6040F3D5B799.jpg" />
+    <Content Include="Content\Images\Hotels\0EB30EFC-394F-41CB-8007-4B2333AA2F81.jpg" />
+    <Content Include="Content\Images\Hotels\0EFAA92D-432C-4995-82AB-BA62CA942340.jpg" />
+    <Content Include="Content\Images\Hotels\0F9FC37C-A2BC-444D-909F-A7AE421F8446.jpg" />
+    <Content Include="Content\Images\Hotels\0FBBA580-58D3-4137-B33F-C90B235BD2FF.jpg" />
+    <Content Include="Content\Images\Hotels\0FBDA183-1957-4086-AC59-235214B7B5A0.jpg" />
+    <Content Include="Content\Images\Hotels\1012C449-1977-4512-B447-32A8CAAF22CE.jpg" />
+    <Content Include="Content\Images\Hotels\1045AAFF-27C1-4771-B5BD-8EC63D2FDFD0.jpg" />
+    <Content Include="Content\Images\Hotels\105020CB-DC9F-4F17-BB14-A482E9DD8EFF.jpg" />
+    <Content Include="Content\Images\Hotels\10E8EAB6-807F-458A-8609-1B5A438B807A.jpg" />
+    <Content Include="Content\Images\Hotels\10F5074F-B5C0-4FA7-A239-D71C98F1B78A.jpg" />
+    <Content Include="Content\Images\Hotels\11C9DB26-2289-4407-9873-FC592231BC63.jpg" />
+    <Content Include="Content\Images\Hotels\11E62980-E645-43A9-B813-17010A3B4816.jpg" />
+    <Content Include="Content\Images\Hotels\122ADE9C-5413-4ECD-9215-3589DD583C98.jpg" />
+    <Content Include="Content\Images\Hotels\12D6E8B1-2CE3-4D23-A852-0747CD8E7A5C.jpg" />
+    <Content Include="Content\Images\Hotels\12E7354B-6FF5-46BD-BE55-EB63A37A2F12.jpg" />
+    <Content Include="Content\Images\Hotels\130C08A6-D5BA-4DBB-A6F7-71BABDA1251B.jpg" />
+    <Content Include="Content\Images\Hotels\13718013-CFD8-4DE3-B030-06507F4D2F8E.jpg" />
+    <Content Include="Content\Images\Hotels\13A16F87-158E-4E4F-8F00-6E686275F987.jpg" />
+    <Content Include="Content\Images\Hotels\13C9218D-01EB-4444-AA69-CB59676DCEFA.jpg" />
+    <Content Include="Content\Images\Hotels\13EE602E-D351-431E-B6EC-D07138F2087E.jpg" />
+    <Content Include="Content\Images\Hotels\14484932-21F3-44B3-86D1-BECDC3A6221A.jpg" />
+    <Content Include="Content\Images\Hotels\14A004D7-84FF-496C-967D-47C02DC43672.jpg" />
+    <Content Include="Content\Images\Hotels\14A773BB-AE90-4842-85B4-B6D1B9C4CE5E.jpg" />
+    <Content Include="Content\Images\Hotels\14A80656-6207-4813-A1B6-9276E6739D63.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_1.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_2.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_3.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_4.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_5.jpg" />
+    <Content Include="Content\Images\Hotels\152AB577-EB40-4AC3-BD3F-8F122B5EF1B9_6.jpg" />
+    <Content Include="Content\Images\Hotels\15A9FF9A-65A7-47F6-8ED8-A14EF455098A.jpg" />
+    <Content Include="Content\Images\Hotels\15AF6F09-6214-48DD-8AEC-A8CB1E0A5D72.jpg" />
+    <Content Include="Content\Images\Hotels\16AFEABC-F3CD-4A03-A967-C0E4BF77BE7A.jpg" />
+    <Content Include="Content\Images\Hotels\16D60A52-8A47-489C-994E-96B9EEE5F4B2.jpg" />
+    <Content Include="Content\Images\Hotels\1737F71A-EDDB-44D3-8D1B-B048B05372F8.jpg" />
+    <Content Include="Content\Images\Hotels\1737F71A-EDDB-44D3-8D1B-B048B05372F8_1.jpg" />
+    <Content Include="Content\Images\Hotels\1737F71A-EDDB-44D3-8D1B-B048B05372F8_2.jpg" />
+    <Content Include="Content\Images\Hotels\1737F71A-EDDB-44D3-8D1B-B048B05372F8_3.jpg" />
+    <Content Include="Content\Images\Hotels\1737F71A-EDDB-44D3-8D1B-B048B05372F8_4.jpg" />
+    <Content Include="Content\Images\Hotels\178AEFDC-F454-4026-8149-BB7F3988336D.jpg" />
+    <Content Include="Content\Images\Hotels\17AA0C6F-72F7-4808-B8DB-E8A10272A1DB.jpg" />
+    <Content Include="Content\Images\Hotels\17F12DEE-C692-4B4A-9A56-B2E55E7C918B.jpg" />
+    <Content Include="Content\Images\Hotels\1816C6FC-9306-4DCB-85FC-F7A1E4CC227F.jpg" />
+    <Content Include="Content\Images\Hotels\187BA33C-B701-4CC8-9C32-ECA9BF9AB663.jpg" />
+    <Content Include="Content\Images\Hotels\1886C151-D6A6-4E1F-8D11-2E1191F8F4A0.jpg" />
+    <Content Include="Content\Images\Hotels\18A84B96-100B-48D7-8103-8D9175D14A7C.jpg" />
+    <Content Include="Content\Images\Hotels\18AF2601-6F75-4795-B3F6-A9FF5142D819.jpg" />
+    <Content Include="Content\Images\Hotels\1927AFA1-8DA3-4BD2-A07A-9FC475303093.jpg" />
+    <Content Include="Content\Images\Hotels\192B20C4-0277-4A9B-B1E0-FAD464E9B128.jpg" />
+    <Content Include="Content\Images\Hotels\193F68BF-9EF5-4160-AFBC-481B3F53E8ED.jpg" />
+    <Content Include="Content\Images\Hotels\1994EC52-47BF-4437-99C2-77A73BEA1EA1.jpg" />
+    <Content Include="Content\Images\Hotels\19A4E9AB-7D38-4850-9E44-B6E7CFD5666B.jpg" />
+    <Content Include="Content\Images\Hotels\19A4E9AB-7D38-4850-9E44-B6E7CFD5666B_1.jpg" />
+    <Content Include="Content\Images\Hotels\19A4E9AB-7D38-4850-9E44-B6E7CFD5666B_2.jpg" />
+    <Content Include="Content\Images\Hotels\19A4E9AB-7D38-4850-9E44-B6E7CFD5666B_3.jpg" />
+    <Content Include="Content\Images\Hotels\19A4E9AB-7D38-4850-9E44-B6E7CFD5666B_4.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E_1.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E_2.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E_3.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E_4.jpg" />
+    <Content Include="Content\Images\Hotels\1A3ABB81-306F-4146-AE79-B16006E1586E_5.jpg" />
+    <Content Include="Content\Images\Hotels\1A92549C-858B-4549-8393-766BB6E1CE42.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178_1.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178_2.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178_3.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178_4.jpg" />
+    <Content Include="Content\Images\Hotels\1AB117AD-23EF-4AAA-A433-EF7AD35F0178_5.jpg" />
+    <Content Include="Content\Images\Hotels\1BB34B71-C7C2-4C67-A8A7-5821C1195BAC.jpg" />
+    <Content Include="Content\Images\Hotels\1BF6F054-983E-474D-9E61-6AA114FD4910.jpg" />
+    <Content Include="Content\Images\Hotels\1BFF6B74-07F8-4FE4-B80A-4D3CA3B18BF1.jpg" />
+    <Content Include="Content\Images\Hotels\1C44B508-B5E7-44D8-BC51-8C562E52417D.jpg" />
+    <Content Include="Content\Images\Hotels\1C47DAB7-E30A-44A5-AE1B-A4B36BF78D86.jpg" />
+    <Content Include="Content\Images\Hotels\1C929B52-5BFE-40D6-83D0-2F5A55649865.jpg" />
+    <Content Include="Content\Images\Hotels\1CBD4232-0F77-4E1C-AD36-FE86BF1F9B18.jpg" />
+    <Content Include="Content\Images\Hotels\1CE9C5E7-AD66-4837-B343-53BBF3AA0B6E_1.jpg" />
+    <Content Include="Content\Images\Hotels\1CE9C5E7-AD66-4837-B343-53BBF3AA0B6E_2.jpg" />
+    <Content Include="Content\Images\Hotels\1CE9C5E7-AD66-4837-B343-53BBF3AA0B6E_3.jpg" />
+    <Content Include="Content\Images\Hotels\1CE9C5E7-AD66-4837-B343-53BBF3AA0B6E_5.jpg" />
+    <Content Include="Content\Images\Hotels\1E064A63-65BD-4F50-B375-C8CABDAC30C7.jpg" />
+    <Content Include="Content\Images\Hotels\1E064A63-65BD-4F50-B375-C8CABDAC30C7_1.jpg" />
+    <Content Include="Content\Images\Hotels\1E064A63-65BD-4F50-B375-C8CABDAC30C7_2.jpg" />
+    <Content Include="Content\Images\Hotels\1E064A63-65BD-4F50-B375-C8CABDAC30C7_3.jpg" />
+    <Content Include="Content\Images\Hotels\1E064A63-65BD-4F50-B375-C8CABDAC30C7_4.jpg" />
+    <Content Include="Content\Images\Hotels\1E174B32-6C3F-43D1-B0E8-F15BD4FE0FF5.jpg" />
+    <Content Include="Content\Images\Hotels\1E31267F-2D66-4A80-8E78-A5E1312295DB.jpg" />
+    <Content Include="Content\Images\Hotels\1E34031F-BBB5-4C1E-B095-0AAA3B1E9176.jpg" />
+    <Content Include="Content\Images\Hotels\1EABB7A8-00E7-4A26-8C11-E14DFDADDDD5.jpg" />
+    <Content Include="Content\Images\Hotels\1F00C847-C006-4FEA-A340-663354B2898D.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702_1.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702_2.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702_3.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702_4.jpg" />
+    <Content Include="Content\Images\Hotels\1F3F315C-36DC-410F-B61F-54FC13622702_5.jpg" />
+    <Content Include="Content\Images\Hotels\200A76FC-727F-4CB1-8A2A-CB3FCA305AB3.jpg" />
+    <Content Include="Content\Images\Hotels\20516846-D973-4B96-9B9D-B8BB02D715F5.jpg" />
+    <Content Include="Content\Images\Hotels\20516846-D973-4B96-9B9D-B8BB02D715F5_1.jpg" />
+    <Content Include="Content\Images\Hotels\20516846-D973-4B96-9B9D-B8BB02D715F5_2.jpg" />
+    <Content Include="Content\Images\Hotels\20516846-D973-4B96-9B9D-B8BB02D715F5_3.jpg" />
+    <Content Include="Content\Images\Hotels\20516846-D973-4B96-9B9D-B8BB02D715F5_4.jpg" />
+    <Content Include="Content\Images\Hotels\2055846B-DCE2-49DD-AD40-465333FAB6E2.jpg" />
+    <Content Include="Content\Images\Hotels\2066371E-C265-4BAA-8731-5312F3FDDA96.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1_1.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1_2.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1_3.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1_4.jpg" />
+    <Content Include="Content\Images\Hotels\2129C454-3F00-4C6C-8407-9B34E2754AB1_5.jpg" />
+    <Content Include="Content\Images\Hotels\215FCE9E-C553-4328-A8BF-6A18E92EA1C9.jpg" />
+    <Content Include="Content\Images\Hotels\218F3975-1085-49C3-A679-F21E6532BC6F.jpg" />
+    <Content Include="Content\Images\Hotels\22086784-D560-4943-8B16-0933D9B8A4E0.jpg" />
+    <Content Include="Content\Images\Hotels\223D2303-9092-4588-A8A6-504F5A67B1D0.jpg" />
+    <Content Include="Content\Images\Hotels\22C6403B-1BB1-4EB3-AD7F-2DED24A422C2.jpg" />
+    <Content Include="Content\Images\Hotels\22E703B2-A386-4BA1-8547-29A1CD91E71B.jpg" />
+    <Content Include="Content\Images\Hotels\233CF012-E418-40FD-8735-847D56476E1C.jpg" />
+    <Content Include="Content\Images\Hotels\23527193-DE11-4D75-B72D-39C421077B3B.jpg" />
+    <Content Include="Content\Images\Hotels\235E94F5-23FD-4DFE-9E78-E3E741CD41CD.jpg" />
+    <Content Include="Content\Images\Hotels\23848716-9861-4AF5-9B12-0679D44F66B8.jpg" />
+    <Content Include="Content\Images\Hotels\23BD02A6-A5BA-424F-B283-95A456BBA2E8.jpg" />
+    <Content Include="Content\Images\Hotels\241665DA-FF77-43F1-9210-2004C35551FE.jpg" />
+    <Content Include="Content\Images\Hotels\2426D525-774F-4E9B-893C-294D7BEA6EEE.jpg" />
+    <Content Include="Content\Images\Hotels\24279C9B-4F7C-443E-A362-2189C19B148C.jpg" />
+    <Content Include="Content\Images\Hotels\245415CD-9C16-403E-B67A-0DC91C8FC803.jpg" />
+    <Content Include="Content\Images\Hotels\24848F9E-DC4B-4245-A43D-FA08D64A97EF.jpg" />
+    <Content Include="Content\Images\Hotels\24F883AD-CC6C-49B7-ACD3-A283132A379C.jpg" />
+    <Content Include="Content\Images\Hotels\24F883AD-CC6C-49B7-ACD3-A283132A379C_1.jpg" />
+    <Content Include="Content\Images\Hotels\24F883AD-CC6C-49B7-ACD3-A283132A379C_2.jpg" />
+    <Content Include="Content\Images\Hotels\24F883AD-CC6C-49B7-ACD3-A283132A379C_3.jpg" />
+    <Content Include="Content\Images\Hotels\24F883AD-CC6C-49B7-ACD3-A283132A379C_4.jpg" />
+    <Content Include="Content\Images\Hotels\2595A849-F1E6-4200-8610-19436DDEFD85.jpg" />
+    <Content Include="Content\Images\Hotels\25DC545C-92E1-4D02-BA59-DEB3525D6C54.jpg" />
+    <Content Include="Content\Images\Hotels\262596C3-3F1C-4D3E-8B62-E930957DDA60.jpg" />
+    <Content Include="Content\Images\Hotels\2628A1A5-C2E5-4FCC-88E5-A3FC8E9EA9FE.jpg" />
+    <Content Include="Content\Images\Hotels\2717359A-FD32-4589-AA7B-B3B13F56604C.jpg" />
+    <Content Include="Content\Images\Hotels\275D0711-7B6F-48B6-BA9C-ECE455B01D4C.jpg" />
+    <Content Include="Content\Images\Hotels\280D7129-0DBA-4FD0-9934-16FFF35AA931.jpg" />
+    <Content Include="Content\Images\Hotels\285A1410-CACC-4E71-9CBE-8A78589C397B.jpg" />
+    <Content Include="Content\Images\Hotels\28A5F912-C5A0-4D07-AEB5-175666536F07.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B_1.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B_2.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B_3.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B_4.jpg" />
+    <Content Include="Content\Images\Hotels\29102894-4C6B-4F32-BEAE-3037FE69E41B_5.jpg" />
+    <Content Include="Content\Images\Hotels\299606EF-8761-4434-8AD8-3AB8CE8FE693.jpg" />
+    <Content Include="Content\Images\Hotels\299A20BD-5B8A-4905-8868-7408C1599C3A.jpg" />
+    <Content Include="Content\Images\Hotels\2A264634-F39F-48FC-823D-08D79DD8876E.jpg" />
+    <Content Include="Content\Images\Hotels\2A282D94-BAEA-4723-9F9E-72EDE5B66AA9.jpg" />
+    <Content Include="Content\Images\Hotels\2A4E1CAC-4793-44DF-85CF-C62CFFDC5B0A.jpg" />
+    <Content Include="Content\Images\Hotels\2AAB7FF5-E4CD-4D1B-83AB-CE7D392CE0A4.jpg" />
+    <Content Include="Content\Images\Hotels\2AB5BD5A-4C6A-4F98-875F-1A958E12019F.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502_1.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502_2.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502_3.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502_4.jpg" />
+    <Content Include="Content\Images\Hotels\2ACC904C-E755-444C-8ECC-1ED8EC90E502_5.jpg" />
+    <Content Include="Content\Images\Hotels\2B1B3824-4E86-4D3F-AE40-456B8C61F7BF.jpg" />
+    <Content Include="Content\Images\Hotels\2B326BFC-59C2-4D55-8D9C-DAE742C0FA76.jpg" />
+    <Content Include="Content\Images\Hotels\2B4BABFD-C554-4F36-B178-C0DEECDEBAC7l.jpg" />
+    <Content Include="Content\Images\Hotels\2B50396C-46B8-4D60-9233-A8EFDB5E432A.jpg" />
+    <Content Include="Content\Images\Hotels\2BCA8574-4348-4804-9069-B24FAF0DEE91.jpg" />
+    <Content Include="Content\Images\Hotels\2BFAE923-D201-4BC9-BF86-809F9AB347D6.jpg" />
+    <Content Include="Content\Images\Hotels\2C662644-D444-4E11-9AB6-28F2211482AD.jpg" />
+    <Content Include="Content\Images\Hotels\2CB5732F-6458-41CB-9CDF-B6BA6EB7B065.jpg" />
+    <Content Include="Content\Images\Hotels\2CE0C626-9F76-496D-8AE0-559F84045C1E.jpg" />
+    <Content Include="Content\Images\Hotels\2D0376CE-976B-4A6A-B749-FFB8E8FF579C.jpg" />
+    <Content Include="Content\Images\Hotels\2D085B66-E0E0-478F-AA02-D162408BF6D6.jpg" />
+    <Content Include="Content\Images\Hotels\2D5EEB50-8F65-4A73-8275-D9F0DAE5E7F8.jpg" />
+    <Content Include="Content\Images\Hotels\2D9A61F9-BC98-4FAF-AB0D-D1FED980BDEF.jpg" />
+    <Content Include="Content\Images\Hotels\2D9D6586-9CA1-4BEF-AB31-D4420EC1DE6B.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF_1.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF_2.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF_3.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF_4.jpg" />
+    <Content Include="Content\Images\Hotels\2DD15C84-1674-4DB9-9E12-6D07FA5639DF_5.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C_1.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C_2.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C_3.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C_4.jpg" />
+    <Content Include="Content\Images\Hotels\2EBF89A0-048B-4899-985D-4EBD343A0A4C_5.jpg" />
+    <Content Include="Content\Images\Hotels\2EE1EEA4-C06B-4483-A917-B249338BE00A.jpg" />
+    <Content Include="Content\Images\Hotels\2F2BF287-C270-4C0F-9C2C-BC9F73C8FD33.jpg" />
+    <Content Include="Content\Images\Hotels\2F6ECE4A-5DEE-4E4A-9BB0-414493605C9F.jpg" />
+    <Content Include="Content\Images\Hotels\2F9D4868-1BB1-4E42-AF4E-019811CA50ED.jpg" />
+    <Content Include="Content\Images\Hotels\2FA28CD2-B100-4B8F-8E40-D217C37268A0.jpg" />
+    <Content Include="Content\Images\Hotels\3093BBE3-DB8A-4E4C-BDEA-0CC2FE7E6F75.jpg" />
+    <Content Include="Content\Images\Hotels\30D7745C-3DE7-4A77-830E-17CB0D8D7232.jpg" />
+    <Content Include="Content\Images\Hotels\30F215A4-6E5A-4A19-B433-6AC105AD0AAE.jpg" />
+    <Content Include="Content\Images\Hotels\311321F3-0D22-4420-9C69-3E9CA54F5705.jpg" />
+    <Content Include="Content\Images\Hotels\3115502E-EAB4-4A98-A973-87CDB5E65B0F.jpg" />
+    <Content Include="Content\Images\Hotels\312A2D27-A747-4093-AE21-DC253B005CAC.jpg" />
+    <Content Include="Content\Images\Hotels\3157156F-1FD6-415B-83E1-B1BDA818B6F3.jpg" />
+    <Content Include="Content\Images\Hotels\3262327E-721F-46CA-AB58-CE7EB054D9BC.jpg" />
+    <Content Include="Content\Images\Hotels\3274B6AB-7962-4564-8C37-443CBD89D9D1.jpg" />
+    <Content Include="Content\Images\Hotels\3307C27B-9346-4933-A158-A7B2C94A4ACB.jpg" />
+    <Content Include="Content\Images\Hotels\330C6144-BF9A-4665-9E97-16178FB72026.jpg" />
+    <Content Include="Content\Images\Hotels\331FA0A5-6993-49F4-AAD6-4181D02DD6A6.jpg" />
+    <Content Include="Content\Images\Hotels\33279E5B-F13B-4533-897A-166F13676CF3.jpg" />
+    <Content Include="Content\Images\Hotels\339E4771-CE0D-4925-A730-56AF3D528A98.jpg" />
+    <Content Include="Content\Images\Hotels\34158E5C-AFEF-4AEC-B810-92DC654B5D0B.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178_1.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178_2.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178_3.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178_4.jpg" />
+    <Content Include="Content\Images\Hotels\34551999-A43A-4472-A720-849D7AAC9178_5.jpg" />
+    <Content Include="Content\Images\Hotels\345AF864-A6EB-413A-8C8F-CED552D3FA35.jpg" />
+    <Content Include="Content\Images\Hotels\34ABAD11-19B5-4442-A95F-1ECF5EB3C46A.jpg" />
+    <Content Include="Content\Images\Hotels\34CB9106-EACB-405F-8BA1-B7F4DF672473.jpg" />
+    <Content Include="Content\Images\Hotels\34CB9106-EACB-405F-8BA1-B7F4DF672473_2.jpg" />
+    <Content Include="Content\Images\Hotels\34CB9106-EACB-405F-8BA1-B7F4DF672473_3.jpg" />
+    <Content Include="Content\Images\Hotels\34CB9106-EACB-405F-8BA1-B7F4DF672473_4.jpg" />
+    <Content Include="Content\Images\Hotels\34DBFA8B-0BAA-4110-9B40-8FD141E45212.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173_1.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173_2.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173_3.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173_4.jpg" />
+    <Content Include="Content\Images\Hotels\352ABE04-3AD3-46E8-8431-7A31DA47E173_5.jpg" />
+    <Content Include="Content\Images\Hotels\354AEF98-D23A-4CCA-BAD6-A94F1806CCE3.jpg" />
+    <Content Include="Content\Images\Hotels\35B1454E-15AB-43C0-A700-9BB3B6E10321.jpg" />
+    <Content Include="Content\Images\Hotels\360F9BA1-E900-41F2-8E30-47F296246260.jpg" />
+    <Content Include="Content\Images\Hotels\363DDE71-6A2B-4A68-A35D-9C80FE690622.jpg" />
+    <Content Include="Content\Images\Hotels\3689B3AB-8F62-4EFE-B655-7ADD4F399719.jpg" />
+    <Content Include="Content\Images\Hotels\36EFAE08-F2F0-451F-96AB-CA66E6DEC57F.jpg" />
+    <Content Include="Content\Images\Hotels\3769A9AB-8E13-4D36-B3FD-C151EAF1A91A.jpg" />
+    <Content Include="Content\Images\Hotels\37ABEBC4-6997-47DB-BD61-3A589A3F076D.jpg" />
+    <Content Include="Content\Images\Hotels\382675E2-306F-42F8-ADDF-570D1C7032F0.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296_1.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296_2.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296_3.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296_4.jpg" />
+    <Content Include="Content\Images\Hotels\3828A513-40B1-42BE-8F8A-F8B4DAAD7296_5.jpg" />
+    <Content Include="Content\Images\Hotels\385158D5-2E0A-4F56-BB94-3A27CE0668B2.jpg" />
+    <Content Include="Content\Images\Hotels\3873A786-6B80-4E28-A604-EF9F65688C7F.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425_1.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425_2.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425_3.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425_4.jpg" />
+    <Content Include="Content\Images\Hotels\38F565FF-DC8E-4CB9-A9E8-DE770044C425_5.jpg" />
+    <Content Include="Content\Images\Hotels\39D0EBA1-97FE-4B73-AF71-366D7DA584C0.jpg" />
+    <Content Include="Content\Images\Hotels\3A1DF8EE-61B7-4656-8101-49DCD7BC0885.jpg" />
+    <Content Include="Content\Images\Hotels\3A7AFFC8-7E37-47AF-A171-8CBF3BA8D867.jpg" />
+    <Content Include="Content\Images\Hotels\3AD707F0-3FF0-471F-9D73-820A59F0EA42.jpg" />
+    <Content Include="Content\Images\Hotels\3AD707F0-3FF0-471F-9D73-820A59F0EA42_1.jpg" />
+    <Content Include="Content\Images\Hotels\3AD707F0-3FF0-471F-9D73-820A59F0EA42_2.jpg" />
+    <Content Include="Content\Images\Hotels\3AD707F0-3FF0-471F-9D73-820A59F0EA42_3.jpg" />
+    <Content Include="Content\Images\Hotels\3AD707F0-3FF0-471F-9D73-820A59F0EA42_4.jpg" />
+    <Content Include="Content\Images\Hotels\3AD795FD-891F-4016-9A41-D3BB260B8065_1.jpg" />
+    <Content Include="Content\Images\Hotels\3AD795FD-891F-4016-9A41-D3BB260B8065_2.jpg" />
+    <Content Include="Content\Images\Hotels\3AD795FD-891F-4016-9A41-D3BB260B8065_3.jpg" />
+    <Content Include="Content\Images\Hotels\3AD795FD-891F-4016-9A41-D3BB260B8065_4.jpg" />
+    <Content Include="Content\Images\Hotels\3AEA5808-DBDE-47E7-BFC1-C825860D02D8.jpg" />
+    <Content Include="Content\Images\Hotels\3B324181-E7C3-4F41-AB60-B11217E501C6.jpg" />
+    <Content Include="Content\Images\Hotels\3B541495-B909-4FEA-888D-9DBCEC3BFD68.jpg" />
+    <Content Include="Content\Images\Hotels\3C02D053-10EC-4644-BCAF-BE09F13CBBC7.jpg" />
+    <Content Include="Content\Images\Hotels\3C293E62-6677-4E07-B12D-7E46CD016B36.jpg" />
+    <Content Include="Content\Images\Hotels\3C71EA5E-09A5-43A1-A3B2-6230ADD10115.jpg" />
+    <Content Include="Content\Images\Hotels\3CA4AC1A-3D66-4DCD-A7DE-6700C95FE811.jpg" />
+    <Content Include="Content\Images\Hotels\3CE4B3D6-863C-407A-90F2-9186CB5E8972.jpg" />
+    <Content Include="Content\Images\Hotels\3CE4B3D6-863C-407A-90F2-9186CB5E8972_1.jpg" />
+    <Content Include="Content\Images\Hotels\3CE4B3D6-863C-407A-90F2-9186CB5E8972_2.jpg" />
+    <Content Include="Content\Images\Hotels\3CE4B3D6-863C-407A-90F2-9186CB5E8972_3.jpg" />
+    <Content Include="Content\Images\Hotels\3CE4B3D6-863C-407A-90F2-9186CB5E8972_4.jpg" />
+    <Content Include="Content\Images\Hotels\3D2A6FEF-2560-4015-91F3-3FE1B7B81BBA.jpg" />
+    <Content Include="Content\Images\Hotels\3D34EF65-3A29-4E07-A196-85DDEBFF8B72.jpg" />
+    <Content Include="Content\Images\Hotels\3D386FF7-92DE-45A1-9C24-367AFFFF5B0D.jpg" />
+    <Content Include="Content\Images\Hotels\3DCE966C-37A1-461E-9E8E-131DD75F2351.jpg" />
+    <Content Include="Content\Images\Hotels\3DD079A5-162D-4C9F-97B3-FAAD9B569123.jpg" />
+    <Content Include="Content\Images\Hotels\3E250155-0A7F-4F94-8AEF-3D5B87C1C2E3.jpg" />
+    <Content Include="Content\Images\Hotels\3E4E44AD-34F8-48CF-A589-615423D8B26A_1.jpg" />
+    <Content Include="Content\Images\Hotels\3E4E44AD-34F8-48CF-A589-615423D8B26A_2.jpg" />
+    <Content Include="Content\Images\Hotels\3E4E44AD-34F8-48CF-A589-615423D8B26A_3.jpg" />
+    <Content Include="Content\Images\Hotels\3E5797CB-7F75-4B42-82D7-EC5547C8EDB8.jpg" />
+    <Content Include="Content\Images\Hotels\3E7756AC-4CF6-4D59-A746-53A7AA6D33AE.jpg" />
+    <Content Include="Content\Images\Hotels\3FFE70D4-B0BC-46EE-9BBF-464BA7E08531.jpg" />
+    <Content Include="Content\Images\Hotels\4094383A-15CD-4620-A2A0-33EA91EB0882.jpg" />
+    <Content Include="Content\Images\Hotels\40F24153-168C-4AB1-8397-B68A696B6198.jpg" />
+    <Content Include="Content\Images\Hotels\4106BBCF-51F8-4BC3-BB4A-54EA97BA7138.jpg" />
+    <Content Include="Content\Images\Hotels\413650BA-ADE5-4840-9B59-35D56117E551.jpg" />
+    <Content Include="Content\Images\Hotels\418EB293-E56A-4ED7-87EF-7C74100CE97B.jpg" />
+    <Content Include="Content\Images\Hotels\41D4BFDC-237C-4500-AC02-6B2D7BF9B3D2.jpg" />
+    <Content Include="Content\Images\Hotels\425C8A9B-AC42-4CA8-B705-59FA687279AD.jpg" />
+    <Content Include="Content\Images\Hotels\42A6D1E9-C934-4E99-86E3-C78C7FE5A83A.jpg" />
+    <Content Include="Content\Images\Hotels\42CDC2F8-332D-49AE-BED5-09475FA94A87.jpg" />
+    <Content Include="Content\Images\Hotels\4312D06E-7DD9-48C9-A358-DAE8B3B0EEC5.jpg" />
+    <Content Include="Content\Images\Hotels\4437947F-C2BA-462E-B62D-9A61CA4C11E7.jpg" />
+    <Content Include="Content\Images\Hotels\447627D5-8BAE-4148-948F-7A23F3D26D97.jpg" />
+    <Content Include="Content\Images\Hotels\44C1A047-3455-4C34-9441-6ED882474DFF.jpg" />
+    <Content Include="Content\Images\Hotels\451320A5-6DEE-4218-8DFD-831C2B270676.jpg" />
+    <Content Include="Content\Images\Hotels\458931CD-648F-4CF0-8CBC-92C84EC82C89.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522_1.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522_2.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522_3.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522_4.jpg" />
+    <Content Include="Content\Images\Hotels\45E6F1D3-B486-4387-B9D5-57BBD5D78522_5.jpg" />
+    <Content Include="Content\Images\Hotels\45E8ED62-8A93-4495-8307-DD540AD6031F.jpg" />
+    <Content Include="Content\Images\Hotels\464E0908-5E7F-4913-B9BF-F6F6EC7CC286.jpg" />
+    <Content Include="Content\Images\Hotels\467B2F22-A730-4654-887E-528010DD07B1.jpg" />
+    <Content Include="Content\Images\Hotels\46DA295C-355D-494C-97FE-58B67559A172.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B_1.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B_2.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B_3.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B_4.jpg" />
+    <Content Include="Content\Images\Hotels\46EDD8A5-8743-4FF8-8145-25BB43F9698B_5.jpg" />
+    <Content Include="Content\Images\Hotels\46EE9AAF-26CD-4FD4-916E-E7C0A40A7DBC.jpg" />
+    <Content Include="Content\Images\Hotels\46FF6F19-D73D-489C-852B-836D8AA59155.jpg" />
+    <Content Include="Content\Images\Hotels\4748453E-0FF6-4A51-A315-FA48915D779D.jpg" />
+    <Content Include="Content\Images\Hotels\475B7296-2637-4070-AD30-D976CBE7C14E.jpg" />
+    <Content Include="Content\Images\Hotels\475E2F2C-1183-4607-AF35-9A12E0324AA4.jpg" />
+    <Content Include="Content\Images\Hotels\47BC294E-1EAC-47CC-A61E-0BC2F9F737D7.jpg" />
+    <Content Include="Content\Images\Hotels\480EE2A5-A5B1-40F5-A5F0-13082A18F3C4.jpg" />
+    <Content Include="Content\Images\Hotels\4845751D-0649-4F5C-8A6B-D8EB846459DA.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F_1.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F_2.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F_3.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F_4.jpg" />
+    <Content Include="Content\Images\Hotels\4858DA2B-AA6F-4FCF-BA08-10002D8A134F_5.jpg" />
+    <Content Include="Content\Images\Hotels\48C91904-1BD1-46C3-B243-24DD7A64502B.jpg" />
+    <Content Include="Content\Images\Hotels\48CB538F-41F4-4C24-9D2C-0349AD1EED4F.jpg" />
+    <Content Include="Content\Images\Hotels\48CB538F-41F4-4C24-9D2C-0349AD1EED4F_1.jpg" />
+    <Content Include="Content\Images\Hotels\48CB538F-41F4-4C24-9D2C-0349AD1EED4F_3.jpg" />
+    <Content Include="Content\Images\Hotels\48CB538F-41F4-4C24-9D2C-0349AD1EED4F_4.jpg" />
+    <Content Include="Content\Images\Hotels\48ED6B59-3835-46B8-BBDE-86892E665415.jpg" />
+    <Content Include="Content\Images\Hotels\49993010-8436-45DB-8A79-0D5791950EF9.jpg" />
+    <Content Include="Content\Images\Hotels\499D59F5-CB9F-433A-B823-5B1388756AC8.jpg" />
+    <Content Include="Content\Images\Hotels\4A024C1E-9CC6-479B-B5EC-F0D596BA0AE5.jpg" />
+    <Content Include="Content\Images\Hotels\4A0D8842-D25D-4171-9EA1-B857C7239FDC.jpg" />
+    <Content Include="Content\Images\Hotels\4A1DFE21-37BE-448A-BF84-2C4FE6C147EB.jpg" />
+    <Content Include="Content\Images\Hotels\4A23FCC2-B4CC-49A8-A526-793E6D47214F.jpg" />
+    <Content Include="Content\Images\Hotels\4A40B73F-8DA5-4B43-B442-38A8D097E968.jpg" />
+    <Content Include="Content\Images\Hotels\4AEA6FC7-F3C8-4CF0-9372-76E51FD33926.jpg" />
+    <Content Include="Content\Images\Hotels\4AF2CCB7-1D44-4715-AD41-18254314D27F.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA_1.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA_2.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA_3.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA_4.jpg" />
+    <Content Include="Content\Images\Hotels\4AF47130-6A60-4B9D-AB67-67426F72F6CA_5.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281_1.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281_2.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281_3.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281_4.jpg" />
+    <Content Include="Content\Images\Hotels\4B62AFAE-B923-43AB-8394-07C3726C6281_5.jpg" />
+    <Content Include="Content\Images\Hotels\4B654057-E09B-441F-BD65-599155D8FC8A.jpg" />
+    <Content Include="Content\Images\Hotels\4B8092E2-6212-4C6B-A99D-589AB680095E.jpg" />
+    <Content Include="Content\Images\Hotels\4C1BAF5D-6DC6-423E-8C2D-34804B6BA686.jpg" />
+    <Content Include="Content\Images\Hotels\4C5A63CC-A1A1-4916-B647-B092C3E46E52.jpg" />
+    <Content Include="Content\Images\Hotels\4C5A63CC-A1A1-4916-B647-B092C3E46E52_1.jpg" />
+    <Content Include="Content\Images\Hotels\4C5A63CC-A1A1-4916-B647-B092C3E46E52_2.jpg" />
+    <Content Include="Content\Images\Hotels\4C5A63CC-A1A1-4916-B647-B092C3E46E52_3.jpg" />
+    <Content Include="Content\Images\Hotels\4C5A63CC-A1A1-4916-B647-B092C3E46E52_4.jpg" />
+    <Content Include="Content\Images\Hotels\4C7CCFEF-1452-469F-AD23-9D6D2EB8C032.jpg" />
+    <Content Include="Content\Images\Hotels\4CEC0675-63D9-474E-AF33-411D26B14D25.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964_1.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964_2.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964_3.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964_4.jpg" />
+    <Content Include="Content\Images\Hotels\4D12B447-4499-49E0-9495-AC2FAC0BE964_5.jpg" />
+    <Content Include="Content\Images\Hotels\4D1F50BE-A52B-4793-804A-113DA1480BE7.jpg" />
+    <Content Include="Content\Images\Hotels\4D1F50BE-A52B-4793-804A-113DA1480BE7_1.jpg" />
+    <Content Include="Content\Images\Hotels\4D1F50BE-A52B-4793-804A-113DA1480BE7_2.jpg" />
+    <Content Include="Content\Images\Hotels\4D1F50BE-A52B-4793-804A-113DA1480BE7_3.jpg" />
+    <Content Include="Content\Images\Hotels\4D1F50BE-A52B-4793-804A-113DA1480BE7_4.jpg" />
+    <Content Include="Content\Images\Hotels\4D494F36-B835-4F90-A345-2ADF95A6E46C.jpg" />
+    <Content Include="Content\Images\Hotels\4D97AEC4-6311-4300-B26D-EEA1CB5D2FC1.jpg" />
+    <Content Include="Content\Images\Hotels\4DCDCFEA-A971-45F5-93BB-ED3DCD29586B.jpg" />
+    <Content Include="Content\Images\Hotels\4DE00833-4713-428E-9C97-FA24D1446A28.jpg" />
+    <Content Include="Content\Images\Hotels\4E59D9AD-7161-41A5-9AD8-51B15BE78A4C.jpg" />
+    <Content Include="Content\Images\Hotels\4E60D72E-448D-4E50-A44E-E3FD1234760F.jpg" />
+    <Content Include="Content\Images\Hotels\4E660932-A384-4EAF-9987-ACBA27905793.jpg" />
+    <Content Include="Content\Images\Hotels\4E660932-A384-4EAF-9987-ACBA27905793_1.jpg" />
+    <Content Include="Content\Images\Hotels\4E660932-A384-4EAF-9987-ACBA27905793_2.jpg" />
+    <Content Include="Content\Images\Hotels\4E660932-A384-4EAF-9987-ACBA27905793_3.jpg" />
+    <Content Include="Content\Images\Hotels\4E660932-A384-4EAF-9987-ACBA27905793_4.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_1.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_2.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_3.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_4.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_5.jpg" />
+    <Content Include="Content\Images\Hotels\4EDD23AA-1302-406C-A124-DDD5E5456124_6.jpg" />
+    <Content Include="Content\Images\Hotels\4F618387-6C50-486B-B106-A03433E98C0C.jpg" />
+    <Content Include="Content\Images\Hotels\4F68FC03-C22C-4254-8596-12B4425B60F9.jpg" />
+    <Content Include="Content\Images\Hotels\4F7C784F-3E10-41AA-8515-0E47ACD151C9.jpg" />
+    <Content Include="Content\Images\Hotels\4FDAAD1A-677E-4616-822A-6513B338982C.jpg" />
+    <Content Include="Content\Images\Hotels\50775D80-28E1-4087-852F-1278E547CCA4.jpg" />
+    <Content Include="Content\Images\Hotels\508A64A0-89B5-44A5-892C-A67563C55A74.jpg" />
+    <Content Include="Content\Images\Hotels\508A64A0-89B5-44A5-892C-A67563C55A74_1.jpg" />
+    <Content Include="Content\Images\Hotels\508A64A0-89B5-44A5-892C-A67563C55A74_2.jpg" />
+    <Content Include="Content\Images\Hotels\508A64A0-89B5-44A5-892C-A67563C55A74_3.jpg" />
+    <Content Include="Content\Images\Hotels\508A64A0-89B5-44A5-892C-A67563C55A74_4.jpg" />
+    <Content Include="Content\Images\Hotels\50A330FE-DE8A-44DD-8373-24DD8B8889DF.jpg" />
+    <Content Include="Content\Images\Hotels\50A330FE-DE8A-44DD-8373-24DD8B8889DF_1.jpg" />
+    <Content Include="Content\Images\Hotels\50A330FE-DE8A-44DD-8373-24DD8B8889DF_2.jpg" />
+    <Content Include="Content\Images\Hotels\50A330FE-DE8A-44DD-8373-24DD8B8889DF_3.jpg" />
+    <Content Include="Content\Images\Hotels\50A330FE-DE8A-44DD-8373-24DD8B8889DF_4.jpg" />
+    <Content Include="Content\Images\Hotels\50CCA139-FA1C-46CD-99A7-459735DB024D.jpg" />
+    <Content Include="Content\Images\Hotels\50E9C10C-D587-4FC1-9A16-0AFB49D1FCFA.jpg" />
+    <Content Include="Content\Images\Hotels\50EC4388-68CD-4BA7-910C-5ED8FF321A91.jpg" />
+    <Content Include="Content\Images\Hotels\50EFF0A2-99EF-433C-9E4D-00F0DA68F078.jpg" />
+    <Content Include="Content\Images\Hotels\51114B5F-9922-43A0-908C-838769BD69DB.jpg" />
+    <Content Include="Content\Images\Hotels\51162886-7E31-4D5A-BA55-8A9B630F2A61.jpg" />
+    <Content Include="Content\Images\Hotels\511AE8D1-2C70-4B7D-87C6-FBBAF62C98A3.jpg" />
+    <Content Include="Content\Images\Hotels\51245E02-8E4B-459C-9227-05A6958C7022.jpg" />
+    <Content Include="Content\Images\Hotels\513F2E2B-1584-4903-85A1-878E98A1F2D8.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92_1.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92_2.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92_3.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92_4.jpg" />
+    <Content Include="Content\Images\Hotels\51C44B37-865F-401D-937A-F22458A7BC92_5.jpg" />
+    <Content Include="Content\Images\Hotels\51E3CA57-5940-4394-94FA-09FEC9FE3C5A.jpg" />
+    <Content Include="Content\Images\Hotels\51FCDBEA-286E-4B62-BF51-207D83B15F91.jpg" />
+    <Content Include="Content\Images\Hotels\522F022A-85A7-4D3C-8332-0CBA0F54D48E.jpg" />
+    <Content Include="Content\Images\Hotels\52E77218-882A-49B9-8D91-18F457B8A6D5.jpg" />
+    <Content Include="Content\Images\Hotels\531D671E-3B81-4D62-8BA3-01043F8AEB31.jpg" />
+    <Content Include="Content\Images\Hotels\5338F82B-11FA-4F9B-AAC3-0E09F7E6A968.jpg" />
+    <Content Include="Content\Images\Hotels\534A6FDC-5685-408A-84B0-2D5A53CA8412.jpg" />
+    <Content Include="Content\Images\Hotels\534A6FDC-5685-408A-84B0-2D5A53CA8412_1.jpg" />
+    <Content Include="Content\Images\Hotels\534A6FDC-5685-408A-84B0-2D5A53CA8412_2.jpg" />
+    <Content Include="Content\Images\Hotels\534A6FDC-5685-408A-84B0-2D5A53CA8412_3.jpg" />
+    <Content Include="Content\Images\Hotels\534A6FDC-5685-408A-84B0-2D5A53CA8412_4.jpg" />
+    <Content Include="Content\Images\Hotels\536F1269-037D-4D76-8C9D-435BEA9235EF.jpg" />
+    <Content Include="Content\Images\Hotels\536F1269-037D-4D76-8C9D-435BEA9235EF_1.jpg" />
+    <Content Include="Content\Images\Hotels\536F1269-037D-4D76-8C9D-435BEA9235EF_2.jpg" />
+    <Content Include="Content\Images\Hotels\536F1269-037D-4D76-8C9D-435BEA9235EF_3.jpg" />
+    <Content Include="Content\Images\Hotels\536F1269-037D-4D76-8C9D-435BEA9235EF_4.jpg" />
+    <Content Include="Content\Images\Hotels\537B0912-BDD5-4C55-8493-CEF2C756836E.jpg" />
+    <Content Include="Content\Images\Hotels\539BC04A-6658-4901-8D95-6E801FA204A8.jpg" />
+    <Content Include="Content\Images\Hotels\53B3CFDE-7B0C-4F18-84B9-397B617C78EF.jpg" />
+    <Content Include="Content\Images\Hotels\53C785E2-987E-4119-83F4-C634BD4AEA89.jpg" />
+    <Content Include="Content\Images\Hotels\5495767F-DB83-4A35-A3C2-09535A682FF1.jpg" />
+    <Content Include="Content\Images\Hotels\552ED268-F249-4A91-9D34-CC17E322775E.jpg" />
+    <Content Include="Content\Images\Hotels\55B91938-FC71-4AAF-AEB0-5C857C424139.jpg" />
+    <Content Include="Content\Images\Hotels\55FC9263-6B87-4E59-ADA0-0DC9CDD8029C.jpg" />
+    <Content Include="Content\Images\Hotels\5625FF21-36BD-4BC4-B9CF-BD07EC5DDB56.jpg" />
+    <Content Include="Content\Images\Hotels\5674A8B9-92D7-4B9E-8726-7125B81382CC.jpg" />
+    <Content Include="Content\Images\Hotels\570E95F2-BE6D-4C0C-9F07-BA1DF1339A29.jpg" />
+    <Content Include="Content\Images\Hotels\570E95F2-BE6D-4C0C-9F07-BA1DF1339A29_1.jpg" />
+    <Content Include="Content\Images\Hotels\570E95F2-BE6D-4C0C-9F07-BA1DF1339A29_2.jpg" />
+    <Content Include="Content\Images\Hotels\570E95F2-BE6D-4C0C-9F07-BA1DF1339A29_3.jpg" />
+    <Content Include="Content\Images\Hotels\570E95F2-BE6D-4C0C-9F07-BA1DF1339A29_4.jpg" />
+    <Content Include="Content\Images\Hotels\573D2C7D-C067-4E61-A32C-352544F40EBC.jpg" />
+    <Content Include="Content\Images\Hotels\5752B36E-2C3C-4413-A4F6-ABF74DAD5D11.jpg" />
+    <Content Include="Content\Images\Hotels\5798980E-06B1-4EEA-AD25-6197CE472D81.jpg" />
+    <Content Include="Content\Images\Hotels\57A8BFE2-28FA-4501-80AF-13C15E5FCDA6.jpg" />
+    <Content Include="Content\Images\Hotels\58215751-228D-4F1D-AA98-23593EAE9450.jpg" />
+    <Content Include="Content\Images\Hotels\5874B48C-F6A1-4821-A7A3-3292B48DC811.jpg" />
+    <Content Include="Content\Images\Hotels\589E90BB-1B32-4353-BA72-84E9B25CB251.jpg" />
+    <Content Include="Content\Images\Hotels\589E90BB-1B32-4353-BA72-84E9B25CB251_1.jpg" />
+    <Content Include="Content\Images\Hotels\589E90BB-1B32-4353-BA72-84E9B25CB251_2.jpg" />
+    <Content Include="Content\Images\Hotels\589E90BB-1B32-4353-BA72-84E9B25CB251_3.jpg" />
+    <Content Include="Content\Images\Hotels\589E90BB-1B32-4353-BA72-84E9B25CB251_4.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA_1.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA_2.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA_3.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA_4.jpg" />
+    <Content Include="Content\Images\Hotels\59817931-8871-48B2-9C9F-FDFBE379D8BA_5.jpg" />
+    <Content Include="Content\Images\Hotels\59A50627-DB3C-4070-B558-3A40CF507E04.jpg" />
+    <Content Include="Content\Images\Hotels\59C053D5-39A1-4637-8C74-5CFC43228ED5.jpg" />
+    <Content Include="Content\Images\Hotels\59EBD7F5-068D-44E8-B711-DBC849E3F298.jpg" />
+    <Content Include="Content\Images\Hotels\5A131A6B-2905-486A-9C72-6D2D7B979007.jpg" />
+    <Content Include="Content\Images\Hotels\5A5C4CF1-5F79-4E3F-9B29-BC055A7737A5.jpg" />
+    <Content Include="Content\Images\Hotels\5A77E143-5261-42BC-82CB-474A115DA862.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1_1.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1_2.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1_3.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1_4.jpg" />
+    <Content Include="Content\Images\Hotels\5A9566F1-18FE-4CB6-8D9B-66D56742F3A1_5.jpg" />
+    <Content Include="Content\Images\Hotels\5B081A62-32F0-436C-8ADE-0064F1D24C31.jpg" />
+    <Content Include="Content\Images\Hotels\5B52765D-8DB9-4409-84C0-E52C21D7E6F4.jpg" />
+    <Content Include="Content\Images\Hotels\5BB157B8-F707-4F4F-B221-D51A89A0B0D6.jpg" />
+    <Content Include="Content\Images\Hotels\5C8708F8-059B-45CD-8877-60475A7FCA3D.jpg" />
+    <Content Include="Content\Images\Hotels\5CE385BB-A85E-41BC-81DB-1F6FB8F2B9D5.jpg" />
+    <Content Include="Content\Images\Hotels\5CFB19BB-CE9C-4382-861A-47189CBA7FFA.jpg" />
+    <Content Include="Content\Images\Hotels\5D0E2992-32BE-4A0B-9770-684EE6861253.jpg" />
+    <Content Include="Content\Images\Hotels\5D35F31D-77D8-4128-9DCD-56DCC6F90B47.jpg" />
+    <Content Include="Content\Images\Hotels\5D39D9C4-E299-447D-91EB-55967D5A713D.jpg" />
+    <Content Include="Content\Images\Hotels\5D4DB1CC-D74D-434E-BFB5-6170A092E35D.jpg" />
+    <Content Include="Content\Images\Hotels\5D5086CC-5EFD-43B7-95E9-2B38A5716F46.jpg" />
+    <Content Include="Content\Images\Hotels\5D5086CC-5EFD-43B7-95E9-2B38A5716F46_1.jpg" />
+    <Content Include="Content\Images\Hotels\5D5086CC-5EFD-43B7-95E9-2B38A5716F46_2.jpg" />
+    <Content Include="Content\Images\Hotels\5D5086CC-5EFD-43B7-95E9-2B38A5716F46_3.jpg" />
+    <Content Include="Content\Images\Hotels\5D5086CC-5EFD-43B7-95E9-2B38A5716F46_4.jpg" />
+    <Content Include="Content\Images\Hotels\5D52AE36-6B0C-4769-A6F8-81912CD8E11C.jpg" />
+    <Content Include="Content\Images\Hotels\5D52AE36-6B0C-4769-A6F8-81912CD8E11C_1.jpg" />
+    <Content Include="Content\Images\Hotels\5D52AE36-6B0C-4769-A6F8-81912CD8E11C_2.jpg" />
+    <Content Include="Content\Images\Hotels\5D52AE36-6B0C-4769-A6F8-81912CD8E11C_3.jpg" />
+    <Content Include="Content\Images\Hotels\5D52AE36-6B0C-4769-A6F8-81912CD8E11C_4.jpg" />
+    <Content Include="Content\Images\Hotels\5E0D58F3-00E4-404E-9F46-0D167A0AA23A.jpg" />
+    <Content Include="Content\Images\Hotels\5E3023AB-8E17-4FA8-8038-1258775C0616.jpg" />
+    <Content Include="Content\Images\Hotels\5E3023AB-8E17-4FA8-8038-1258775C0616_1.jpg" />
+    <Content Include="Content\Images\Hotels\5E3023AB-8E17-4FA8-8038-1258775C0616_2.jpg" />
+    <Content Include="Content\Images\Hotels\5E3023AB-8E17-4FA8-8038-1258775C0616_3.jpg" />
+    <Content Include="Content\Images\Hotels\5E3023AB-8E17-4FA8-8038-1258775C0616_4.jpg" />
+    <Content Include="Content\Images\Hotels\5E30CF06-7727-4D13-B507-15A3C0737079.jpg" />
+    <Content Include="Content\Images\Hotels\5E3A3B4C-F3D1-43E5-8950-88731DE40694.jpg" />
+    <Content Include="Content\Images\Hotels\5E3A3B4C-F3D1-43E5-8950-88731DE40694_1.jpg" />
+    <Content Include="Content\Images\Hotels\5E3A3B4C-F3D1-43E5-8950-88731DE40694_2.jpg" />
+    <Content Include="Content\Images\Hotels\5E3A3B4C-F3D1-43E5-8950-88731DE40694_3.jpg" />
+    <Content Include="Content\Images\Hotels\5E3A3B4C-F3D1-43E5-8950-88731DE40694_4.jpg" />
+    <Content Include="Content\Images\Hotels\5E45BE1E-01BF-4B2A-B1BE-3444964BC7BD.jpg" />
+    <Content Include="Content\Images\Hotels\5EA2557F-CFBF-4C83-8E1D-3D8A530A3CE6.jpg" />
+    <Content Include="Content\Images\Hotels\5EF84978-DEEA-46CC-A1C8-AC6AB6390A28.jpg" />
+    <Content Include="Content\Images\Hotels\5EF84978-DEEA-46CC-A1C8-AC6AB6390A28_1.jpg" />
+    <Content Include="Content\Images\Hotels\5EF84978-DEEA-46CC-A1C8-AC6AB6390A28_2.jpg" />
+    <Content Include="Content\Images\Hotels\5EF84978-DEEA-46CC-A1C8-AC6AB6390A28_3.jpg" />
+    <Content Include="Content\Images\Hotels\5EF84978-DEEA-46CC-A1C8-AC6AB6390A28_4.jpg" />
+    <Content Include="Content\Images\Hotels\5EFE68E7-F293-4031-9F82-244B038CBC59.jpg" />
+    <Content Include="Content\Images\Hotels\5F544964-FBB4-42B5-B876-1A01FFCCD390.jpg" />
+    <Content Include="Content\Images\Hotels\5FA11098-0A6E-4973-AE37-7E290190BA88.jpg" />
+    <Content Include="Content\Images\Hotels\5FC65A15-D5DA-46A8-A22A-B51D11F5B3EB.jpg" />
+    <Content Include="Content\Images\Hotels\60B7F7AC-9D92-4F9C-B495-5057CE5B68BF.jpg" />
+    <Content Include="Content\Images\Hotels\6126E2AF-DF88-4D2A-B52D-17C3BF30BACC.jpg" />
+    <Content Include="Content\Images\Hotels\617A3A3F-CCD5-4155-9EA4-5A162C92867D.jpg" />
+    <Content Include="Content\Images\Hotels\6242C7CE-9F9D-4BD2-A37E-8EAC95423634.jpg" />
+    <Content Include="Content\Images\Hotels\6242C7CE-9F9D-4BD2-A37E-8EAC95423634_1.jpg" />
+    <Content Include="Content\Images\Hotels\6242C7CE-9F9D-4BD2-A37E-8EAC95423634_2.jpg" />
+    <Content Include="Content\Images\Hotels\6242C7CE-9F9D-4BD2-A37E-8EAC95423634_3.jpg" />
+    <Content Include="Content\Images\Hotels\6242C7CE-9F9D-4BD2-A37E-8EAC95423634_4.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006_1.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006_2.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006_3.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006_4.jpg" />
+    <Content Include="Content\Images\Hotels\6290EF89-887E-4320-AA99-0DE7A6515006_5.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_1.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_2.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_3.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_4.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_5.jpg" />
+    <Content Include="Content\Images\Hotels\62B5417C-4E30-49C8-9FF4-2440422E5C71_6.jpg" />
+    <Content Include="Content\Images\Hotels\62B56024-CEC8-49B7-983D-26C8C5A9E818_1.jpg" />
+    <Content Include="Content\Images\Hotels\62B56024-CEC8-49B7-983D-26C8C5A9E818_2.jpg" />
+    <Content Include="Content\Images\Hotels\62B56024-CEC8-49B7-983D-26C8C5A9E818_3.jpg" />
+    <Content Include="Content\Images\Hotels\62B56024-CEC8-49B7-983D-26C8C5A9E818_4.jpg" />
+    <Content Include="Content\Images\Hotels\62B56024-CEC8-49B7-983D-26C8C5A9E818_5.jpg" />
+    <Content Include="Content\Images\Hotels\631F5CB6-715B-4E0C-BCE5-8F80498A5263.jpg" />
+    <Content Include="Content\Images\Hotels\63407C16-CA68-42F8-B3D8-D12B1419A888.jpg" />
+    <Content Include="Content\Images\Hotels\63841E61-A646-4FC1-BC6F-88644E2E6E64.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250_1.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250_2.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250_3.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250_4.jpg" />
+    <Content Include="Content\Images\Hotels\63BDC387-8865-4A80-BB03-D6CEC80E4250_5.jpg" />
+    <Content Include="Content\Images\Hotels\63D2587B-7554-4C70-9700-4481F92FB71B.jpg" />
+    <Content Include="Content\Images\Hotels\63E2E7B2-DB1C-4FC9-8E16-D792965B8D5D.jpg" />
+    <Content Include="Content\Images\Hotels\6412E91F-9795-4CDB-A53A-07EFF0D97E4E.jpg" />
+    <Content Include="Content\Images\Hotels\643173E9-D239-4A78-B126-F66A392945B1.jpg" />
+    <Content Include="Content\Images\Hotels\64BD5343-0E6C-4836-874F-6B74D2CDF166.jpg" />
+    <Content Include="Content\Images\Hotels\64C2F9EA-B01E-4903-9C1A-514379E630BF.jpg" />
+    <Content Include="Content\Images\Hotels\64C2F9EA-B01E-4903-9C1A-514379E630BF_1.jpg" />
+    <Content Include="Content\Images\Hotels\64C2F9EA-B01E-4903-9C1A-514379E630BF_2.jpg" />
+    <Content Include="Content\Images\Hotels\64C2F9EA-B01E-4903-9C1A-514379E630BF_3.jpg" />
+    <Content Include="Content\Images\Hotels\64C2F9EA-B01E-4903-9C1A-514379E630BF_4.jpg" />
+    <Content Include="Content\Images\Hotels\64CDD218-CF71-4E52-806E-0C4455FB2E00.jpg" />
+    <Content Include="Content\Images\Hotels\651E6CD3-ECB2-4B4F-9D64-C612E7D5D599.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202_1.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202_2.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202_3.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202_4.jpg" />
+    <Content Include="Content\Images\Hotels\6535A506-F1F5-4E72-8F27-FD60BF654202_5.jpg" />
+    <Content Include="Content\Images\Hotels\6554A3CF-C531-4F41-9DC5-C1022751C283.jpg" />
+    <Content Include="Content\Images\Hotels\6615D434-2824-4647-A145-4DF57E94CD49.jpg" />
+    <Content Include="Content\Images\Hotels\6666DDBA-8C34-4DB5-8BDF-6987E9FD90D4.jpg" />
+    <Content Include="Content\Images\Hotels\669C0B10-D172-488F-BBDA-07380F222776.jpg" />
+    <Content Include="Content\Images\Hotels\66BF7EF6-8DF0-4928-BBBA-A0CAEB6769CB.jpg" />
+    <Content Include="Content\Images\Hotels\66E00B06-ADF0-4D82-948D-ECB35051CB87.jpg" />
+    <Content Include="Content\Images\Hotels\66E3D5BC-C058-4DF0-AF82-AF4BD56A5CFF.jpg" />
+    <Content Include="Content\Images\Hotels\66EF07ED-13D3-4DDF-957B-E7B3E97066C1.jpg" />
+    <Content Include="Content\Images\Hotels\670AE9B1-C439-45F1-BA26-5BBE4991056F.jpg" />
+    <Content Include="Content\Images\Hotels\676EB860-C6CA-45F6-8F0D-DDCC1811DDEE.jpg" />
+    <Content Include="Content\Images\Hotels\676EB860-C6CA-45F6-8F0D-DDCC1811DDEE_1.jpg" />
+    <Content Include="Content\Images\Hotels\676EB860-C6CA-45F6-8F0D-DDCC1811DDEE_2.jpg" />
+    <Content Include="Content\Images\Hotels\676EB860-C6CA-45F6-8F0D-DDCC1811DDEE_3.jpg" />
+    <Content Include="Content\Images\Hotels\676EB860-C6CA-45F6-8F0D-DDCC1811DDEE_4.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00_1.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00_2.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00_3.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00_4.jpg" />
+    <Content Include="Content\Images\Hotels\67992840-3585-431F-828C-F398A985FC00_5.jpg" />
+    <Content Include="Content\Images\Hotels\67B2D08B-C590-4A69-B9A5-421E94F259FF.jpg" />
+    <Content Include="Content\Images\Hotels\67C98B46-EDEB-43D3-90CE-7400B45AD159.jpg" />
+    <Content Include="Content\Images\Hotels\68C398E0-0CE2-4537-B2BF-490C44EB82F0.jpg" />
+    <Content Include="Content\Images\Hotels\68C398E0-0CE2-4537-B2BF-490C44EB82F0_1.jpg" />
+    <Content Include="Content\Images\Hotels\68C398E0-0CE2-4537-B2BF-490C44EB82F0_2.jpg" />
+    <Content Include="Content\Images\Hotels\68C398E0-0CE2-4537-B2BF-490C44EB82F0_3.jpg" />
+    <Content Include="Content\Images\Hotels\68C398E0-0CE2-4537-B2BF-490C44EB82F0_4.jpg" />
+    <Content Include="Content\Images\Hotels\69CECA12-FC35-4C27-944B-99572DC7DE99.jpg" />
+    <Content Include="Content\Images\Hotels\6AF69721-45D3-4F71-90EE-E814A22D3257.jpg" />
+    <Content Include="Content\Images\Hotels\6B1620E1-215E-490A-97EE-EE1772D0F928.jpg" />
+    <Content Include="Content\Images\Hotels\6B280548-5A50-4B89-96C3-17AB92AC1538.jpg" />
+    <Content Include="Content\Images\Hotels\6BAB7633-F982-4488-B7C8-AADDED32F83E.jpg" />
+    <Content Include="Content\Images\Hotels\6BD10DE2-7E6F-48B5-8300-CF12EE0AA624.jpg" />
+    <Content Include="Content\Images\Hotels\6C15C520-93C6-4C8E-B36E-93260D41860B.jpg" />
+    <Content Include="Content\Images\Hotels\6C716448-8383-4D45-B5B4-395E6FECF7BA.jpg" />
+    <Content Include="Content\Images\Hotels\6D5EE9F2-8FB9-4D9A-A176-B9852362F749.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8_1.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8_2.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8_3.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8_4.jpg" />
+    <Content Include="Content\Images\Hotels\6D7BC0FB-3AD7-4720-B891-C443140986D8_5.jpg" />
+    <Content Include="Content\Images\Hotels\6DCDF039-B8CA-4E7D-9CC2-E58A985EA157.jpg" />
+    <Content Include="Content\Images\Hotels\6ED69713-1E07-4A41-872E-A287780A3CFB.jpg" />
+    <Content Include="Content\Images\Hotels\6FD99060-6973-43DD-83DF-10888083294E.jpg" />
+    <Content Include="Content\Images\Hotels\70E1A245-8699-4823-9642-104EF9E4D963.jpg" />
+    <Content Include="Content\Images\Hotels\70E1A245-8699-4823-9642-104EF9E4D963_1.jpg" />
+    <Content Include="Content\Images\Hotels\70E1A245-8699-4823-9642-104EF9E4D963_2.jpg" />
+    <Content Include="Content\Images\Hotels\70E1A245-8699-4823-9642-104EF9E4D963_3.jpg" />
+    <Content Include="Content\Images\Hotels\70E1A245-8699-4823-9642-104EF9E4D963_4.jpg" />
+    <Content Include="Content\Images\Hotels\70E8F27C-AB8D-4233-B569-0FF9640A5BE8.jpg" />
+    <Content Include="Content\Images\Hotels\710A55A5-A7AC-412C-B665-67659443992D.jpg" />
+    <Content Include="Content\Images\Hotels\71608A9F-7249-4FA7-9A0F-225B4A99C82D.jpg" />
+    <Content Include="Content\Images\Hotels\71A4C768-8806-45CA-A071-7C4362024275.jpg" />
+    <Content Include="Content\Images\Hotels\71F4D359-3B34-4043-9E2E-DA9C71658CFD.jpg" />
+    <Content Include="Content\Images\Hotels\7203CD3C-7DD5-4132-99FF-102A57C61B95.jpg" />
+    <Content Include="Content\Images\Hotels\72D154E1-5529-47F6-A0C5-55401CC77C3C.jpg" />
+    <Content Include="Content\Images\Hotels\7334AC7B-5D9C-446B-82F8-70E0CEF6FF2B.jpg" />
+    <Content Include="Content\Images\Hotels\7413338C-3688-405C-9192-3037A79D4AA6.jpg" />
+    <Content Include="Content\Images\Hotels\74F8D707-8360-4045-811C-8FD83085C819.jpg" />
+    <Content Include="Content\Images\Hotels\7509E4AB-19BD-41AB-8A2F-7402AC3AA704.jpg" />
+    <Content Include="Content\Images\Hotels\75A05CAE-37FD-4205-89A8-4E062BA1200A.jpg" />
+    <Content Include="Content\Images\Hotels\76C3D90D-92F2-4362-B8FB-4B1C15A47499.jpg" />
+    <Content Include="Content\Images\Hotels\774562A4-DA1D-4B1F-A6C0-D0DFC09B69FD.jpg" />
+    <Content Include="Content\Images\Hotels\774562A4-DA1D-4B1F-A6C0-D0DFC09B69FD_1.jpg" />
+    <Content Include="Content\Images\Hotels\774562A4-DA1D-4B1F-A6C0-D0DFC09B69FD_2.jpg" />
+    <Content Include="Content\Images\Hotels\774562A4-DA1D-4B1F-A6C0-D0DFC09B69FD_3.jpg" />
+    <Content Include="Content\Images\Hotels\774562A4-DA1D-4B1F-A6C0-D0DFC09B69FD_4.jpg" />
+    <Content Include="Content\Images\Hotels\77461ACB-3D20-4A8F-B29E-CE4842534483.jpg" />
+    <Content Include="Content\Images\Hotels\77E270B9-CDDC-4E1D-B1BA-BF23F74EB2CE.jpg" />
+    <Content Include="Content\Images\Hotels\77E52B2D-92F7-454B-910B-C7AFECE0E52A.jpg" />
+    <Content Include="Content\Images\Hotels\7808B4E5-E2C6-4910-BAD8-E0EE39ECF29E.jpg" />
+    <Content Include="Content\Images\Hotels\780B3055-D384-49C4-B78D-341C953CBDE4.jpg" />
+    <Content Include="Content\Images\Hotels\78418397-372E-4196-A813-7C5337901B43.jpg" />
+    <Content Include="Content\Images\Hotels\786BBA1E-FB23-463E-B2F1-0E39A725B285.jpg" />
+    <Content Include="Content\Images\Hotels\78A08A79-9690-4E92-88D8-2F6F390A1357.jpg" />
+    <Content Include="Content\Images\Hotels\78AB70F1-EBA3-4264-A71D-3D8CB69D10E5.jpg" />
+    <Content Include="Content\Images\Hotels\78D90208-D062-4548-A315-F58011D4B0C2.jpg" />
+    <Content Include="Content\Images\Hotels\792FAD34-C933-4859-B584-4DE3FBD9E9D1.jpg" />
+    <Content Include="Content\Images\Hotels\79BE2E65-AC64-4A4C-B687-C538CAF9FE7D.jpg" />
+    <Content Include="Content\Images\Hotels\79DBE49D-BAB5-4FF7-BEC6-D6CFED37722F.jpg" />
+    <Content Include="Content\Images\Hotels\79DC6972-B945-47C5-869C-ECF05B41C3F4.jpg" />
+    <Content Include="Content\Images\Hotels\7A6C53D6-3C77-4356-8E5D-A453C6A3E8C8.jpg" />
+    <Content Include="Content\Images\Hotels\7AB35762-0CF1-4E1F-A482-3A828EE099CF.jpg" />
+    <Content Include="Content\Images\Hotels\7B2B6474-0C6C-467E-8075-A3E0FF676DB8.jpg" />
+    <Content Include="Content\Images\Hotels\7B2B6474-0C6C-467E-8075-A3E0FF676DB8_1.jpg" />
+    <Content Include="Content\Images\Hotels\7B2B6474-0C6C-467E-8075-A3E0FF676DB8_2.jpg" />
+    <Content Include="Content\Images\Hotels\7B2B6474-0C6C-467E-8075-A3E0FF676DB8_3.jpg" />
+    <Content Include="Content\Images\Hotels\7B2B6474-0C6C-467E-8075-A3E0FF676DB8_4.jpg" />
+    <Content Include="Content\Images\Hotels\7B3AE62A-E488-472D-B440-7FC2CA773059.jpg" />
+    <Content Include="Content\Images\Hotels\7B9116AB-AD70-4333-8663-F1955AE2A382.jpg" />
+    <Content Include="Content\Images\Hotels\7BC6449C-7177-4792-8077-D100E3779AA0.jpg" />
+    <Content Include="Content\Images\Hotels\7C5B83C7-4D31-41AB-83B4-BB3D48E3DAA7.jpg" />
+    <Content Include="Content\Images\Hotels\7CC8CA44-102E-4F4D-8D24-3A89271EB2B8.jpg" />
+    <Content Include="Content\Images\Hotels\7E1BCFF1-31A5-4614-8C48-1C2586A32CE1.jpg" />
+    <Content Include="Content\Images\Hotels\7E89D123-63B0-4D0D-B421-F7D2F9D53155.jpg" />
+    <Content Include="Content\Images\Hotels\7EFACEFC-F8AD-4AFC-BA14-96173B0601F2.jpg" />
+    <Content Include="Content\Images\Hotels\7F550C44-60EE-461D-A69C-FDCDF8F368F6.jpg" />
+    <Content Include="Content\Images\Hotels\7F736B11-D2A9-4F8E-9D5C-851E50968F80.jpg" />
+    <Content Include="Content\Images\Hotels\7FB8131A-E8C3-4435-951E-DCD0276B389E.jpg" />
+    <Content Include="Content\Images\Hotels\7FC8C529-D8F1-4D50-8D48-A59F53A824C9.jpg" />
+    <Content Include="Content\Images\Hotels\8016DACD-C33F-4FFE-AA48-28E24CEE2341.jpg" />
+    <Content Include="Content\Images\Hotels\802D789D-4A56-489C-A381-C95BD8C48E0C.jpg" />
+    <Content Include="Content\Images\Hotels\8031E547-8144-4794-B779-986D80605942.jpg" />
+    <Content Include="Content\Images\Hotels\805C39AB-5AB4-485B-AB17-81D210CC5DCC.jpg" />
+    <Content Include="Content\Images\Hotels\80673060-4DA3-4323-A7BC-121A59352D45.jpg" />
+    <Content Include="Content\Images\Hotels\80B14DE0-D8DA-46EF-98ED-6394DB9A2397.jpg" />
+    <Content Include="Content\Images\Hotels\80EB2842-4CB9-49AC-A494-82165033D47F.jpg" />
+    <Content Include="Content\Images\Hotels\80FB4771-84AD-47D3-9159-A892EAA58E35.jpg" />
+    <Content Include="Content\Images\Hotels\813D1748-D9DC-4C28-B4FF-AA8E3972CF67.jpg" />
+    <Content Include="Content\Images\Hotels\81997AD0-1DD8-4395-9C92-A75FE608BC83.jpg" />
+    <Content Include="Content\Images\Hotels\81F1D959-586E-47AB-9F7F-4BE19582A725.jpg" />
+    <Content Include="Content\Images\Hotels\826569CF-1A60-4139-977F-23AD32397C5A.jpg" />
+    <Content Include="Content\Images\Hotels\82FFAB08-DFE1-4078-B177-A7CF7899E400.jpg" />
+    <Content Include="Content\Images\Hotels\83163DA9-3119-4697-A575-2EB398D01AE2.jpg" />
+    <Content Include="Content\Images\Hotels\832FDBE0-5DD7-482D-BA67-A3C1762EF5D1.jpg" />
+    <Content Include="Content\Images\Hotels\834B079B-5A24-46C9-BAB7-1C1579CCBFCF_1.jpg" />
+    <Content Include="Content\Images\Hotels\834B079B-5A24-46C9-BAB7-1C1579CCBFCF_2.jpg" />
+    <Content Include="Content\Images\Hotels\834B079B-5A24-46C9-BAB7-1C1579CCBFCF_3.jpg" />
+    <Content Include="Content\Images\Hotels\834B079B-5A24-46C9-BAB7-1C1579CCBFCF_4.jpg" />
+    <Content Include="Content\Images\Hotels\8373E7E8-38CD-460E-AF39-73B0D6B30658.jpg" />
+    <Content Include="Content\Images\Hotels\8406729D-2970-4A48-94AD-7A4B32BB9443.jpg" />
+    <Content Include="Content\Images\Hotels\8455CD1E-7083-459F-A15B-41A539B64306.jpg" />
+    <Content Include="Content\Images\Hotels\84E97D8D-9CE3-45E3-BBB7-A63B331E09C6.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666_1.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666_2.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666_3.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666_4.jpg" />
+    <Content Include="Content\Images\Hotels\853ABC37-078B-4DCB-8705-69A050552666_5.jpg" />
+    <Content Include="Content\Images\Hotels\85E21B8A-386E-4F50-A91C-5C5355C1B653.jpg" />
+    <Content Include="Content\Images\Hotels\85E5BD50-BB64-4724-BF83-ECB3F319E77B.jpg" />
+    <Content Include="Content\Images\Hotels\85FD4001-C04F-44A6-8D47-83A1A522245F.jpg" />
+    <Content Include="Content\Images\Hotels\8629768D-4AD5-46F6-B4A8-A46ED5285D1E.jpg" />
+    <Content Include="Content\Images\Hotels\867CE14C-D8B4-456F-BBCB-945E85EE138F.jpg" />
+    <Content Include="Content\Images\Hotels\869ABE17-DFF8-4027-B846-26E0FCE607FB.jpg" />
+    <Content Include="Content\Images\Hotels\86B72C72-1DED-4275-9A0A-C853A5D5AF33.jpg" />
+    <Content Include="Content\Images\Hotels\86B72C72-1DED-4275-9A0A-C853A5D5AF33_1.jpg" />
+    <Content Include="Content\Images\Hotels\86B72C72-1DED-4275-9A0A-C853A5D5AF33_2.jpg" />
+    <Content Include="Content\Images\Hotels\86B72C72-1DED-4275-9A0A-C853A5D5AF33_3.jpg" />
+    <Content Include="Content\Images\Hotels\86B72C72-1DED-4275-9A0A-C853A5D5AF33_4.jpg" />
+    <Content Include="Content\Images\Hotels\86CDDA8C-5849-4750-9C15-D1DD988B6585.jpg" />
+    <Content Include="Content\Images\Hotels\86DC4841-3520-49C2-BF86-8438D472AADE.jpg" />
+    <Content Include="Content\Images\Hotels\87DC695D-CA1B-457E-8507-5FBBBFAEBAF3.jpg" />
+    <Content Include="Content\Images\Hotels\87E7BB42-BE80-4987-BB5D-28C67227E10B.jpg" />
+    <Content Include="Content\Images\Hotels\87F42E76-D9B8-4408-B44F-50B2397A096D.jpg" />
+    <Content Include="Content\Images\Hotels\87F42E76-D9B8-4408-B44F-50B2397A096D_1.jpg" />
+    <Content Include="Content\Images\Hotels\87F42E76-D9B8-4408-B44F-50B2397A096D_2.jpg" />
+    <Content Include="Content\Images\Hotels\87F42E76-D9B8-4408-B44F-50B2397A096D_3.jpg" />
+    <Content Include="Content\Images\Hotels\87F42E76-D9B8-4408-B44F-50B2397A096D_4.jpg" />
+    <Content Include="Content\Images\Hotels\8830491F-D73C-4881-AA95-F8F6C944603D.jpg" />
+    <Content Include="Content\Images\Hotels\8835F1FC-0742-4E2E-BA20-785DCAA40EB6.jpg" />
+    <Content Include="Content\Images\Hotels\883DBE21-2162-4950-AAB0-AAD8335C5B1D.jpg" />
+    <Content Include="Content\Images\Hotels\891454F4-F482-47FD-8B8A-F178A0DF9ADF.jpg" />
+    <Content Include="Content\Images\Hotels\8991AB10-EABF-4F38-A8F0-2B6300E60330_1.jpg" />
+    <Content Include="Content\Images\Hotels\8991AB10-EABF-4F38-A8F0-2B6300E60330_2.jpg" />
+    <Content Include="Content\Images\Hotels\8991AB10-EABF-4F38-A8F0-2B6300E60330_3.jpg" />
+    <Content Include="Content\Images\Hotels\8991AB10-EABF-4F38-A8F0-2B6300E60330_4.jpg" />
+    <Content Include="Content\Images\Hotels\89B344C3-2098-4615-A610-504E25029C74.jpg" />
+    <Content Include="Content\Images\Hotels\89C9A158-9597-4D8C-B78E-1308BD0DFC27.jpg" />
+    <Content Include="Content\Images\Hotels\89E02153-12F2-47B2-8D1F-AC612905E752.jpg" />
+    <Content Include="Content\Images\Hotels\8A0C5AF8-CCD1-4708-9516-921B4349D0E6.jpg" />
+    <Content Include="Content\Images\Hotels\8A58ACBB-704E-4064-92B4-58D4643A22AB.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5_1.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5_2.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5_3.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5_4.jpg" />
+    <Content Include="Content\Images\Hotels\8AA67064-35C2-4A61-B7E7-BFB3A44219A5_5.jpg" />
+    <Content Include="Content\Images\Hotels\8AC5AAFD-692F-4ABC-AE64-6F4002ECE96D.jpg" />
+    <Content Include="Content\Images\Hotels\8B21AA26-D396-4BFA-9249-99FA3A6F3B94.jpg" />
+    <Content Include="Content\Images\Hotels\8B21AA26-D396-4BFA-9249-99FA3A6F3B94_1.jpg" />
+    <Content Include="Content\Images\Hotels\8B21AA26-D396-4BFA-9249-99FA3A6F3B94_2.jpg" />
+    <Content Include="Content\Images\Hotels\8B21AA26-D396-4BFA-9249-99FA3A6F3B94_3.jpg" />
+    <Content Include="Content\Images\Hotels\8B21AA26-D396-4BFA-9249-99FA3A6F3B94_4.jpg" />
+    <Content Include="Content\Images\Hotels\8B658B38-EC5E-4EBB-AE6A-D8CFE97A74F8.jpg" />
+    <Content Include="Content\Images\Hotels\8BDC1A4B-E0C6-45CD-897F-F875EF7BB734.jpg" />
+    <Content Include="Content\Images\Hotels\8C917FB5-497F-4950-B693-736DA340BDC3.jpg" />
+    <Content Include="Content\Images\Hotels\8C97C9F4-6678-4E49-A149-EEC570BFB7B6.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821_1.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821_2.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821_3.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821_4.jpg" />
+    <Content Include="Content\Images\Hotels\8CA07EC4-C616-4ECE-A24E-D88508542821_5.jpg" />
+    <Content Include="Content\Images\Hotels\8CD015A9-056F-405D-9CBF-ABF1C07CBFD2.jpg" />
+    <Content Include="Content\Images\Hotels\8D1331AC-EDA9-4C26-A2E7-D85E0DEF0D3B.jpg" />
+    <Content Include="Content\Images\Hotels\8E22F8E6-61CE-4731-A099-B7A732102CF2.jpg" />
+    <Content Include="Content\Images\Hotels\8E76E51B-9976-4D66-BF29-F526AB6246DA.jpg" />
+    <Content Include="Content\Images\Hotels\8E778E91-2F7D-4505-A310-08B350005234.jpg" />
+    <Content Include="Content\Images\Hotels\8E906893-C38A-45BF-B3C6-37545787672B.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4_1.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4_2.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4_3.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4_4.jpg" />
+    <Content Include="Content\Images\Hotels\8E9CA485-C9CE-4CE0-9355-3A44BE3417D4_5.jpg" />
+    <Content Include="Content\Images\Hotels\8EC4729A-A811-467E-A11C-23E6D101E19E.jpg" />
+    <Content Include="Content\Images\Hotels\8ECEF582-F3F3-456B-B937-718207A9E6E1.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35_1.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35_2.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35_3.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35_4.jpg" />
+    <Content Include="Content\Images\Hotels\8EDCA978-2B39-493D-B1B1-9814C8F4DC35_5.jpg" />
+    <Content Include="Content\Images\Hotels\8EF9E334-66C7-4E48-B031-E48DD2E2834B.jpg" />
+    <Content Include="Content\Images\Hotels\8EF9E334-66C7-4E48-B031-E48DD2E2834B_1.jpg" />
+    <Content Include="Content\Images\Hotels\8EF9E334-66C7-4E48-B031-E48DD2E2834B_2.jpg" />
+    <Content Include="Content\Images\Hotels\8EF9E334-66C7-4E48-B031-E48DD2E2834B_3.jpg" />
+    <Content Include="Content\Images\Hotels\8EF9E334-66C7-4E48-B031-E48DD2E2834B_4.jpg" />
+    <Content Include="Content\Images\Hotels\8F537366-70B9-414D-83D2-51E092477D22.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_1.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_2.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_3.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_4.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_5.jpg" />
+    <Content Include="Content\Images\Hotels\8FCE7BF9-B24A-493A-9E94-02B6F1AEEC61_6.jpg" />
+    <Content Include="Content\Images\Hotels\8FE158FA-4D0B-488F-9004-5C37ED50672A.jpg" />
+    <Content Include="Content\Images\Hotels\9041B6C7-E055-4D92-B98B-74257BF5DB96.jpg" />
+    <Content Include="Content\Images\Hotels\9057E78E-16E0-49C6-B832-00FEF89E9001.jpg" />
+    <Content Include="Content\Images\Hotels\90832D91-D802-4582-A3F6-E4071077BA00.jpg" />
+    <Content Include="Content\Images\Hotels\90BAD265-3B4E-4029-9F06-1504013C0545.jpg" />
+    <Content Include="Content\Images\Hotels\90D36876-E3E3-4E3E-ABDF-DF84C9249CBB.jpg" />
+    <Content Include="Content\Images\Hotels\911D9B8B-C7DA-419E-8E21-B719DE4251AA.jpg" />
+    <Content Include="Content\Images\Hotels\911D9B8B-C7DA-419E-8E21-B719DE4251AA_1.jpg" />
+    <Content Include="Content\Images\Hotels\911D9B8B-C7DA-419E-8E21-B719DE4251AA_2.jpg" />
+    <Content Include="Content\Images\Hotels\911D9B8B-C7DA-419E-8E21-B719DE4251AA_3.jpg" />
+    <Content Include="Content\Images\Hotels\911D9B8B-C7DA-419E-8E21-B719DE4251AA_4.jpg" />
+    <Content Include="Content\Images\Hotels\9130BF54-D38F-4EA3-BAC5-21D5F10452CC.jpg" />
+    <Content Include="Content\Images\Hotels\9130BF54-D38F-4EA3-BAC5-21D5F10452CC_1.jpg" />
+    <Content Include="Content\Images\Hotels\9130BF54-D38F-4EA3-BAC5-21D5F10452CC_2.jpg" />
+    <Content Include="Content\Images\Hotels\9130BF54-D38F-4EA3-BAC5-21D5F10452CC_3.jpg" />
+    <Content Include="Content\Images\Hotels\9130BF54-D38F-4EA3-BAC5-21D5F10452CC_4.jpg" />
+    <Content Include="Content\Images\Hotels\914D2073-3F1D-4118-BE5D-E737BBEB612A.jpg" />
+    <Content Include="Content\Images\Hotels\917E7001-BDC9-4B47-814F-4A113E6C70FD.jpg" />
+    <Content Include="Content\Images\Hotels\918D35CE-CA5E-4AB4-A935-2E1B4E4251E7.jpg" />
+    <Content Include="Content\Images\Hotels\91BE2E7C-88F0-4804-958D-074891460059.jpg" />
+    <Content Include="Content\Images\Hotels\91F50BFF-0867-4287-ABD6-235EE2447EC8.jpg" />
+    <Content Include="Content\Images\Hotels\92645780-E541-40F0-81CF-2FB7FE349B0F.jpg" />
+    <Content Include="Content\Images\Hotels\926BA227-C94C-4922-99E7-9FDC7582A7F8.jpg" />
+    <Content Include="Content\Images\Hotels\92E11619-AB27-40E7-B68F-FCB739F1F144.jpg" />
+    <Content Include="Content\Images\Hotels\9320BCEA-03D4-4C19-ABF2-18D1BB117E68.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF_1.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF_2.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF_3.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF_4.jpg" />
+    <Content Include="Content\Images\Hotels\93BDDC40-6929-4F81-8E0B-8B5591E756CF_5.jpg" />
+    <Content Include="Content\Images\Hotels\93C3DE77-711E-45BA-BD4D-FB39F26EDF5D.jpg" />
+    <Content Include="Content\Images\Hotels\9406F34D-CBC9-414B-B87B-0343D957EFFA.jpg" />
+    <Content Include="Content\Images\Hotels\948D4196-3822-443E-AFDD-E2BAA582E5A8.jpg" />
+    <Content Include="Content\Images\Hotels\94AB5F1A-2C4D-4838-BAEC-F22A2142DB45.jpg" />
+    <Content Include="Content\Images\Hotels\94AB5F1A-2C4D-4838-BAEC-F22A2142DB45_1.jpg" />
+    <Content Include="Content\Images\Hotels\94AB5F1A-2C4D-4838-BAEC-F22A2142DB45_2.jpg" />
+    <Content Include="Content\Images\Hotels\94AB5F1A-2C4D-4838-BAEC-F22A2142DB45_3.jpg" />
+    <Content Include="Content\Images\Hotels\94AB5F1A-2C4D-4838-BAEC-F22A2142DB45_4.jpg" />
+    <Content Include="Content\Images\Hotels\94E22F8B-7B29-4C58-A0CC-83C238EB20DC.jpg" />
+    <Content Include="Content\Images\Hotels\958A0149-D0D6-471E-B966-12F1BC40CE29.jpg" />
+    <Content Include="Content\Images\Hotels\958FAD3A-57B5-454E-ADC2-815BF9961116.jpg" />
+    <Content Include="Content\Images\Hotels\95DB4333-E5B2-4AD9-8A59-6537C19C7A7F.jpg" />
+    <Content Include="Content\Images\Hotels\9622E86D-624A-41A5-B229-01E7B6536834.jpg" />
+    <Content Include="Content\Images\Hotels\966BAB01-9B65-4A15-A4BC-9AF9633D998D.jpg" />
+    <Content Include="Content\Images\Hotels\97C9087A-486C-418A-B157-39FD5AB62B00.jpg" />
+    <Content Include="Content\Images\Hotels\984FB0E7-98A5-4217-A6EF-F72616600336.jpg" />
+    <Content Include="Content\Images\Hotels\984FB0E7-98A5-4217-A6EF-F72616600336_1.jpg" />
+    <Content Include="Content\Images\Hotels\984FB0E7-98A5-4217-A6EF-F72616600336_2.jpg" />
+    <Content Include="Content\Images\Hotels\984FB0E7-98A5-4217-A6EF-F72616600336_3.jpg" />
+    <Content Include="Content\Images\Hotels\984FB0E7-98A5-4217-A6EF-F72616600336_4.jpg" />
+    <Content Include="Content\Images\Hotels\98593376-7903-4A80-8B54-14BF8E6365C3.jpg" />
+    <Content Include="Content\Images\Hotels\98884DE8-75E5-4A07-BD90-98850BB8D8A2.jpg" />
+    <Content Include="Content\Images\Hotels\98D70582-2310-4163-94EA-C830D7E0F408.jpg" />
+    <Content Include="Content\Images\Hotels\98D70582-2310-4163-94EA-C830D7E0F408_1.jpg" />
+    <Content Include="Content\Images\Hotels\98D70582-2310-4163-94EA-C830D7E0F408_2.jpg" />
+    <Content Include="Content\Images\Hotels\98D70582-2310-4163-94EA-C830D7E0F408_3.jpg" />
+    <Content Include="Content\Images\Hotels\98D70582-2310-4163-94EA-C830D7E0F408_4.jpg" />
+    <Content Include="Content\Images\Hotels\997102D3-FC3E-49FC-95C5-5C39EBA6275A.jpg" />
+    <Content Include="Content\Images\Hotels\9998550D-E4C1-41C4-8E22-1E6B16EA5FE2.jpg" />
+    <Content Include="Content\Images\Hotels\99AABD13-87F7-420D-94BB-5F98C2F3737C.jpg" />
+    <Content Include="Content\Images\Hotels\99C62445-F201-4156-9826-28F52BAFD20C.jpg" />
+    <Content Include="Content\Images\Hotels\99CA0B39-EBB6-46F1-938E-BE9322A6A4D0.jpg" />
+    <Content Include="Content\Images\Hotels\9A6FD900-4A87-4302-9C0B-3AF0045756F5.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2_1.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2_2.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2_3.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2_4.jpg" />
+    <Content Include="Content\Images\Hotels\9B658C8A-5A04-47BE-A3B2-FE253C15B9C2_5.jpg" />
+    <Content Include="Content\Images\Hotels\9B702DC5-B217-4441-93A0-134168524D42.jpg" />
+    <Content Include="Content\Images\Hotels\9C363875-2787-430F-BF73-461DFC74C39C.jpg" />
+    <Content Include="Content\Images\Hotels\9C65323D-B8AF-446F-924A-F93A511A135E.jpg" />
+    <Content Include="Content\Images\Hotels\9C66ABE9-11B8-4F46-B8CA-5E0AE6B3F7ED.jpg" />
+    <Content Include="Content\Images\Hotels\9CEF72AE-BD54-42F9-8B5F-25F2B998FFF9.jpg" />
+    <Content Include="Content\Images\Hotels\9D23F235-BB27-4432-B94F-094203D7863F.jpg" />
+    <Content Include="Content\Images\Hotels\9D313732-EA6E-4A92-8515-E65C5550540A.jpg" />
+    <Content Include="Content\Images\Hotels\9E6577C3-6CF1-464A-8CA6-7C86A0AF756D.jpg" />
+    <Content Include="Content\Images\Hotels\9EADDAE9-B4B3-4C0E-A81E-1DBFEEA88FB1.jpg" />
+    <Content Include="Content\Images\Hotels\9EB1134F-D0D8-4CB9-A0F1-48FF25FAEA61.jpg" />
+    <Content Include="Content\Images\Hotels\9EEAFF63-7C9C-48ED-8D4E-03596278F3C8.jpg" />
+    <Content Include="Content\Images\Hotels\9F035EDF-5FEA-465F-A387-5475C06F65B4.jpg" />
+    <Content Include="Content\Images\Hotels\9FA3FD02-5EC4-4F02-A739-59FD60C68DED.jpg" />
+    <Content Include="Content\Images\Hotels\9FD7D750-1D15-4D77-A666-12F8B25141EE_1.jpg" />
+    <Content Include="Content\Images\Hotels\9FD7D750-1D15-4D77-A666-12F8B25141EE_2.jpg" />
+    <Content Include="Content\Images\Hotels\9FD7D750-1D15-4D77-A666-12F8B25141EE_3.jpg" />
+    <Content Include="Content\Images\Hotels\9FD7D750-1D15-4D77-A666-12F8B25141EE_4.jpg" />
+    <Content Include="Content\Images\Hotels\A00A225D-B51F-4D73-90E7-48291E04A438.jpg" />
+    <Content Include="Content\Images\Hotels\A00A225D-B51F-4D73-90E7-48291E04A438_1.jpg" />
+    <Content Include="Content\Images\Hotels\A00A225D-B51F-4D73-90E7-48291E04A438_2.jpg" />
+    <Content Include="Content\Images\Hotels\A00A225D-B51F-4D73-90E7-48291E04A438_3.jpg" />
+    <Content Include="Content\Images\Hotels\A00A225D-B51F-4D73-90E7-48291E04A438_4.jpg" />
+    <Content Include="Content\Images\Hotels\A03D8328-02F5-4444-98D1-02CFB6727C04.jpg" />
+    <Content Include="Content\Images\Hotels\A0D5CCFE-0B6B-4304-AE74-B60CF980BD2D.jpg" />
+    <Content Include="Content\Images\Hotels\A1B90703-79DF-45A1-BC8A-161F64D702C4.jpg" />
+    <Content Include="Content\Images\Hotels\A1B90703-79DF-45A1-BC8A-161F64D702C4_1.jpg" />
+    <Content Include="Content\Images\Hotels\A1B90703-79DF-45A1-BC8A-161F64D702C4_2.jpg" />
+    <Content Include="Content\Images\Hotels\A1B90703-79DF-45A1-BC8A-161F64D702C4_3.jpg" />
+    <Content Include="Content\Images\Hotels\A1B90703-79DF-45A1-BC8A-161F64D702C4_4.jpg" />
+    <Content Include="Content\Images\Hotels\A1E76464-C227-4EC2-AE12-7CC9BAB5EA39.jpg" />
+    <Content Include="Content\Images\Hotels\A1ED7DA0-B278-4B76-B0E8-A02803B7CF07.jpg" />
+    <Content Include="Content\Images\Hotels\A2F0DD42-8411-4AEC-BDC5-8078C2676564.jpg" />
+    <Content Include="Content\Images\Hotels\A311F7E7-D9B5-4102-A5A7-490142FE795E.jpg" />
+    <Content Include="Content\Images\Hotels\A3768D49-C292-487D-9F8E-DC85CC534F59.jpg" />
+    <Content Include="Content\Images\Hotels\A3DCECB1-BB83-4887-B99C-B8C9C6436535.jpg" />
+    <Content Include="Content\Images\Hotels\A402CCF6-CD25-4A2D-A85F-0E3A61164BD7.jpg" />
+    <Content Include="Content\Images\Hotels\A426C3E4-C14C-4616-B5BA-0858D2C7654F.jpg" />
+    <Content Include="Content\Images\Hotels\A487B66E-F8A4-4802-B769-14AF58BF42E9.jpg" />
+    <Content Include="Content\Images\Hotels\A487B66E-F8A4-4802-B769-14AF58BF42E9_1.jpg" />
+    <Content Include="Content\Images\Hotels\A487B66E-F8A4-4802-B769-14AF58BF42E9_2.jpg" />
+    <Content Include="Content\Images\Hotels\A487B66E-F8A4-4802-B769-14AF58BF42E9_3.jpg" />
+    <Content Include="Content\Images\Hotels\A487B66E-F8A4-4802-B769-14AF58BF42E9_4.jpg" />
+    <Content Include="Content\Images\Hotels\A4C7992A-7914-47EC-A953-20611A0EB58B.jpg" />
+    <Content Include="Content\Images\Hotels\A4D8E222-78C0-43EB-B69C-14D6554C17AB.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695_1.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695_2.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695_3.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695_4.jpg" />
+    <Content Include="Content\Images\Hotels\A4EAD830-B6BC-410F-B531-F44E41D93695_5.jpg" />
+    <Content Include="Content\Images\Hotels\A560B3C9-9948-4C28-AB1B-20AAAC56CA68.jpg" />
+    <Content Include="Content\Images\Hotels\A560B3C9-9948-4C28-AB1B-20AAAC56CA68_1.jpg" />
+    <Content Include="Content\Images\Hotels\A560B3C9-9948-4C28-AB1B-20AAAC56CA68_2.jpg" />
+    <Content Include="Content\Images\Hotels\A560B3C9-9948-4C28-AB1B-20AAAC56CA68_3.jpg" />
+    <Content Include="Content\Images\Hotels\A560B3C9-9948-4C28-AB1B-20AAAC56CA68_4.jpg" />
+    <Content Include="Content\Images\Hotels\A5747381-912B-44B7-AB9D-77371BA2F37B.jpg" />
+    <Content Include="Content\Images\Hotels\A59E05C5-8B87-49E3-8812-E08A23873CF1.jpg" />
+    <Content Include="Content\Images\Hotels\A67C91B8-7388-43B3-87C7-6C90D883D504.jpg" />
+    <Content Include="Content\Images\Hotels\A6DDD33C-1F51-4518-AD62-4D1D9453E794.jpg" />
+    <Content Include="Content\Images\Hotels\A6E93109-4F76-4CC7-9DCD-EF2461CEA727.jpg" />
+    <Content Include="Content\Images\Hotels\A6E93109-4F76-4CC7-9DCD-EF2461CEA727_1.jpg" />
+    <Content Include="Content\Images\Hotels\A6E93109-4F76-4CC7-9DCD-EF2461CEA727_3.jpg" />
+    <Content Include="Content\Images\Hotels\A6E93109-4F76-4CC7-9DCD-EF2461CEA727_4.jpg" />
+    <Content Include="Content\Images\Hotels\A6E93109-4F76-4CC7-9DCD-EF2461CEA727_5.jpg" />
+    <Content Include="Content\Images\Hotels\A714F669-19DD-4A6B-AC94-8C40C2ED59E4.jpg" />
+    <Content Include="Content\Images\Hotels\A79482B5-402C-4392-B8A5-8539A991999A.jpg" />
+    <Content Include="Content\Images\Hotels\A7BE0C49-09D6-4037-BC86-A1345F9DAF8A.jpg" />
+    <Content Include="Content\Images\Hotels\A7BE0C49-09D6-4037-BC86-A1345F9DAF8A_1.jpg" />
+    <Content Include="Content\Images\Hotels\A7BE0C49-09D6-4037-BC86-A1345F9DAF8A_2.jpg" />
+    <Content Include="Content\Images\Hotels\A7BE0C49-09D6-4037-BC86-A1345F9DAF8A_3.jpg" />
+    <Content Include="Content\Images\Hotels\A7BE0C49-09D6-4037-BC86-A1345F9DAF8A_4.jpg" />
+    <Content Include="Content\Images\Hotels\A838A492-1D86-4845-9B1C-77EBEB460E52.jpg" />
+    <Content Include="Content\Images\Hotels\A8557D5F-092E-4C0E-8E65-AA3C12A8A8C9.jpg" />
+    <Content Include="Content\Images\Hotels\A8EC38E2-9873-4017-8234-B5331019D63F.jpg" />
+    <Content Include="Content\Images\Hotels\A92F12D8-3C26-4C66-98D2-6BF8AEA07EE0.jpg" />
+    <Content Include="Content\Images\Hotels\A9F928C1-9A31-4A1B-A7A2-66A36B28B567.jpg" />
+    <Content Include="Content\Images\Hotels\AA7DAAC1-EDF4-4179-9C9F-0CD79D84C52F.jpg" />
+    <Content Include="Content\Images\Hotels\AA8C26DC-950A-4346-9ADE-3B29F6408516.jpg" />
+    <Content Include="Content\Images\Hotels\AAED1F08-966C-4619-8DF9-C4AF2C5A75E2.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90_1.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90_2.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90_3.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90_4.jpg" />
+    <Content Include="Content\Images\Hotels\AAEEB2F3-DBAC-4B76-BEAC-9A9FFBED2C90_5.jpg" />
+    <Content Include="Content\Images\Hotels\AAFF5B10-E849-4CDF-877E-2B60393D6441.jpg" />
+    <Content Include="Content\Images\Hotels\AB41814C-C0A8-4C10-ADD2-E32C892A697C.jpg" />
+    <Content Include="Content\Images\Hotels\ABCD3A28-C3A0-4783-BF55-7E616E1FB9B6.jpg" />
+    <Content Include="Content\Images\Hotels\ABF93247-A6F2-4495-9CD1-D61612285265.jpg" />
+    <Content Include="Content\Images\Hotels\ABF93247-A6F2-4495-9CD1-D61612285265_1.jpg" />
+    <Content Include="Content\Images\Hotels\ABF93247-A6F2-4495-9CD1-D61612285265_2.jpg" />
+    <Content Include="Content\Images\Hotels\ABF93247-A6F2-4495-9CD1-D61612285265_3.jpg" />
+    <Content Include="Content\Images\Hotels\ABF93247-A6F2-4495-9CD1-D61612285265_4.jpg" />
+    <Content Include="Content\Images\Hotels\AC21C971-127F-4759-B5AC-48DC2DA54433.jpg" />
+    <Content Include="Content\Images\Hotels\AC24D95D-319B-48F8-A3C0-B186E0DDB9B0.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392_1.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392_2.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392_3.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392_4.jpg" />
+    <Content Include="Content\Images\Hotels\AC4B7255-DE65-4BE9-9E5D-6C746B2D3392_5.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331_1.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331_2.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331_3.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331_4.jpg" />
+    <Content Include="Content\Images\Hotels\AC598680-1BCE-48D0-A5D3-B62258370331_5.jpg" />
+    <Content Include="Content\Images\Hotels\AC63A206-7154-465A-8717-62687E41043B.jpg" />
+    <Content Include="Content\Images\Hotels\ACA653FB-CE46-4FDD-A0A3-C5332ED86794.jpg" />
+    <Content Include="Content\Images\Hotels\ACAC914C-0555-4303-BC6B-F300B88AEA73.jpg" />
+    <Content Include="Content\Images\Hotels\ACEA1CD0-89A3-436D-9DC9-EC2B93508BA5.jpg" />
+    <Content Include="Content\Images\Hotels\AD34E8CC-BCBA-48D2-92D0-588FA626F23A.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_1.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_2.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_3.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_4.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_5.jpg" />
+    <Content Include="Content\Images\Hotels\AD436CEE-0C52-45FE-AF25-512E17FD10B2_6.jpg" />
+    <Content Include="Content\Images\Hotels\AD9635CF-25A5-485A-9E11-A1873D396258.jpg" />
+    <Content Include="Content\Images\Hotels\AE11486F-2E02-4929-A677-6DB0C516EDEB.jpg" />
+    <Content Include="Content\Images\Hotels\AE258979-E992-4146-8939-97C42BC817A6.jpg" />
+    <Content Include="Content\Images\Hotels\AE6B0D11-2397-4C2D-AC47-27D7E244D1B3.jpg" />
+    <Content Include="Content\Images\Hotels\AF0D4F6B-DC6E-43CF-A240-5815F47F08B3.jpg" />
+    <Content Include="Content\Images\Hotels\AF388671-43ED-4952-91B3-5034CDA9EEC8.jpg" />
+    <Content Include="Content\Images\Hotels\AF74ADFF-772B-4A11-808C-76AB6F2132EC_1.jpg" />
+    <Content Include="Content\Images\Hotels\AF74ADFF-772B-4A11-808C-76AB6F2132EC_2.jpg" />
+    <Content Include="Content\Images\Hotels\AF74ADFF-772B-4A11-808C-76AB6F2132EC_3.jpg" />
+    <Content Include="Content\Images\Hotels\AF74ADFF-772B-4A11-808C-76AB6F2132EC_4.jpg" />
+    <Content Include="Content\Images\Hotels\AF9B88C9-7105-4B68-B4EE-D91B57C933CE.jpg" />
+    <Content Include="Content\Images\Hotels\B0348BA0-97D7-4CB9-B256-16CEBFC4861C.jpg" />
+    <Content Include="Content\Images\Hotels\B04F0F90-2ADF-46D6-84E9-09682C2D20D9.jpg" />
+    <Content Include="Content\Images\Hotels\B055A5FF-7711-44ED-9295-E4AB4626A9AB.jpg" />
+    <Content Include="Content\Images\Hotels\B0EAA477-70B2-4883-AD06-11D627998E63.jpg" />
+    <Content Include="Content\Images\Hotels\B0EE1060-A97E-4C9A-BA7C-B9BF62E53E60.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83_1.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83_2.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83_3.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83_4.jpg" />
+    <Content Include="Content\Images\Hotels\B0FD51A9-72AA-4799-8A4C-B297234B5F83_5.jpg" />
+    <Content Include="Content\Images\Hotels\B1208335-A220-4B79-93E2-D88A2496EDD1.jpg" />
+    <Content Include="Content\Images\Hotels\B1818AB6-E176-43E8-9E4C-FEF5E66828F3.jpg" />
+    <Content Include="Content\Images\Hotels\B18EB2CD-6C2A-4F7F-AE4E-D9558FFC7506.jpg" />
+    <Content Include="Content\Images\Hotels\B19BEE49-4893-4103-B061-246549FBBC0D_1.jpg" />
+    <Content Include="Content\Images\Hotels\B19BEE49-4893-4103-B061-246549FBBC0D_2.jpg" />
+    <Content Include="Content\Images\Hotels\B19BEE49-4893-4103-B061-246549FBBC0D_3.jpg" />
+    <Content Include="Content\Images\Hotels\B19BEE49-4893-4103-B061-246549FBBC0D_4.jpg" />
+    <Content Include="Content\Images\Hotels\B19BEE49-4893-4103-B061-246549FBBC0D_5.jpg" />
+    <Content Include="Content\Images\Hotels\B1CB96F6-3391-4738-9DDE-3055FEE4AFF1.jpg" />
+    <Content Include="Content\Images\Hotels\B1D53E63-27DD-41B7-B327-04A9473DEA7F.jpg" />
+    <Content Include="Content\Images\Hotels\B1ED8D34-2CBF-4773-90E7-463A83861447.jpg" />
+    <Content Include="Content\Images\Hotels\B377FA5D-22FC-4202-9827-BC8EB2D5CC0E.jpg" />
+    <Content Include="Content\Images\Hotels\B37A6D63-EDF9-4B1A-9C69-ADB194F4501C.jpg" />
+    <Content Include="Content\Images\Hotels\B457A464-2477-426C-A0CD-D62D56EEFFB9.jpg" />
+    <Content Include="Content\Images\Hotels\B47D020B-970E-4A99-B2A6-6096C18B41C1.jpg" />
+    <Content Include="Content\Images\Hotels\B498DFDA-3052-41CE-9DEB-6F557AA61D44.jpg" />
+    <Content Include="Content\Images\Hotels\B4F1AF68-397D-4F18-8F4C-C5000351B440.jpg" />
+    <Content Include="Content\Images\Hotels\B4F70E81-C4DC-4C8C-8E56-A50367BC1A69.jpg" />
+    <Content Include="Content\Images\Hotels\B5547293-6EC4-48A9-8DEE-2427EBC4A567.jpg" />
+    <Content Include="Content\Images\Hotels\B558D9F9-30F0-4911-B8F5-F942D2AB0C11.jpg" />
+    <Content Include="Content\Images\Hotels\B57E0632-AFDF-47EE-BEB5-7867A721F70F.jpg" />
+    <Content Include="Content\Images\Hotels\B5B7E89F-76AC-45E2-9317-39697E920ABE.jpg" />
+    <Content Include="Content\Images\Hotels\B5BA9301-3F53-46DA-9A46-4DA40386BADE.jpg" />
+    <Content Include="Content\Images\Hotels\B5C4E8ED-7D00-4B39-A3C4-ADEB20EE8EC2.jpg" />
+    <Content Include="Content\Images\Hotels\B5EC8691-B68F-4F86-BA3E-5F40C9EBF6B4.jpg" />
+    <Content Include="Content\Images\Hotels\B5EC8691-B68F-4F86-BA3E-5F40C9EBF6B4_1.jpg" />
+    <Content Include="Content\Images\Hotels\B5EC8691-B68F-4F86-BA3E-5F40C9EBF6B4_2.jpg" />
+    <Content Include="Content\Images\Hotels\B5EC8691-B68F-4F86-BA3E-5F40C9EBF6B4_3.jpg" />
+    <Content Include="Content\Images\Hotels\B5EC8691-B68F-4F86-BA3E-5F40C9EBF6B4_4.jpg" />
+    <Content Include="Content\Images\Hotels\B6F13325-A365-411C-876D-87B447142C46.jpg" />
+    <Content Include="Content\Images\Hotels\B6F13325-A365-411C-876D-87B447142C46_1.jpg" />
+    <Content Include="Content\Images\Hotels\B6F13325-A365-411C-876D-87B447142C46_2.jpg" />
+    <Content Include="Content\Images\Hotels\B6F13325-A365-411C-876D-87B447142C46_3.jpg" />
+    <Content Include="Content\Images\Hotels\B6F13325-A365-411C-876D-87B447142C46_4.jpg" />
+    <Content Include="Content\Images\Hotels\B70893FE-01D9-42A7-B01E-AFDA915B25DD.jpg" />
+    <Content Include="Content\Images\Hotels\B70CDF79-B358-4141-AA67-17F4A907DA35.jpg" />
+    <Content Include="Content\Images\Hotels\B72D29E6-055B-4EA8-AA94-1DB97484EC93.jpg" />
+    <Content Include="Content\Images\Hotels\B73D1B20-D9E0-4837-B7FB-D4CDB90BEA72.jpg" />
+    <Content Include="Content\Images\Hotels\B73D1B20-D9E0-4837-B7FB-D4CDB90BEA72_1.jpg" />
+    <Content Include="Content\Images\Hotels\B73D1B20-D9E0-4837-B7FB-D4CDB90BEA72_2.jpg" />
+    <Content Include="Content\Images\Hotels\B73D1B20-D9E0-4837-B7FB-D4CDB90BEA72_3.jpg" />
+    <Content Include="Content\Images\Hotels\B73D1B20-D9E0-4837-B7FB-D4CDB90BEA72_4.jpg" />
+    <Content Include="Content\Images\Hotels\B7481860-E1B1-484C-A43C-FA0504838A3B.jpg" />
+    <Content Include="Content\Images\Hotels\B7D1CAE8-5BC3-49D9-9E0F-2D3D8433655A.jpg" />
+    <Content Include="Content\Images\Hotels\B7EE8DA4-2563-4504-9A1C-A2F8827CE325.jpg" />
+    <Content Include="Content\Images\Hotels\B7FAB051-06FF-4F54-89A1-01645634DA92.jpg" />
+    <Content Include="Content\Images\Hotels\B7FD14CD-3462-4157-9B53-FDC0CD565833.jpg" />
+    <Content Include="Content\Images\Hotels\B811ADD9-46BE-4CFB-BE55-6B7DD42FC04A.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE_1.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE_2.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE_3.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE_4.jpg" />
+    <Content Include="Content\Images\Hotels\B81599AA-1A7F-45E8-BD07-252F731A84DE_5.jpg" />
+    <Content Include="Content\Images\Hotels\B817D39F-464B-45F4-8B2F-60B57F01AD17.jpg" />
+    <Content Include="Content\Images\Hotels\B877F52E-DF88-40C3-AF52-822F68CBB4C1.jpg" />
+    <Content Include="Content\Images\Hotels\B94CA0D0-1184-47C1-9B08-FB3B1BBAFF88.jpg" />
+    <Content Include="Content\Images\Hotels\B94CA0D0-1184-47C1-9B08-FB3B1BBAFF88_1.jpg" />
+    <Content Include="Content\Images\Hotels\B94CA0D0-1184-47C1-9B08-FB3B1BBAFF88_2.jpg" />
+    <Content Include="Content\Images\Hotels\B94CA0D0-1184-47C1-9B08-FB3B1BBAFF88_3.jpg" />
+    <Content Include="Content\Images\Hotels\B94CA0D0-1184-47C1-9B08-FB3B1BBAFF88_4.jpg" />
+    <Content Include="Content\Images\Hotels\B96E684A-E15E-4315-8D6C-FCFE0798BAA2.jpg" />
+    <Content Include="Content\Images\Hotels\B9ABC9B5-821A-4B0C-A570-88170FA62B2B.jpg" />
+    <Content Include="Content\Images\Hotels\B9C4B091-6B7F-4EA4-BE8E-608702293B60.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_1.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_2.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_3.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_4.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_5.jpg" />
+    <Content Include="Content\Images\Hotels\BA2FF7CB-FBD4-4868-8E27-F2B73425D694_6.jpg" />
+    <Content Include="Content\Images\Hotels\BA518E32-21C4-46E7-AB3A-CAF1837C1A4F.jpg" />
+    <Content Include="Content\Images\Hotels\BA518E32-21C4-46E7-AB3A-CAF1837C1A4F_1.jpg" />
+    <Content Include="Content\Images\Hotels\BA518E32-21C4-46E7-AB3A-CAF1837C1A4F_2.jpg" />
+    <Content Include="Content\Images\Hotels\BA518E32-21C4-46E7-AB3A-CAF1837C1A4F_3.jpg" />
+    <Content Include="Content\Images\Hotels\BA518E32-21C4-46E7-AB3A-CAF1837C1A4F_4.jpg" />
+    <Content Include="Content\Images\Hotels\BA95F5E6-925C-423C-BBD2-EE9F0A109B72.jpg" />
+    <Content Include="Content\Images\Hotels\BAB634F1-276F-4737-A50C-90D1E74F450F.jpg" />
+    <Content Include="Content\Images\Hotels\BAC5989E-6AB1-45EE-B69A-C38E45E8BD7F.jpg" />
+    <Content Include="Content\Images\Hotels\BAD81F30-85AD-4312-9818-CD1893142C0E.jpg" />
+    <Content Include="Content\Images\Hotels\BAFFEA12-125C-4CEF-AB51-009CABCBB80B.jpg" />
+    <Content Include="Content\Images\Hotels\BC8E38FE-88F1-4519-A599-789986F09D6E.jpg" />
+    <Content Include="Content\Images\Hotels\BC9C29C0-9BC2-408A-B959-0FB6F9265BCB.jpg" />
+    <Content Include="Content\Images\Hotels\BD03EDC1-DD45-485D-9698-1E0875F7435D.jpg" />
+    <Content Include="Content\Images\Hotels\BD30D89E-AD00-4AD5-BA46-BD1F9E2BDDCC.jpg" />
+    <Content Include="Content\Images\Hotels\BD505ED6-5D3C-4AB5-825E-C129E6372EEF.jpg" />
+    <Content Include="Content\Images\Hotels\BD5BA7C7-8D29-44D7-8FAB-CEDACA514B8B.jpg" />
+    <Content Include="Content\Images\Hotels\BE45D4A9-1020-4FD9-97D7-0419E9B157AC.jpg" />
+    <Content Include="Content\Images\Hotels\BEBDC28A-7398-4EDD-97B2-38A13FB75D2C.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C_1.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C_2.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C_3.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C_4.jpg" />
+    <Content Include="Content\Images\Hotels\BF346BC5-B511-4664-B2AF-A9751C68479C_5.jpg" />
+    <Content Include="Content\Images\Hotels\BF373DFE-61CA-4609-AFA8-34F33CBC7709.jpg" />
+    <Content Include="Content\Images\Hotels\BF7723CE-13FF-42C6-B0AC-11C763168B40.jpg" />
+    <Content Include="Content\Images\Hotels\BF916574-B215-41BB-973B-36E660CDD811.jpg" />
+    <Content Include="Content\Images\Hotels\C074E11D-8D5C-45E9-9FC8-39F92BDD0289.jpg" />
+    <Content Include="Content\Images\Hotels\C0F12F62-29F9-493E-A64F-3690697FB4BB.jpg" />
+    <Content Include="Content\Images\Hotels\C1B1A2EB-C76E-47F0-B8D7-8E22659F9568.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A_1.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A_2.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A_3.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A_4.jpg" />
+    <Content Include="Content\Images\Hotels\C1DD890D-C133-40E5-8BBC-6D396B3E0B9A_5.jpg" />
+    <Content Include="Content\Images\Hotels\C239B4F7-1062-4C0F-A60D-74FBE7153825.jpg" />
+    <Content Include="Content\Images\Hotels\C2F79D6C-A595-45AB-9EB8-BE8ED02CB177.jpg" />
+    <Content Include="Content\Images\Hotels\C2FA0CEB-AEDA-4ABA-95A8-7AA7DEB2E716.jpg" />
+    <Content Include="Content\Images\Hotels\C3B170A8-8498-4E80-9F92-C0B0E1DD62E5.jpg" />
+    <Content Include="Content\Images\Hotels\C3F40D2A-EB7E-475B-B892-D6E6F937A06E.jpg" />
+    <Content Include="Content\Images\Hotels\C427EDFD-7244-4D7C-B1A7-2401999B6744.jpg" />
+    <Content Include="Content\Images\Hotels\C427EDFD-7244-4D7C-B1A7-2401999B6744_1.jpg" />
+    <Content Include="Content\Images\Hotels\C427EDFD-7244-4D7C-B1A7-2401999B6744_2.jpg" />
+    <Content Include="Content\Images\Hotels\C427EDFD-7244-4D7C-B1A7-2401999B6744_3.jpg" />
+    <Content Include="Content\Images\Hotels\C427EDFD-7244-4D7C-B1A7-2401999B6744_4.jpg" />
+    <Content Include="Content\Images\Hotels\C45BA8FD-5771-4E35-8712-885FC12D0255.jpg" />
+    <Content Include="Content\Images\Hotels\C4681468-9BF0-4BEA-8058-3026145067A0.jpg" />
+    <Content Include="Content\Images\Hotels\C46DEE32-EC62-4A31-A254-63AD80B3A486.jpg" />
+    <Content Include="Content\Images\Hotels\C46DEE32-EC62-4A31-A254-63AD80B3A486_1.jpg" />
+    <Content Include="Content\Images\Hotels\C46DEE32-EC62-4A31-A254-63AD80B3A486_2.jpg" />
+    <Content Include="Content\Images\Hotels\C46DEE32-EC62-4A31-A254-63AD80B3A486_3.jpg" />
+    <Content Include="Content\Images\Hotels\C46DEE32-EC62-4A31-A254-63AD80B3A486_4.jpg" />
+    <Content Include="Content\Images\Hotels\C4B4249E-E4F5-4C78-9B1C-947757B3A234.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748_1.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748_2.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748_3.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748_4.jpg" />
+    <Content Include="Content\Images\Hotels\C4FE31F9-1FE7-46F7-B349-D8C3AA23B748_5.jpg" />
+    <Content Include="Content\Images\Hotels\C5384053-9862-4E53-9140-D6A55F07B47F.jpg" />
+    <Content Include="Content\Images\Hotels\C5384053-9862-4E53-9140-D6A55F07B47F_1.jpg" />
+    <Content Include="Content\Images\Hotels\C5384053-9862-4E53-9140-D6A55F07B47F_2.jpg" />
+    <Content Include="Content\Images\Hotels\C5384053-9862-4E53-9140-D6A55F07B47F_3.jpg" />
+    <Content Include="Content\Images\Hotels\C5384053-9862-4E53-9140-D6A55F07B47F_4.jpg" />
+    <Content Include="Content\Images\Hotels\C5A7B8AA-439A-4271-8B8B-6FCB3B61D3FE.jpg" />
+    <Content Include="Content\Images\Hotels\C6150151-D6CD-410E-BF5D-989CFC7AD035.jpg" />
+    <Content Include="Content\Images\Hotels\C631B346-86C0-44FD-B240-A8858E8D4C0F.jpg" />
+    <Content Include="Content\Images\Hotels\C64ADD56-17C7-48F6-9A59-7662DB78BD8A.jpg" />
+    <Content Include="Content\Images\Hotels\C64ADD56-17C7-48F6-9A59-7662DB78BD8A_1.jpg" />
+    <Content Include="Content\Images\Hotels\C64ADD56-17C7-48F6-9A59-7662DB78BD8A_2.jpg" />
+    <Content Include="Content\Images\Hotels\C64ADD56-17C7-48F6-9A59-7662DB78BD8A_3.jpg" />
+    <Content Include="Content\Images\Hotels\C64ADD56-17C7-48F6-9A59-7662DB78BD8A_4.jpg" />
+    <Content Include="Content\Images\Hotels\C6B21E6E-4288-4572-A44D-A807DE579F05.jpg" />
+    <Content Include="Content\Images\Hotels\C73F07F0-CBA6-4FE4-A482-66F4A2BB3868_1.jpg" />
+    <Content Include="Content\Images\Hotels\C73F07F0-CBA6-4FE4-A482-66F4A2BB3868_2.jpg" />
+    <Content Include="Content\Images\Hotels\C73F07F0-CBA6-4FE4-A482-66F4A2BB3868_3.jpg" />
+    <Content Include="Content\Images\Hotels\C73F07F0-CBA6-4FE4-A482-66F4A2BB3868_4.jpg" />
+    <Content Include="Content\Images\Hotels\C73F07F0-CBA6-4FE4-A482-66F4A2BB3868_5.jpg" />
+    <Content Include="Content\Images\Hotels\C76D1717-8001-445B-B018-D57E4534EBF5.jpg" />
+    <Content Include="Content\Images\Hotels\C77A3FD9-7E94-4BBA-AB45-A573DE4DCD4C.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939_1.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939_2.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939_3.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939_4.jpg" />
+    <Content Include="Content\Images\Hotels\C7B2DD6A-4596-4D16-AFD4-EF379EDBA939_5.jpg" />
+    <Content Include="Content\Images\Hotels\C7EE232D-EA26-49DB-B8B4-3E717D22348D.jpg" />
+    <Content Include="Content\Images\Hotels\C8315A94-CB82-4821-927E-EAA76CE9E512.jpg" />
+    <Content Include="Content\Images\Hotels\C8324D91-6867-48D3-923E-544D971E59BD.jpg" />
+    <Content Include="Content\Images\Hotels\CA40FE41-8E2E-42BA-98DE-B4D57E3B352F.jpg" />
+    <Content Include="Content\Images\Hotels\CA68FD83-95E2-4ED6-A2AD-353409EFA991.jpg" />
+    <Content Include="Content\Images\Hotels\CAF6759D-B49D-4A6C-805E-F96CCB51E272.jpg" />
+    <Content Include="Content\Images\Hotels\CB03C28B-EA1A-458F-9BCC-0563903F90D8.jpg" />
+    <Content Include="Content\Images\Hotels\CB8A53DE-F90D-4327-82A9-92A01FBF7A81.jpg" />
+    <Content Include="Content\Images\Hotels\CBB58425-0A64-48A1-BF07-ADEDCF490372.jpg" />
+    <Content Include="Content\Images\Hotels\CBE41A83-1253-441B-8CF1-D537C9537978.jpg" />
+    <Content Include="Content\Images\Hotels\CC0930EC-A26E-44E0-B339-7943FDB281ED.jpg" />
+    <Content Include="Content\Images\Hotels\CC240D5C-040C-4B8B-9B0D-289A2C293B54.jpg" />
+    <Content Include="Content\Images\Hotels\CD5A6132-2C6E-436F-A0A2-41750AC8FBDC.jpg" />
+    <Content Include="Content\Images\Hotels\CD7202B4-D2BB-4240-AA59-0997635C7700.jpg" />
+    <Content Include="Content\Images\Hotels\CE4D87EB-6C38-4B66-8773-E367100BB099.jpg" />
+    <Content Include="Content\Images\Hotels\CE56694D-7406-4AB2-93F1-27A7DA622309.jpg" />
+    <Content Include="Content\Images\Hotels\CEB1E7F5-D738-4F9E-89C0-8BB817806559.jpg" />
+    <Content Include="Content\Images\Hotels\CEB23093-9DFB-4FA6-ABB9-E8B588FDB67C.jpg" />
+    <Content Include="Content\Images\Hotels\CEC17B5D-3C2F-4EFA-B479-440AC0714D8B.jpg" />
+    <Content Include="Content\Images\Hotels\CEDF4740-9B3B-463E-8FD1-6DC82D2B4DB4.jpg" />
+    <Content Include="Content\Images\Hotels\CEDF4740-9B3B-463E-8FD1-6DC82D2B4DB4_1.jpg" />
+    <Content Include="Content\Images\Hotels\CEDF4740-9B3B-463E-8FD1-6DC82D2B4DB4_2.jpg" />
+    <Content Include="Content\Images\Hotels\CEDF4740-9B3B-463E-8FD1-6DC82D2B4DB4_4.jpg" />
+    <Content Include="Content\Images\Hotels\CF0149B2-8650-4306-BB1F-0A20BC125967.jpg" />
+    <Content Include="Content\Images\Hotels\CF198DDF-9955-46A7-80CC-BCF8179651A4.jpg" />
+    <Content Include="Content\Images\Hotels\CF395C47-2C9A-453D-ABD5-D05F87EC56F1.jpg" />
+    <Content Include="Content\Images\Hotels\CF4DC495-BF91-442C-BD07-D1F954F8E0FC.jpg" />
+    <Content Include="Content\Images\Hotels\CF85A354-8FFF-4D44-BAB9-6B6499D8C38D.jpg" />
+    <Content Include="Content\Images\Hotels\CF87ADE3-2903-4F74-ACFB-4A8C8FFD06DB.jpg" />
+    <Content Include="Content\Images\Hotels\CFB8F23F-505E-41F1-8D90-1ED8B5EE522C.jpg" />
+    <Content Include="Content\Images\Hotels\D022497F-CA96-427C-A8B3-72C795B274BA.jpg" />
+    <Content Include="Content\Images\Hotels\D03055C4-F5CA-4520-A206-6AD6C5557446.jpg" />
+    <Content Include="Content\Images\Hotels\D0445C98-4AE0-4192-B288-CB7F51261294.jpg" />
+    <Content Include="Content\Images\Hotels\D06497BD-BDF5-41ED-870E-3975BBC3B608.jpg" />
+    <Content Include="Content\Images\Hotels\D09EDA7F-F58F-4C8A-A1C4-DAA0A07A4082.jpg" />
+    <Content Include="Content\Images\Hotels\D09EDA7F-F58F-4C8A-A1C4-DAA0A07A4082_1.jpg" />
+    <Content Include="Content\Images\Hotels\D09EDA7F-F58F-4C8A-A1C4-DAA0A07A4082_2.jpg" />
+    <Content Include="Content\Images\Hotels\D09EDA7F-F58F-4C8A-A1C4-DAA0A07A4082_3.jpg" />
+    <Content Include="Content\Images\Hotels\D09EDA7F-F58F-4C8A-A1C4-DAA0A07A4082_4.jpg" />
+    <Content Include="Content\Images\Hotels\D0B1F05B-F49A-42AC-B9B5-31D1FE858D0E.jpg" />
+    <Content Include="Content\Images\Hotels\D0DEEA67-B5AF-4338-B185-D46B4A697BE7.jpg" />
+    <Content Include="Content\Images\Hotels\D13143D3-1F4E-4AD6-AB50-F968D2B6008E.jpg" />
+    <Content Include="Content\Images\Hotels\D13143D3-1F4E-4AD6-AB50-F968D2B6008E_1.jpg" />
+    <Content Include="Content\Images\Hotels\D13143D3-1F4E-4AD6-AB50-F968D2B6008E_2.jpg" />
+    <Content Include="Content\Images\Hotels\D13143D3-1F4E-4AD6-AB50-F968D2B6008E_3.jpg" />
+    <Content Include="Content\Images\Hotels\D13143D3-1F4E-4AD6-AB50-F968D2B6008E_4.jpg" />
+    <Content Include="Content\Images\Hotels\D1331E97-5D6F-48A7-8E74-DA724B4BD24C.jpg" />
+    <Content Include="Content\Images\Hotels\D1331E97-5D6F-48A7-8E74-DA724B4BD24C_1.jpg" />
+    <Content Include="Content\Images\Hotels\D1331E97-5D6F-48A7-8E74-DA724B4BD24C_2.jpg" />
+    <Content Include="Content\Images\Hotels\D1331E97-5D6F-48A7-8E74-DA724B4BD24C_3.jpg" />
+    <Content Include="Content\Images\Hotels\D1331E97-5D6F-48A7-8E74-DA724B4BD24C_4.jpg" />
+    <Content Include="Content\Images\Hotels\D15A98CB-D8A9-48D3-8B70-B2D4490E2FFB.jpg" />
+    <Content Include="Content\Images\Hotels\D15E4D32-C2B2-4259-BA4D-2E17E4BEE269.jpg" />
+    <Content Include="Content\Images\Hotels\D171ABE6-A82D-4188-AA97-276B37A3E7DD.jpg" />
+    <Content Include="Content\Images\Hotels\D18E468A-4721-490C-8B0D-598E96F5DDF5.jpg" />
+    <Content Include="Content\Images\Hotels\D19975C7-F0CD-4C83-9C1D-BF744D391193.jpg" />
+    <Content Include="Content\Images\Hotels\D1BF348C-7581-4A67-95AD-241C0D0C301C.jpg" />
+    <Content Include="Content\Images\Hotels\D1DF3977-4813-4FE2-9D58-FC881E675D0B.jpg" />
+    <Content Include="Content\Images\Hotels\D1DF3977-4813-4FE2-9D58-FC881E675D0B_1.jpg" />
+    <Content Include="Content\Images\Hotels\D1DF3977-4813-4FE2-9D58-FC881E675D0B_2.jpg" />
+    <Content Include="Content\Images\Hotels\D1DF3977-4813-4FE2-9D58-FC881E675D0B_3.jpg" />
+    <Content Include="Content\Images\Hotels\D1DF3977-4813-4FE2-9D58-FC881E675D0B_4.jpg" />
+    <Content Include="Content\Images\Hotels\D26475DD-55E2-4218-A575-936123606DE7.jpg" />
+    <Content Include="Content\Images\Hotels\D2E7C142-8ED2-4AB5-A05C-1EE2C01542A5.jpg" />
+    <Content Include="Content\Images\Hotels\D31FE4F6-964F-4616-AE54-2DA79F9AA552.jpg" />
+    <Content Include="Content\Images\Hotels\D31FE4F6-964F-4616-AE54-2DA79F9AA552_1.jpg" />
+    <Content Include="Content\Images\Hotels\D31FE4F6-964F-4616-AE54-2DA79F9AA552_2.jpg" />
+    <Content Include="Content\Images\Hotels\D31FE4F6-964F-4616-AE54-2DA79F9AA552_3.jpg" />
+    <Content Include="Content\Images\Hotels\D31FE4F6-964F-4616-AE54-2DA79F9AA552_4.jpg" />
+    <Content Include="Content\Images\Hotels\D320D7B6-CD38-42D6-AC06-F4B475CD72CF.jpg" />
+    <Content Include="Content\Images\Hotels\D32305FE-B64D-48F5-8938-C56BEDAB593E.jpg" />
+    <Content Include="Content\Images\Hotels\D33871F8-A3ED-43E5-9C61-71002AC28465.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71_1.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71_2.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71_3.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71_4.jpg" />
+    <Content Include="Content\Images\Hotels\D3BDBA14-7A50-48E5-A218-7225A68B7F71_5.jpg" />
+    <Content Include="Content\Images\Hotels\D3C15B77-A395-4422-90A4-3647D5E65986.jpg" />
+    <Content Include="Content\Images\Hotels\D4124A80-4832-4F67-B13D-80B115351DAE.jpg" />
+    <Content Include="Content\Images\Hotels\D47C60B9-CE1B-44B8-AD19-2EF38DC94DE5.jpg" />
+    <Content Include="Content\Images\Hotels\D4867ABB-F568-4ABE-A11B-85932390C520.jpg" />
+    <Content Include="Content\Images\Hotels\D49BF6FC-8BDC-4804-82FE-3EE3CC3DC610.jpg" />
+    <Content Include="Content\Images\Hotels\D4EDCD5F-772C-4DBF-86E1-98AF6700D380.jpg" />
+    <Content Include="Content\Images\Hotels\D549A4B3-8EF3-4F31-973B-0FC32671B91B.jpg" />
+    <Content Include="Content\Images\Hotels\D549A4B3-8EF3-4F31-973B-0FC32671B91B_1.jpg" />
+    <Content Include="Content\Images\Hotels\D549A4B3-8EF3-4F31-973B-0FC32671B91B_2.jpg" />
+    <Content Include="Content\Images\Hotels\D549A4B3-8EF3-4F31-973B-0FC32671B91B_3.jpg" />
+    <Content Include="Content\Images\Hotels\D549A4B3-8EF3-4F31-973B-0FC32671B91B_4.jpg" />
+    <Content Include="Content\Images\Hotels\D5609A6E-BC27-400F-B9BB-30C67660C800.jpg" />
+    <Content Include="Content\Images\Hotels\D57CDEE4-8842-4325-BBEA-8A66883E7642.jpg" />
+    <Content Include="Content\Images\Hotels\D5AAEA0A-582F-43DD-8FF7-6A6445F17FD1.jpg" />
+    <Content Include="Content\Images\Hotels\D636408D-2A57-499E-A840-6494E5D19A04.jpg" />
+    <Content Include="Content\Images\Hotels\D6B5215B-A7DC-4CD8-8F97-4A0BD8454521.jpg" />
+    <Content Include="Content\Images\Hotels\D6E64087-E36D-4DFB-89DE-D04ADDF88DA8.jpg" />
+    <Content Include="Content\Images\Hotels\D73CF847-D079-44DB-8F68-11E17544BF09.jpg" />
+    <Content Include="Content\Images\Hotels\D77F8344-1F6E-4DC0-A89F-25F894C1C24E.jpg" />
+    <Content Include="Content\Images\Hotels\D7E0F149-4787-40A4-AB9E-89FA28466EE0.jpg" />
+    <Content Include="Content\Images\Hotels\D8C56EF1-3008-4922-8232-A0E4FE166055.jpg" />
+    <Content Include="Content\Images\Hotels\D8D55A93-C0FE-4DF5-B631-AB11956165E9.jpg" />
+    <Content Include="Content\Images\Hotels\D92E6A6A-2FFA-48C3-AE63-72C71253B3C7.jpg" />
+    <Content Include="Content\Images\Hotels\D9427A9C-4078-410D-83FF-6D557601D188.jpg" />
+    <Content Include="Content\Images\Hotels\D945A3E6-393A-4B9D-B864-03EBAEC395B1.jpg" />
+    <Content Include="Content\Images\Hotels\D9785684-A5A9-4ECA-9899-4D4820EE1623.jpg" />
+    <Content Include="Content\Images\Hotels\D97ED076-5598-4E32-955F-4CA74903A33B.jpg" />
+    <Content Include="Content\Images\Hotels\D9A11938-416E-4661-8840-EB494EFFA336.jpg" />
+    <Content Include="Content\Images\Hotels\DA5CA4E7-D570-4590-BDC0-3D154E195452.jpg" />
+    <Content Include="Content\Images\Hotels\DA5CA4E7-D570-4590-BDC0-3D154E195452_1.jpg" />
+    <Content Include="Content\Images\Hotels\DA5CA4E7-D570-4590-BDC0-3D154E195452_2.jpg" />
+    <Content Include="Content\Images\Hotels\DA5CA4E7-D570-4590-BDC0-3D154E195452_3.jpg" />
+    <Content Include="Content\Images\Hotels\DA5CA4E7-D570-4590-BDC0-3D154E195452_4.jpg" />
+    <Content Include="Content\Images\Hotels\DAEC449A-5B67-47B5-8CED-43A1FB4393DE.jpg" />
+    <Content Include="Content\Images\Hotels\DAFB2F52-78C3-4398-9135-DC248BBA0528.jpg" />
+    <Content Include="Content\Images\Hotels\DBF679D8-D3C1-44ED-8CD2-5784034C15A4.jpg" />
+    <Content Include="Content\Images\Hotels\DBF679D8-D3C1-44ED-8CD2-5784034C15A4_1.jpg" />
+    <Content Include="Content\Images\Hotels\DBF679D8-D3C1-44ED-8CD2-5784034C15A4_2.jpg" />
+    <Content Include="Content\Images\Hotels\DBF679D8-D3C1-44ED-8CD2-5784034C15A4_4.jpg" />
+    <Content Include="Content\Images\Hotels\DBF679D8-D3C1-44ED-8CD2-5784034C15A4_5.jpg" />
+    <Content Include="Content\Images\Hotels\DC1F2C72-E9E0-47DF-A5C6-D4C34DF83FF8.jpg" />
+    <Content Include="Content\Images\Hotels\DC281FD4-D921-43D0-9CE5-7851317153C7l.jpg" />
+    <Content Include="Content\Images\Hotels\DC281FD4-D921-43D0-9CE5-7851317153C7_1.jpg" />
+    <Content Include="Content\Images\Hotels\DC281FD4-D921-43D0-9CE5-7851317153C7_2.jpg" />
+    <Content Include="Content\Images\Hotels\DC281FD4-D921-43D0-9CE5-7851317153C7_3.jpg" />
+    <Content Include="Content\Images\Hotels\DC281FD4-D921-43D0-9CE5-7851317153C7_4.jpg" />
+    <Content Include="Content\Images\Hotels\DD45B68F-503B-49E4-8570-95ACCF4CEE81.jpg" />
+    <Content Include="Content\Images\Hotels\DD5E526C-AC97-4E46-B262-4899F66E8F24.jpg" />
+    <Content Include="Content\Images\Hotels\DDBEC660-BF31-4E6B-B8C8-064AE77856CC.jpg" />
+    <Content Include="Content\Images\Hotels\DE3F72DB-7060-4217-AF99-01A90B8B0B99.jpg" />
+    <Content Include="Content\Images\Hotels\DE50D1BA-D124-47BC-BE19-3B2FED9A7066.jpg" />
+    <Content Include="Content\Images\Hotels\DE712648-449F-4545-919D-873D1496A84B.jpg" />
+    <Content Include="Content\Images\Hotels\DEB26DBB-1B67-46C5-889E-A954B57A7D39.jpg" />
+    <Content Include="Content\Images\Hotels\DEB26DBB-1B67-46C5-889E-A954B57A7D39_1.jpg" />
+    <Content Include="Content\Images\Hotels\DEB26DBB-1B67-46C5-889E-A954B57A7D39_2.jpg" />
+    <Content Include="Content\Images\Hotels\DEB26DBB-1B67-46C5-889E-A954B57A7D39_3.jpg" />
+    <Content Include="Content\Images\Hotels\DEB26DBB-1B67-46C5-889E-A954B57A7D39_4.jpg" />
+    <Content Include="Content\Images\Hotels\DEB35D3F-CB09-44D2-98FD-83489BD88226.jpg" />
+    <Content Include="Content\Images\Hotels\DED22D8B-FDFA-41BC-B320-14B52649FA8A.jpg" />
+    <Content Include="Content\Images\Hotels\DF2982B4-CCC7-4772-9B14-49EF59971F85l.jpg" />
+    <Content Include="Content\Images\Hotels\DF3D1BAC-45B1-4561-98CD-D477F0D7C2AF.jpg" />
+    <Content Include="Content\Images\Hotels\DF5B7C83-BDA6-4C7E-BF15-2061DFC94177.jpg" />
+    <Content Include="Content\Images\Hotels\E019846E-5287-4F7B-9117-96E1D099D462.jpg" />
+    <Content Include="Content\Images\Hotels\E028EFE1-CE9D-47DC-AFCE-B41CA0ED1EA5.jpg" />
+    <Content Include="Content\Images\Hotels\E0356ABF-F914-417D-B756-CA6C966CF1C2.jpg" />
+    <Content Include="Content\Images\Hotels\E073A985-A8BD-4A46-8935-B19D054B81D1.jpg" />
+    <Content Include="Content\Images\Hotels\E09B4FC8-FBE7-4328-8CB1-6AB0FBA680EF.jpg" />
+    <Content Include="Content\Images\Hotels\E0E71DC4-912E-4154-926B-F0598ADBD6D5.jpg" />
+    <Content Include="Content\Images\Hotels\E125161B-F621-4C4F-9405-57D83448540E.jpg" />
+    <Content Include="Content\Images\Hotels\E17E9942-4CB0-49F7-A23F-129C8E0FCEF8.jpg" />
+    <Content Include="Content\Images\Hotels\E1F69C69-5FF0-4F70-870C-30F0AE1EEA96.jpg" />
+    <Content Include="Content\Images\Hotels\E271D790-4289-4FA8-9E3F-C0E19B284E60.jpg" />
+    <Content Include="Content\Images\Hotels\E2A4E19C-8344-4189-9895-6BBF8FBC2DDD.jpg" />
+    <Content Include="Content\Images\Hotels\E2A4E19C-8344-4189-9895-6BBF8FBC2DDD_1.jpg" />
+    <Content Include="Content\Images\Hotels\E2A4E19C-8344-4189-9895-6BBF8FBC2DDD_2.jpg" />
+    <Content Include="Content\Images\Hotels\E2A4E19C-8344-4189-9895-6BBF8FBC2DDD_3.jpg" />
+    <Content Include="Content\Images\Hotels\E2A4E19C-8344-4189-9895-6BBF8FBC2DDD_4.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22_1.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22_2.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22_3.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22_4.jpg" />
+    <Content Include="Content\Images\Hotels\E3904C1D-2F95-4690-A37C-9DD9C7514C22_5.jpg" />
+    <Content Include="Content\Images\Hotels\E397A20F-282B-4422-B171-B10516F33849.jpg" />
+    <Content Include="Content\Images\Hotels\E397A20F-282B-4422-B171-B10516F33849_1.jpg" />
+    <Content Include="Content\Images\Hotels\E397A20F-282B-4422-B171-B10516F33849_2.jpg" />
+    <Content Include="Content\Images\Hotels\E397A20F-282B-4422-B171-B10516F33849_3.jpg" />
+    <Content Include="Content\Images\Hotels\E397A20F-282B-4422-B171-B10516F33849_4.jpg" />
+    <Content Include="Content\Images\Hotels\E50A7582-8D9D-451D-879D-AF7C0E329B18.jpg" />
+    <Content Include="Content\Images\Hotels\E516D7F4-A8F0-46C1-8E0C-660DBCDB2B71.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6_1.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6_2.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6_3.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6_4.jpg" />
+    <Content Include="Content\Images\Hotels\E5E9B36A-C946-40AE-B294-26209D1BB8E6_5.jpg" />
+    <Content Include="Content\Images\Hotels\E6E5947A-F6E8-4DE6-B0F1-2B7ED7D0DFA7.jpg" />
+    <Content Include="Content\Images\Hotels\E6EDB4F4-7B83-4877-9B38-04BD1EA955BD.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D_1.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D_2.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D_3.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D_4.jpg" />
+    <Content Include="Content\Images\Hotels\E6F43C2C-76FC-42ED-BC3B-DE7AC07C070D_5.jpg" />
+    <Content Include="Content\Images\Hotels\E6F5303B-54F8-408B-A689-7CA5087E90F5.jpg" />
+    <Content Include="Content\Images\Hotels\E76EE50B-968A-4916-A02C-B910F4037229.jpg" />
+    <Content Include="Content\Images\Hotels\E7E8161C-0583-4852-A550-AEA002F215E1.jpg" />
+    <Content Include="Content\Images\Hotels\E7FB193B-D8E0-436D-8905-9353B0B2D43D.jpg" />
+    <Content Include="Content\Images\Hotels\E82E8238-E0A4-4962-BCAD-103A5A1E05DD.jpg" />
+    <Content Include="Content\Images\Hotels\E83C815F-6F0E-415D-95FE-B4FA2A092CAC.jpg" />
+    <Content Include="Content\Images\Hotels\E86EE23E-5031-4D51-8507-FC3332997206.jpg" />
+    <Content Include="Content\Images\Hotels\E88D964B-CE21-46D4-A0EB-E620118D91EB.jpg" />
+    <Content Include="Content\Images\Hotels\E8BAD65C-207F-42C9-972B-FC31CDD7AE7C.jpg" />
+    <Content Include="Content\Images\Hotels\E8E245D7-C26E-42B8-9724-2A66271014B1.jpg" />
+    <Content Include="Content\Images\Hotels\E9053CE4-C5EC-4EA4-B4F8-87DF8EA2E8EB.jpg" />
+    <Content Include="Content\Images\Hotels\E9232D12-470F-462F-A9BE-31D352A6A010.jpg" />
+    <Content Include="Content\Images\Hotels\E97646AC-D72B-4450-88D0-0940963B120A.jpg" />
+    <Content Include="Content\Images\Hotels\E9783577-CFAE-4E50-BBC2-6F216CDCA3AD.jpg" />
+    <Content Include="Content\Images\Hotels\E985C1AC-1D98-47DA-855A-316891AA3A0B.jpg" />
+    <Content Include="Content\Images\Hotels\E9D2B546-13A8-4853-9F54-B8FCBAA6832F.jpg" />
+    <Content Include="Content\Images\Hotels\EA41C074-A0C4-4D5B-BDBD-6759F4D7D654.jpg" />
+    <Content Include="Content\Images\Hotels\EAC64978-2B6D-4ACD-8CC0-07EF90CF3362.jpg" />
+    <Content Include="Content\Images\Hotels\EB46F4A2-5915-4A87-8A4A-57D5D5BA00DA.jpg" />
+    <Content Include="Content\Images\Hotels\EB5F6CE4-A09F-4317-91AD-5FB08A41726F.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C_1.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C_2.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C_3.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C_4.jpg" />
+    <Content Include="Content\Images\Hotels\EB7510DB-8FE3-4144-946C-2ED71A88593C_5.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C_1.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C_2.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C_3.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C_4.jpg" />
+    <Content Include="Content\Images\Hotels\EBDE925C-E8C5-4C99-99D4-E488D753F11C_5.jpg" />
+    <Content Include="Content\Images\Hotels\EC3E3AF0-18B3-468F-8F65-47AE66A212D0.jpg" />
+    <Content Include="Content\Images\Hotels\EC438AE7-2CCD-43C6-957B-3953B0E4BCAD.jpg" />
+    <Content Include="Content\Images\Hotels\EC83F48A-BA83-45B9-B933-7F3F6D6D2720.jpg" />
+    <Content Include="Content\Images\Hotels\ECC80FA6-7B5C-44AE-B741-0EC7DA827AE4.jpg" />
+    <Content Include="Content\Images\Hotels\ECD4F790-CFDF-4C81-8C0C-9662BEF52110.jpg" />
+    <Content Include="Content\Images\Hotels\ED2EE60B-F23E-4973-9648-3BE8E933DB83.jpg" />
+    <Content Include="Content\Images\Hotels\ED44C874-79DD-4A9C-8DE6-B106274A730F.jpg" />
+    <Content Include="Content\Images\Hotels\EDC15321-6DC2-4CC7-8656-F4D3F29173CC.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41_1.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41_2.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41_3.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41_4.jpg" />
+    <Content Include="Content\Images\Hotels\EDC21C9E-5F17-4563-AB61-1878BDE0AF41_5.jpg" />
+    <Content Include="Content\Images\Hotels\EDE570DD-A4F1-45F3-B354-58F181DFBAE3_1.jpg" />
+    <Content Include="Content\Images\Hotels\EDE570DD-A4F1-45F3-B354-58F181DFBAE3_2.jpg" />
+    <Content Include="Content\Images\Hotels\EDE570DD-A4F1-45F3-B354-58F181DFBAE3_3.jpg" />
+    <Content Include="Content\Images\Hotels\EDE570DD-A4F1-45F3-B354-58F181DFBAE3_4.jpg" />
+    <Content Include="Content\Images\Hotels\EDF14F14-7E88-4402-8C04-AC22FF1EAC9A.jpg" />
+    <Content Include="Content\Images\Hotels\EE013CB0-6E43-42B5-B974-0B3B81FC7BC5.jpg" />
+    <Content Include="Content\Images\Hotels\EE1EB715-CE1F-4527-84D2-155211AB8163.jpg" />
+    <Content Include="Content\Images\Hotels\EE2E9DF4-E9DB-46AC-984C-3A2AC231C439.jpg" />
+    <Content Include="Content\Images\Hotels\EE3DE585-BD2D-466A-BF2C-EE88F6380E0D.jpg" />
+    <Content Include="Content\Images\Hotels\EE4BED65-E0A1-44AE-946B-8389A5574A97.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006_1.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006_2.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006_3.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006_4.jpg" />
+    <Content Include="Content\Images\Hotels\EE5A21E9-3644-4B1C-B5D4-2592FE6CA006_5.jpg" />
+    <Content Include="Content\Images\Hotels\EE61EAA1-8ED7-46DB-964D-08911689B42C.jpg" />
+    <Content Include="Content\Images\Hotels\EE9DDBBC-8573-4A99-927C-7E6C00C598C1.jpg" />
+    <Content Include="Content\Images\Hotels\EEA9EEF3-1C28-44C2-B03C-796900861776.jpg" />
+    <Content Include="Content\Images\Hotels\EED6FF44-1D23-4ED3-A835-37BCBF501E78.jpg" />
+    <Content Include="Content\Images\Hotels\EEE67963-0BAF-4051-812D-B62EBF4C3821.jpg" />
+    <Content Include="Content\Images\Hotels\EF20250D-B025-42D4-9060-17A728951F3D.jpg" />
+    <Content Include="Content\Images\Hotels\EF484C44-268E-4DD8-8904-FD3CBBD77C9C.jpg" />
+    <Content Include="Content\Images\Hotels\EF6EAEC7-4740-4FFB-8393-FA0106950FA0.jpg" />
+    <Content Include="Content\Images\Hotels\EFF5C221-22F0-4ED0-AA1F-6A3B55CD26AD.jpg" />
+    <Content Include="Content\Images\Hotels\F0497042-0DBF-458A-B44C-A1A488B4BD1C.jpg" />
+    <Content Include="Content\Images\Hotels\F07E8170-CBC5-4834-AECA-D0AF7727EFF7.jpg" />
+    <Content Include="Content\Images\Hotels\F07F823F-8947-4E94-A0A1-16568041CEB9.jpg" />
+    <Content Include="Content\Images\Hotels\F0B7423F-CCC4-4BC5-A155-1AD666D3B21C.jpg" />
+    <Content Include="Content\Images\Hotels\F0B7423F-CCC4-4BC5-A155-1AD666D3B21C_1.jpg" />
+    <Content Include="Content\Images\Hotels\F0B7423F-CCC4-4BC5-A155-1AD666D3B21C_2.jpg" />
+    <Content Include="Content\Images\Hotels\F0B7423F-CCC4-4BC5-A155-1AD666D3B21C_3.jpg" />
+    <Content Include="Content\Images\Hotels\F0B7423F-CCC4-4BC5-A155-1AD666D3B21C_4.jpg" />
+    <Content Include="Content\Images\Hotels\F0C03442-E1B3-4C4E-B910-FF89A1944F16.jpg" />
+    <Content Include="Content\Images\Hotels\F120A143-422A-4B9B-A798-DBCB1ACED851.jpg" />
+    <Content Include="Content\Images\Hotels\F14B174E-E772-4C60-B210-B07BB5A40BB8.jpg" />
+    <Content Include="Content\Images\Hotels\F16731A4-5572-4A54-A924-229F7B635117.jpg" />
+    <Content Include="Content\Images\Hotels\F1805275-5BF9-4BF1-9CD8-FE5BD7301589.jpg" />
+    <Content Include="Content\Images\Hotels\F25F50F2-BB2A-432E-814F-01FC1A82A82E.jpg" />
+    <Content Include="Content\Images\Hotels\F2ECA0F0-497B-40F8-A7CF-F544DD7603BD.jpg" />
+    <Content Include="Content\Images\Hotels\F31D950F-B303-459B-8953-3B3CD893A721.jpg" />
+    <Content Include="Content\Images\Hotels\F398A67E-1FCC-4DED-BAC2-C73E81FF0CCE_1.jpg" />
+    <Content Include="Content\Images\Hotels\F398A67E-1FCC-4DED-BAC2-C73E81FF0CCE_2.jpg" />
+    <Content Include="Content\Images\Hotels\F398A67E-1FCC-4DED-BAC2-C73E81FF0CCE_3.jpg" />
+    <Content Include="Content\Images\Hotels\F398A67E-1FCC-4DED-BAC2-C73E81FF0CCE_4.jpg" />
+    <Content Include="Content\Images\Hotels\F3AFD59F-0CB8-48CF-95A7-AD5D7166F934.jpg" />
+    <Content Include="Content\Images\Hotels\F3BAA5E6-2EC9-4249-976C-3C732368A533.jpg" />
+    <Content Include="Content\Images\Hotels\F476EC0A-D9E7-4730-A17E-2D91F7839CCE.jpg" />
+    <Content Include="Content\Images\Hotels\F476EC0A-D9E7-4730-A17E-2D91F7839CCE_1.jpg" />
+    <Content Include="Content\Images\Hotels\F476EC0A-D9E7-4730-A17E-2D91F7839CCE_2.jpg" />
+    <Content Include="Content\Images\Hotels\F476EC0A-D9E7-4730-A17E-2D91F7839CCE_3.jpg" />
+    <Content Include="Content\Images\Hotels\F476EC0A-D9E7-4730-A17E-2D91F7839CCE_4.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D_1.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D_2.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D_3.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D_4.jpg" />
+    <Content Include="Content\Images\Hotels\F48F41A7-047D-4AD4-9876-28F594CCB85D_5.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A_1.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A_2.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A_3.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A_4.jpg" />
+    <Content Include="Content\Images\Hotels\F4EAFCD2-84D0-4A1F-BD28-E2A71A78AE7A_5.jpg" />
+    <Content Include="Content\Images\Hotels\F5B25C5D-85F8-4D57-846C-B94D5A23549F.jpg" />
+    <Content Include="Content\Images\Hotels\F5B25C5D-85F8-4D57-846C-B94D5A23549F_1.jpg" />
+    <Content Include="Content\Images\Hotels\F5B25C5D-85F8-4D57-846C-B94D5A23549F_2.jpg" />
+    <Content Include="Content\Images\Hotels\F5B25C5D-85F8-4D57-846C-B94D5A23549F_3.jpg" />
+    <Content Include="Content\Images\Hotels\F5B25C5D-85F8-4D57-846C-B94D5A23549F_4.jpg" />
+    <Content Include="Content\Images\Hotels\F5D1B8C7-6B60-4C39-A6FB-637982823B2E.jpg" />
+    <Content Include="Content\Images\Hotels\F68C0CBC-C916-4807-9EE7-EA14B264E18F.jpg" />
+    <Content Include="Content\Images\Hotels\F711A674-D3EA-43F0-94F3-A756060B7B74.jpg" />
+    <Content Include="Content\Images\Hotels\F74F5DE8-2D8D-46B9-B17C-4B19B432B93F.jpg" />
+    <Content Include="Content\Images\Hotels\F7579787-0305-496A-A646-C45B768B7797.jpg" />
+    <Content Include="Content\Images\Hotels\F7E31AAE-D52B-4B8D-91B0-1A2CF54CDF37.jpg" />
+    <Content Include="Content\Images\Hotels\F7E38620-5166-4ADB-885C-5A5022077C93.jpg" />
+    <Content Include="Content\Images\Hotels\F80D83DA-B09C-4CE6-A175-067CE7E4CD87.jpg" />
+    <Content Include="Content\Images\Hotels\F80D83DA-B09C-4CE6-A175-067CE7E4CD87_1.jpg" />
+    <Content Include="Content\Images\Hotels\F80D83DA-B09C-4CE6-A175-067CE7E4CD87_2.jpg" />
+    <Content Include="Content\Images\Hotels\F80D83DA-B09C-4CE6-A175-067CE7E4CD87_3.jpg" />
+    <Content Include="Content\Images\Hotels\F80D83DA-B09C-4CE6-A175-067CE7E4CD87_4.jpg" />
+    <Content Include="Content\Images\Hotels\F8826F60-3DDF-4E57-AE78-7ADBE2AEEAF8.jpg" />
+    <Content Include="Content\Images\Hotels\F8F23D6F-0EBE-4418-AEDD-85FC19CCAF64_1.jpg" />
+    <Content Include="Content\Images\Hotels\F8F23D6F-0EBE-4418-AEDD-85FC19CCAF64_2.jpg" />
+    <Content Include="Content\Images\Hotels\F8F23D6F-0EBE-4418-AEDD-85FC19CCAF64_3.jpg" />
+    <Content Include="Content\Images\Hotels\F8F23D6F-0EBE-4418-AEDD-85FC19CCAF64_4.jpg" />
+    <Content Include="Content\Images\Hotels\F8F23D6F-0EBE-4418-AEDD-85FC19CCAF64_5.jpg" />
+    <Content Include="Content\Images\Hotels\F9A2AAEE-1DD3-433F-822E-54F973F88330.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408_1.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408_2.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408_3.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408_4.jpg" />
+    <Content Include="Content\Images\Hotels\FA405E04-DA35-4BD9-BC1E-1D08A32DE408_5.jpg" />
+    <Content Include="Content\Images\Hotels\FA9C2134-8EBF-4590-B855-86F611C94A6E.jpg" />
+    <Content Include="Content\Images\Hotels\FAEBBFF3-E107-4E57-BCD5-8BB82C26EE7D.jpg" />
+    <Content Include="Content\Images\Hotels\FBA3FB8F-8989-4C04-9B32-5C33684D163F.jpg" />
+    <Content Include="Content\Images\Hotels\FBC0391A-31AA-42FC-B035-0E85570B2A60.jpg" />
+    <Content Include="Content\Images\Hotels\FC0193A9-94EF-4D66-B410-6A9EE5707613.jpg" />
+    <Content Include="Content\Images\Hotels\FC956AFA-1B2B-4420-ADFC-44FA8C7E8B2E.jpg" />
+    <Content Include="Content\Images\Hotels\FD197E02-B9FB-4487-9ED1-EFF62B4042D3.jpg" />
+    <Content Include="Content\Images\Hotels\FDE66FF8-0AA3-4676-80BD-B08E98A8F411.jpg" />
+    <Content Include="Content\Images\Hotels\FE2C55FE-7B63-4897-95FE-08FFDA83F1A9.jpg" />
+    <Content Include="Content\Images\Hotels\FE750C23-B634-4CC4-BDDD-443F4F6C3B67.jpg" />
+    <Content Include="Content\Images\Hotels\FF14F253-49F9-43D7-9063-498B2819E75A.jpg" />
+    <Content Include="Content\Images\Hotels\FF228193-2ED7-4502-A1BB-561BEF40CAF3.jpg" />
+    <Content Include="Content\Images\Hotels\FF431EE5-16ED-40CE-8987-2075687A0CDB.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_1.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_2.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_3.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_4.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_5.jpg" />
+    <Content Include="Content\Images\Hotels\FF534BE0-CA44-4099-9459-8E65F52460E8_6.jpg" />
+    <Content Include="Content\Images\Hotels\FF755E55-1FCE-4330-A9AF-3D99A8EC6DF5.jpg" />
+    <Content Include="Content\Images\Hotels\FF9B5058-E1A1-4074-B3D9-3D7F4D8A80E3.jpg" />
+    <Content Include="Content\Images\Hotels\FFD52D79-5626-4615-AEC1-A77134E742C4.jpg" />
+    <Content Include="Content\Images\logo.jpg" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ClassDiagram1.cd" />
+    <None Include="Models\Turismo.dbml.layout">
+      <DependentUpon>Turismo.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\PublishProfiles\Anibal.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Models\Turismo.dbml">
+      <SubType>Designer</SubType>
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Turismo2.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\LodgingDetailsFunctions.js" />
+    <Content Include="Scripts\LodgingPricesFunctions.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\ReservationFunctions.js" />
+    <Content Include="Scripts\SearchFunctions.js" />
+    <Content Include="Scripts\spin.js" />
+    <Content Include="Scripts\validator.js" />
+    <Content Include="Service References\LocalService\CheckArgentina.LocalService.RespuestaBuscarAlojamientosEInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LocalService\CheckArgentina.LocalService.RespuestaBuscarMisReservas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LocalService\CheckArgentina.LocalService.RespuestaInfoCuposSemanalesAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LocalService\CheckArgentina.LocalService.RespuestaLogin.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\LocalService\Servicios.disco" />
+    <None Include="Service References\LocalService\configuration91.svcinfo" />
+    <None Include="Service References\LocalService\configuration.svcinfo" />
+    <None Include="Service References\LocalService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaBuscarAlojamientos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaBuscarAlojamientosEInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaBuscarDestinos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaCancelarReservaAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaConsultarReservaAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaInfoAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaInfoCuposAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\NationalService\CheckArgentina.NationalService.RespuestaReservarAlojamiento.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\LocalService\Servicios.wsdl" />
+    <None Include="Service References\NationalService\Hoteles.disco" />
+    <None Include="Service References\NationalService\configuration91.svcinfo" />
+    <None Include="Service References\NationalService\configuration.svcinfo" />
+    <None Include="Service References\NationalService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\LICENSE" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\National\NationalSearch.cshtml" />
+    <Content Include="Views\National\NationalSearchResults.cshtml" />
+    <Content Include="Views\Payment\BridgeProcessResultPaymentNPS.cshtml" />
+    <Content Include="Views\Payment\Confirmation.cshtml" />
+    <Content Include="Views\Payment\InternalPaymentSimulator.cshtml" />
+    <Content Include="Views\Payment\PaymentError.cshtml" />
+    <Content Include="Views\Payment\PaymentHSBC.cshtml" />
+    <Content Include="Views\Payment\PaymentMethods.cshtml" />
+    <Content Include="Views\Payment\PaymentNPS.cshtml" />
+    <Content Include="Views\Payment\PaymentSuccess.cshtml" />
+    <Content Include="Views\Payment\ProcessPaymentNPS.cshtml" />
+    <Content Include="Views\Payment\ProcessResultPaymentNPS.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lodging.cshtml" />
+    <Content Include="Views\Shared\VacancyDetail.cshtml" />
+    <Content Include="Views\Shared\_BlankPage.cshtml" />
+    <Content Include="Views\Shared\_HeadScripts.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_ResultLayout.cshtml" />
+    <Content Include="Views\Shared\LodgingDetail.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Shared\Registration.cshtml" />
+    <Content Include="Views\Payment\PaymentCtaCte.cshtml" />
+    <Content Include="Views\Payment\PaymentDeposito.cshtml" />
+    <Content Include="Views\Shared\ForgotPassword.cshtml" />
+    <Content Include="Views\Shared\LodgingReservationEmail.cshtml" />
+    <Content Include="Views\Payment\ReservationEmailSent.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\RegistrationEmailSent.cshtml" />
+    <Content Include="Views\Shared\Company.cshtml" />
+    <Content Include="Views\Shared\Services.cshtml" />
+    <Content Include="Views\Shared\FaQ.cshtml" />
+    <Content Include="Views\Shared\Newsletter.cshtml" />
+    <Content Include="Views\Shared\NotLoggedIn.cshtml" />
+    <Content Include="Views\Shared\LodgingTable.cshtml" />
+    <Content Include="Views\Shared\MyReservationDetail.cshtml" />
+    <Content Include="Views\Shared\MyReservations.cshtml" />
+    <Content Include="Views\Home\Adds.cshtml" />
+    <Content Include="Views\National\SearchResultsList.cshtml" />
+    <Content Include="Views\Modals\ReservationModal.cshtml" />
+    <Content Include="Views\Modals\LodgingDetailsModal.cshtml" />
+    <Content Include="Views\Modals\LodgingPricesModal.cshtml" />
+    <Content Include="Views\Shared\Reservation.cshtml" />
+    <Content Include="Views\Modals\AgregarPasajeroModal.cshtml" />
+    <None Include="Service References\NationalService\Hoteles.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NemoTypes\NemoTypes.vbproj">
+      <Project>{04e05146-c7e9-4b9d-9fbf-72dfe44c89f1}</Project>
+      <Name>NemoTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LocalService\" />
+    <WCFMetadataStorage Include="Service References\NationalService\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52233</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52234/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

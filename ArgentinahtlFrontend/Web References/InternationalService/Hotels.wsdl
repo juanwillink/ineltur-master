@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ws.mph.nemogroup.net/" name="Hotels" targetNamespace="http://ws.mph.nemogroup.net/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://65.98.6.211:8080/ps-ws-cert/Hotels?xsd=1" namespace="http://ws.mph.nemogroup.net/" />
+    </xsd:schema>
+  </types>
+  <message name="HotelAvail">
+    <part name="HotelAvailRQ" element="tns:HotelAvailRQ" />
+  </message>
+  <message name="HotelAvailResponse">
+    <part name="HotelAvailRS" element="tns:HotelAvailRS" />
+  </message>
+  <message name="HotelDescriptiveInfo">
+    <part name="HotelDescriptiveInfoRQ" element="tns:HotelDescriptiveInfoRQ" />
+  </message>
+  <message name="HotelDescriptiveInfoResponse">
+    <part name="HotelDescriptiveInfoRS" element="tns:HotelDescriptiveInfoRS" />
+  </message>
+  <message name="HotelRes">
+    <part name="HotelResRQ" element="tns:HotelResRQ" />
+  </message>
+  <message name="HotelResResponse">
+    <part name="HotelResRS" element="tns:HotelResRS" />
+  </message>
+  <message name="HotelBookingRule">
+    <part name="HotelBookingRuleRQ" element="tns:HotelBookingRuleRQ" />
+  </message>
+  <message name="HotelBookingRuleResponse">
+    <part name="HotelBookingRuleRS" element="tns:HotelBookingRuleRS" />
+  </message>
+  <message name="HotelResModify">
+    <part name="HotelResModifyRQ" element="tns:HotelResModifyRQ" />
+  </message>
+  <message name="HotelResModifyResponse">
+    <part name="HotelResModifyRS" element="tns:HotelResModifyRS" />
+  </message>
+  <message name="QueryBooking">
+    <part name="QueryBookingRQ" element="tns:QueryBookingRQ" />
+  </message>
+  <message name="QueryBookingResponse">
+    <part name="QueryBookingRS" element="tns:QueryBookingRS" />
+  </message>
+  <message name="RateBreakDown">
+    <part name="RateBreakDownRQ" element="tns:RateBreakDownRQ" />
+  </message>
+  <message name="RateBreakDownResponse">
+    <part name="RateBreakDownRS" element="tns:RateBreakDownRS" />
+  </message>
+  <message name="Read">
+    <part name="ReadRQ" element="tns:ReadRQ" />
+  </message>
+  <message name="ReadResponse">
+    <part name="ReadRS" element="tns:ReadRS" />
+  </message>
+  <message name="Voucher">
+    <part name="VoucherRQ" element="tns:VoucherRQ" />
+  </message>
+  <message name="VoucherResponse">
+    <part name="VoucherRS" element="tns:VoucherRS" />
+  </message>
+  <message name="DestinationList">
+    <part name="DestinationListRQ" element="tns:DestinationListRQ" />
+  </message>
+  <message name="DestinationListResponse">
+    <part name="DestinationListRS" element="tns:DestinationListRS" />
+  </message>
+  <message name="LocationList">
+    <part name="LocationListRQ" element="tns:LocationListRQ" />
+  </message>
+  <message name="LocationListResponse">
+    <part name="LocationListRS" element="tns:LocationListRS" />
+  </message>
+  <portType name="Hotels">
+    <operation name="HotelAvail">
+      <input message="tns:HotelAvail" />
+      <output message="tns:HotelAvailResponse" />
+    </operation>
+    <operation name="HotelDescriptiveInfo">
+      <input message="tns:HotelDescriptiveInfo" />
+      <output message="tns:HotelDescriptiveInfoResponse" />
+    </operation>
+    <operation name="HotelRes">
+      <input message="tns:HotelRes" />
+      <output message="tns:HotelResResponse" />
+    </operation>
+    <operation name="HotelBookingRule">
+      <input message="tns:HotelBookingRule" />
+      <output message="tns:HotelBookingRuleResponse" />
+    </operation>
+    <operation name="HotelResModify">
+      <input message="tns:HotelResModify" />
+      <output message="tns:HotelResModifyResponse" />
+    </operation>
+    <operation name="QueryBooking">
+      <input message="tns:QueryBooking" />
+      <output message="tns:QueryBookingResponse" />
+    </operation>
+    <operation name="RateBreakDown">
+      <input message="tns:RateBreakDown" />
+      <output message="tns:RateBreakDownResponse" />
+    </operation>
+    <operation name="Read">
+      <input message="tns:Read" />
+      <output message="tns:ReadResponse" />
+    </operation>
+    <operation name="Voucher">
+      <input message="tns:Voucher" />
+      <output message="tns:VoucherResponse" />
+    </operation>
+    <operation name="DestinationList">
+      <input message="tns:DestinationList" />
+      <output message="tns:DestinationListResponse" />
+    </operation>
+    <operation name="LocationList">
+      <input message="tns:LocationList" />
+      <output message="tns:LocationListResponse" />
+    </operation>
+  </portType>
+  <binding name="HotelsPortBinding" type="tns:Hotels">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="HotelAvail">
+      <soap:operation soapAction="HotelAvail" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="HotelDescriptiveInfo">
+      <soap:operation soapAction="HotelDescriptiveInfo" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="HotelRes">
+      <soap:operation soapAction="HotelRes" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="HotelBookingRule">
+      <soap:operation soapAction="HotelBookingRule" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="HotelResModify">
+      <soap:operation soapAction="HotelResModify" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="QueryBooking">
+      <soap:operation soapAction="QueryBooking" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RateBreakDown">
+      <soap:operation soapAction="RateBreakDown" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Read">
+      <soap:operation soapAction="Read" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Voucher">
+      <soap:operation soapAction="Voucher" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DestinationList">
+      <soap:operation soapAction="DestinationList" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="LocationList">
+      <soap:operation soapAction="LocationList" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Hotels">
+    <port name="HotelsPort" binding="tns:HotelsPortBinding">
+      <soap:address location="http://65.98.6.211:8080/ps-ws-cert/Hotels" />
+    </port>
+  </service>
+</definitions>

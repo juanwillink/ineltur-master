@@ -1,0 +1,91 @@
+﻿<!-- Modal -->
+<div class="modal fade bs-example-modal-lg" id="ReservationModal" tabindex="-1" role="dialog" aria-labelledby="ReservationModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ReservationModalLabel"></h4>
+               
+                <input type="hidden" id="hotelName2" />
+                <input type="hidden" id="hotelId" />
+                <input type="hidden" id="hotelCategory" />
+                <input type="hidden" id="hotelCurrency" />
+                <input type="hidden" id="hotelCurrencyCode" />
+                <input type="hidden" id="hotelPrice" />
+                <input type="hidden" id="detinationId" />
+                <input type="hidden" id="hotelSupplierId" />
+
+            </div>
+            <div class="modal-body">     
+                <div class="row" id="changeReservationDatesForm">
+                    <div class="col-md-8 col-md-offset-2">
+                        <p>Seleccione una fecha de Check-In y una fecha de Check-Out para buscar disponibilidad en esa fecha.</p>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 text-center">
+                        <label for="checkinDate">Check-In</label>
+                        <div class='input-group date' id='datetimepickerCheckin2'>
+                            <input type='text' class="form-control" id="checkinDate2" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <label for="checkoutDate">Check-Out</label>
+                        <div class='input-group date' id='datetimepickerCheckout2'>
+                            <input type='text' class="form-control" id="checkoutDate2" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div><br /><br />
+                <div class="row" id="AvailableRoomsRow" hidden>
+                    <div class="col-md-12">
+                        <div class="panel panel-default" style="border-color: #162B66 !important;" id="AvailableRoomsPanel">
+                            <div class="panel-heading">
+                                <h4>Habitaciones disponibles para la fecha seleccionada:</h4>
+                            </div>
+                            <div class="panel-body text-center" id="AvailableRoomsDiv">
+
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+                <div id="spinner2" hidden style="margin-top: 50%;">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-main" onclick="checkHotelAvailability()">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var opts = {
+        lines: 13 // The number of lines to draw
+        , length: 37 // The length of each line
+        , width: 12 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 1 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.05 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('spinner2')
+    var spinner = new Spinner(opts).spin(target);
+</script>

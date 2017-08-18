@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://ws.mph.nemogroup.net/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DestinationListRQ" nillable="true" type="xs:string" />
+  <xs:element name="DestinationListRS" nillable="true" type="xs:string" />
+  <xs:element name="HotelAvailRQ" nillable="true" type="xs:string" />
+  <xs:element name="HotelAvailRS" nillable="true" type="xs:string" />
+  <xs:element name="HotelBookingRuleRQ" nillable="true" type="xs:string" />
+  <xs:element name="HotelBookingRuleRS" nillable="true" type="xs:string" />
+  <xs:element name="HotelDescriptiveInfoRQ" nillable="true" type="xs:string" />
+  <xs:element name="HotelDescriptiveInfoRS" nillable="true" type="xs:string" />
+  <xs:element name="HotelResModifyRQ" nillable="true" type="xs:string" />
+  <xs:element name="HotelResModifyRS" nillable="true" type="xs:string" />
+  <xs:element name="HotelResRQ" nillable="true" type="xs:string" />
+  <xs:element name="HotelResRS" nillable="true" type="xs:string" />
+  <xs:element name="LocationListRQ" nillable="true" type="xs:string" />
+  <xs:element name="LocationListRS" nillable="true" type="xs:string" />
+  <xs:element name="QueryBookingRQ" nillable="true" type="xs:string" />
+  <xs:element name="QueryBookingRS" nillable="true" type="xs:string" />
+  <xs:element name="RateBreakDownRQ" nillable="true" type="xs:string" />
+  <xs:element name="RateBreakDownRS" nillable="true" type="xs:string" />
+  <xs:element name="ReadRQ" nillable="true" type="xs:string" />
+  <xs:element name="ReadRS" nillable="true" type="xs:string" />
+  <xs:element name="VoucherRQ" nillable="true" type="xs:string" />
+  <xs:element name="VoucherRS" nillable="true" type="xs:string" />
+</xs:schema>

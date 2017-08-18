@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.375, 21.25" name="Turismo">
+  <DataContextMoniker Name="/TurismoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1b3e4c08-5519-4b95-96e9-fd48d8719ebb" absoluteBounds="3.75, 19, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/TurismoDataContext/TipoFormaPago" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41dd4621-847b-49bc-8d4a-499157baaed2" absoluteBounds="3.7649999999999997, 19.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7ed0150b-334a-4a0e-bde5-80fcfb0fd672" absoluteBounds="6.5, 18.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/TurismoDataContext/FormaPago" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e76eecc-da9c-4c54-a6a1-06343278c59b" absoluteBounds="6.515, 19.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1bf43843-2f40-485e-8e0e-4e0606e91e28" absoluteBounds="3.5, 10.125, 2, 7.5399397786458344">
+      <DataClassMoniker Name="/TurismoDataContext/Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b7e08fd1-8dd5-428e-9993-e4e77c946604" absoluteBounds="3.5149999999999997, 10.585, 1.9700000000000002, 6.979939778645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 19.9815991210938); (6.5 : 19.9815991210938)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/TipoFormaPago/TipoFormaPago_FormaPago" />
+      <nodes>
+        <classShapeMoniker Id="1b3e4c08-5519-4b95-96e9-fd48d8719ebb" />
+        <classShapeMoniker Id="7ed0150b-334a-4a0e-bde5-80fcfb0fd672" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="51a91053-9f38-4587-9a76-e6a74417899b" absoluteBounds="6.25, 5.375, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/TurismoDataContext/UsuarioAlojamiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f90d3b9-c60e-4bc0-accd-16a1affddb9d" absoluteBounds="6.265, 5.8350000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 13.8949698893229); (7.25 : 13.8949698893229); (7.25 : 6.56899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/Usuario/Usuario_UsuarioAlojamiento" />
+      <nodes>
+        <classShapeMoniker Id="1bf43843-2f40-485e-8e0e-4e0606e91e28" />
+        <classShapeMoniker Id="51a91053-9f38-4587-9a76-e6a74417899b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="66bbe4ab-70ec-43ad-9813-8e70351c68f1" absoluteBounds="3.5, 2.75, 2, 6.3861311848958309">
+      <DataClassMoniker Name="/TurismoDataContext/Alojamiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="59972ce8-6819-43a7-af65-0ab54778e6fa" absoluteBounds="3.5149999999999997, 3.2100000000000009, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 5.97199625651042); (6.25 : 5.97199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/Alojamiento/Alojamiento_UsuarioAlojamiento" />
+      <nodes>
+        <classShapeMoniker Id="66bbe4ab-70ec-43ad-9813-8e70351c68f1" />
+        <classShapeMoniker Id="51a91053-9f38-4587-9a76-e6a74417899b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b4c6faa4-8ec9-4ecb-9a3a-744d0c3d83c5" absoluteBounds="0.75, 0.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/TurismoDataContext/Ciudad" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be7c9a80-d900-4a7e-9574-176ee0cabac7" absoluteBounds="0.76500000000000057, 1.2100000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 3.09780110677083); (3.125 : 3.47280110677083); (3.125 : 13.8949698893229); (3.5 : 13.8949698893229)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TurismoDataContext/Ciudad/Ciudad_Usuario" />
+      <nodes>
+        <classShapeMoniker Id="b4c6faa4-8ec9-4ecb-9a3a-744d0c3d83c5" />
+        <classShapeMoniker Id="1bf43843-2f40-485e-8e0e-4e0606e91e28" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.7499995); (4.5 : 1.7499995); (4.5 : 2.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TurismoDataContext/Ciudad/Ciudad_Alojamiento" />
+      <nodes>
+        <classShapeMoniker Id="b4c6faa4-8ec9-4ecb-9a3a-744d0c3d83c5" />
+        <classShapeMoniker Id="66bbe4ab-70ec-43ad-9813-8e70351c68f1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="de2dcdd7-7cb5-4354-aee4-90e1b83b162b" absoluteBounds="9.25, 2.875, 2, 6.1938297526041666">
+      <DataClassMoniker Name="/TurismoDataContext/Transaccion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="02acb74a-58ab-4a5b-8e45-f3743e953504" absoluteBounds="9.265, 3.3350000000000009, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.09375); (9.25 : 4.09375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/Alojamiento/Alojamiento_Transaccion" />
+      <nodes>
+        <classShapeMoniker Id="66bbe4ab-70ec-43ad-9813-8e70351c68f1" />
+        <classShapeMoniker Id="de2dcdd7-7cb5-4354-aee4-90e1b83b162b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 18.875); (8.40625 : 7.8501611328125); (9.25 : 7.8501611328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/FormaPago/FormaPago_Transaccion" />
+      <nodes>
+        <classShapeMoniker Id="7ed0150b-334a-4a0e-bde5-80fcfb0fd672" />
+        <classShapeMoniker Id="de2dcdd7-7cb5-4354-aee4-90e1b83b162b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="b3616afb-7b15-4b45-ac21-79cfe5e372f6" absoluteBounds="12, 5, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/TurismoDataContext/TransaccionNPS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14934f4d-b04c-4fa0-a01f-2025e8767de9" absoluteBounds="12.015, 5.4600000000000009, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.25 : 5.98159912109375); (12 : 5.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/Transaccion/Transaccion_TransaccionNPS" />
+      <nodes>
+        <classShapeMoniker Id="de2dcdd7-7cb5-4354-aee4-90e1b83b162b" />
+        <classShapeMoniker Id="b3616afb-7b15-4b45-ac21-79cfe5e372f6" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="63aa2f48-d0a6-40b5-938c-6bddf2ebe078" absoluteBounds="0.75, 4.75, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/TurismoDataContext/MonedaDB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c60d3cb9-60fe-447e-9408-0c142ee52a7a" absoluteBounds="0.76499999999999968, 5.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 5.86187832261619); (3.04166666666667 : 5.86187832261618 : JumpStart); (3.20833333333333 : 5.86187832261619 : JumpEnd); (3.5 : 5.86187832261619)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TurismoDataContext/MonedaDB/MonedaDB_Alojamiento" />
+      <nodes>
+        <classShapeMoniker Id="63aa2f48-d0a6-40b5-938c-6bddf2ebe078" />
+        <classShapeMoniker Id="66bbe4ab-70ec-43ad-9813-8e70351c68f1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.03626164523237); (3.06607443490112 : 7.35233608013349 : JumpStart); (3.18392556509888 : 7.47018721033125 : JumpEnd); (3.3125 : 7.59876164523237); (3.3125 : 9.44382975260417); (7.16666666666667 : 9.44382975260417 : JumpStart); (7.33333333333333 : 9.44382975260417 : JumpEnd); (8.32291666666667 : 9.44382975260417 : JumpStart); (8.48958333333333 : 9.44382975260417 : JumpEnd); (8.875 : 9.44382975260417); (9.25 : 9.06882975260417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TurismoDataContext/MonedaDB/MonedaDB_Transaccion" />
+      <nodes>
+        <classShapeMoniker Id="63aa2f48-d0a6-40b5-938c-6bddf2ebe078" />
+        <classShapeMoniker Id="de2dcdd7-7cb5-4354-aee4-90e1b83b162b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e38321ef-64c8-4524-9ed3-d6b0fdf57668" absoluteBounds="16.125, 11.625, 2, 4.8477197265625">
+      <DataClassMoniker Name="/TurismoDataContext/Promociones_Alojamiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc9e48e8-41de-4b56-9332-ec5377e30d40" absoluteBounds="16.14, 12.085, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02fcef89-b679-40e4-a329-353b8a82c96b" absoluteBounds="10.125, 14, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/TurismoDataContext/Tipo_PRomociones_Alojamiento" />
+      <nestedChildShapes>
+        <elementListCompartment Id="45400270-baf4-43a0-8e80-303b16c7e46a" absoluteBounds="10.14, 14.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

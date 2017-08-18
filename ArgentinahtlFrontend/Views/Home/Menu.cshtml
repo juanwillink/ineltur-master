@@ -1,0 +1,32 @@
+﻿    <ul class="nav navbar-nav navbar-right ">
+        <li style="text-align: center">
+            <a href="/Home/Home" style="padding: 5px;">BUSCAR <br /> <small>Search</small></a>
+        </li>
+        <li style="text-align: center">
+            <a href="/Home/ShowCompany" style="padding: 5px;">EMPRESA <br /> <small>Company</small></a>
+        </li>
+        <li style="text-align: center">
+            <a href="/Home/ShowServices" style="padding: 5px;">SERVICIOS <br /> <small>Services</small></a>
+        </li>
+        <li style="text-align: center">
+            <a href="/Home/ShowFaq" style="padding: 5px;">PREGUNTAS FRECUENTES <br /> <small>FAQs</small></a>
+        </li>
+        <li style="text-align: center;" >
+            <a href="/Home/ShowRegister" style="padding: 5px;">REGISTRESE <br /> <small>Register</small></a>
+        </li>
+        <li style="text-align: center">
+            <a href="/Home/ShowNewsletter" style="padding: 5px;">NEWSLETTER <br /> <small>Newsletter</small></a>
+        </li>
+        @{
+            if (Session["userkey"] != null)
+            {
+                <li style="text-align: center">
+                    <a href="/Login/Logout" style="padding: 5px;">DESCONECTARSE <br /> <small>Logout</small></a>
+                </li>
+                <li style="text-align: center">
+                    <a href="/Login/BuscarMisReservas" style="padding: 5px;">MIS RESERVAS <br /> <small>My Reservations</small></a>
+                </li>
+            }
+        }
+        
+    </ul>

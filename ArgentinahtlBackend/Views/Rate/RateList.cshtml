@@ -1,0 +1,199 @@
+﻿@model ArgentinahtlMVC.Models.RateListModel
+
+@{
+    ViewBag.Title = "Listado de Tarifas de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName;
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('.link_options').colorbox();
+
+        var ratesTable = $('table#Rates');
+
+        if (ratesTable.length) {
+            ratesTable.addClass('tablesorter').tablesorter({
+                widgets: ['zebra', 'hover'],
+                headers: {
+                    0: { sorter: 'text' },
+                    1: { sorter: 'datetime' },
+                    2: { sorter: 'digit' },
+                    3: { sorter: 'digit' },
+                    4: { sorter: 'digit' },
+                    5: { sorter: 'digit' },
+                    6: { sorter: 'digit' },
+                    7: { sorter: 'digit' },
+                    8: { sorter: 'digit' },
+                    9: { sorter: 'digit' },
+                    10: { sorter: 'digit' },
+                    11: { sorter: 'digit' },
+                    12: { sorter: 'digit' },
+                    13: { sorter: 'digit' },
+                    14: { sorter: 'digit' },
+                    15: { sorter: 'digit' },
+                    16: { sorter: 'digit' }
+                }
+            })
+            .children('thead').children('tr:first').find('*').removeClass('header').unbind('click');
+            ratesTable.tablesorter();
+        }
+    });
+
+    function enableDisableRate(id, enable) {
+        var message = 'Error al guardar la tarifa.';
+        var messageType = 'error';
+
+        var action = '@(Url.Action("EnableRate", "Rate"))';
+        if (!enable)
+            action = '@(Url.Action("DisableRate", "Rate"))';
+
+        showConfirmDialog('¿Seguro que desea continuar con la operación?', 'Sí', 'No',
+            function ($noty) {
+                // this = button element
+                // $noty = $noty element
+
+                $noty.close();
+
+                $.ajax({
+                    type: "POST",
+                    url: action,
+                    data: {
+                        RateId: id
+                    },
+                    dataType: "json",
+                    traditional: true,
+                    success: function (data) {
+                        if (data.success) {
+                            message = 'Operación realizada con éxito';
+                            messageType = 'success';
+                        }
+
+                        showNotification(message, messageType);
+
+                        refreshRateList();
+                    },
+                    error: function (data) {
+                        showNotification(message, messageType);
+
+                        refreshRateList();
+                    }
+                });
+            },
+            function ($noty) {
+                $noty.close();
+                showNotification('La operación fue cancelada.', 'info')
+            });
+
+        return false;
+    }
+
+    function deleteRate(id) {
+        var message = 'Error al eliminar la tarifa.';
+        var messageType = 'error';
+
+        showConfirmDialog('¿Seguro que desea eliminar la tarifa?', 'Sí', 'No',
+            function($noty) {
+                // this = button element
+                // $noty = $noty element
+
+                $noty.close();
+
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("DeleteRate", "Rate"))',
+                    data: {
+                        rateId: id
+                    },
+                    dataType: "json",
+                    traditional: true,
+                    success: function (data) {
+                        if (data.success) {
+                            message = 'Tarifa eliminada con éxito';
+                            messageType = 'success';
+                        }
+
+                        showNotification(message, messageType);
+
+                        refreshRateList();
+                    },
+                    error: function (data) {
+                        showNotification(message, messageType);
+
+                        refreshRateList();
+                    }
+                });
+            },
+            function($noty) {
+                $noty.close();
+                showNotification('La operación fue cancelada.', 'info');
+            });
+
+        return false;
+    }
+</script>
+
+<br /><b>@Html.Label("Tarifas de " + Model.Lodging.FirstName + " " + Model.Lodging.LastName): @Model.Count</b><br />
+
+<table id="Rates">
+<thead>
+<tr>
+    <th><span>Habit.</span></th>
+    <th><span>Fecha</span></th>
+    <th><span>Cupo Max.</span></th>
+    <th><span>Cupo Reservado</span></th>
+    <th><span>RACDTR</span></th>
+    <th><span>EXTCDTR</span></th>
+    <th><span>MERCDTR</span></th>
+    <th><span>RASDTR</span></th>
+    <th><span>EXTSDTR</span></th>
+    <th><span>MERSDTR</span></th>
+    <th><span>RACDTNR</span></th>
+    <th><span>EXTCDTNR</span></th>
+    <th><span>MERCDTNR</span></th>
+    <th><span>RASDTNR</span></th>
+    <th><span>EXTSDTNR</span></th>
+    <th><span>MERSDTNR</span></th>
+    <th><span>Acciones</span></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var s in Model.Rates)
+{
+<tr rateId="@s.Id">
+    <td>@(s.UnidadAlojamiento.RoomName)</td>
+    <td>@(s.Fecha.ToString("dd/MM/yyyy"))</td>
+    <td>@(s.CupoMaximo)</td>
+    <td>@(s.CupoReservado)</td>
+    <td>@(s.MontoRACDTR)</td>
+    <td>@(s.MontoEXTCDTR)</td>
+    <td>@(s.MontoMERCDTR)</td>
+    <td>@(s.MontoRASDTR)</td>
+    <td>@(s.MontoEXTSDTR)</td>
+    <td>@(s.MontoMERSDTR)</td>
+    <td>@(s.MontoRACDTNR)</td>
+    <td>@(s.MontoEXTCDTNR)</td>
+    <td>@(s.MontoMERCDTNR)</td>
+    <td>@(s.MontoRASDTNR)</td>
+    <td>@(s.MontoEXTSDTNR)</td>
+    <td>@(s.MontoMERSDTNR)</td>
+    <!--<td>(Model.SeasonTypes.Single(st => st.SeasonTypeId == s.SeasonTypeId).SeasonTypeName)</td>
+    <td>(s.Deadline)</td>
+    <td>(s.Enabled ? "Sí" : "No")</td>-->
+    <td>
+        <a class="link_options" href="@Url.Content("~/Rate/EditRate/"+s.Id)"><img src="@Url.Content("~/Content/edit.png")" title="Editar" /></a>
+        <a href="#" onclick="deleteRate('@s.Id')"><img src="@Url.Content("~/Content/delete.png")" title="Eliminar" /></a>
+    </td>
+</tr>
+}
+</tbody>
+</table>
+
+
+<a id="new_rate" class="link_options link-button" href="#" >Nueva tarifa</a>
+<a id="cierres" class="link_options link-button" href="#" >Cupos</a>
+<a id="tarifas" class="link_options link-button" href="#">Tarifas</a>
+
+
+

@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ineltur.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.ineltur.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.ineltur.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peticion" type="tns:PeticionLogin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionLogin">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PeticionBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PeticionBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdiomaDeseado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="tns:RespuestaLogin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaLogin">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RespuestaBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Apellido" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RespuestaBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Estado" type="tns:EstadoRespuesta" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeEstado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EstadoRespuesta">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ok" />
+          <s:enumeration value="NoEncontrado" />
+          <s:enumeration value="NoHayCupo" />
+          <s:enumeration value="OperacionFallida" />
+          <s:enumeration value="ErrorParametro" />
+          <s:enumeration value="ErrorInterno" />
+          <s:enumeration value="CredencialesNoValidas" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="BuscarMisReservas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peticion" type="tns:PeticionBuscarMisReservas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionBuscarMisReservas">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PeticionBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReservationCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SearchParameter" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="BuscarMisReservasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarMisReservasResult" type="tns:RespuestaBuscarMisReservas" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaBuscarMisReservas">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RespuestaBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MisReservas" type="tns:ArrayOfReserva" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfReserva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Reserva" nillable="true" type="tns:Reserva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Reserva">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CodigoReserva" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstadoPago" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstadoReserva" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAlta" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaVencimiento" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdAlojamiento" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdFormaDePago" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdMoneda" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdPu" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdSitioOrigen" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoFormaDePago" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTransaccion" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUsuario" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoTotalConDescuento" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoTotalSinDescuento" nillable="true" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreAlojamiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreFormaDePago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombrePasajero" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoTransaccion" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unidades" type="tns:ArrayOfInfoUnidadReservada" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInfoUnidadReservada">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoUnidadReservada" nillable="true" type="tns:InfoUnidadReservada" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoUnidadReservada">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFin" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreHabitacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoTotal" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUnidad" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BuscarPreciosSemanalesHotel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="peticion" type="tns:PeticionInfoAlojamiento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionInfoAlojamiento">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PeticionBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdAlojamiento" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="BuscarPreciosSemanalesHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BuscarPreciosSemanalesHotelResult" type="tns:RespuestaInfoCuposSemanalesAlojamiento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaInfoCuposSemanalesAlojamiento">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RespuestaBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Alojamiento" type="tns:InfoCuposAlojamiento" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="InfoCuposAlojamiento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdAlojamiento" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unidades" type="tns:ArrayOfInfoUnidadConCupos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInfoUnidadConCupos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoUnidadConCupos" nillable="true" type="tns:InfoUnidadConCupos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoUnidadConCupos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdUnidad" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreUnidad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Personas" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Camas" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Disponibles" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoPorUnidad" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cupos" type="tns:ArrayOfCupoUnidades" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCupoUnidades">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CupoUnidades" nillable="true" type="tns:CupoUnidades" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CupoUnidades">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Activo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BloaqueadoPorPromo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupomaximo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CupoReservado" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha_Alta" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdCupoUnidad" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdUnidadAloj" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="MarcaTemporada" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Monto" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchHotels">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="petition" type="tns:PeticionBuscarAlojamientos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PeticionBuscarAlojamientos">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PeticionBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IdDestino" type="s1:guid" />
+              <s:element minOccurs="1" maxOccurs="1" name="TipoDestino" type="tns:TipoDestino" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FechaFin" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="TipoAlojamiento" nillable="true" type="tns:TipoAlojamiento" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion1" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion2" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion3" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion4" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion5" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Habitacion6" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Orden" nillable="true" type="tns:OrdenAlojamientos" />
+              <s:element minOccurs="0" maxOccurs="1" name="Nacionalidad" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NombreAlojamiento" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="TipoDestino">
+        <s:restriction base="s:string">
+          <s:enumeration value="Ciudad" />
+          <s:enumeration value="Provincia" />
+          <s:enumeration value="Region" />
+          <s:enumeration value="NoEspecificado" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TipoAlojamiento">
+        <s:restriction base="s:string">
+          <s:enumeration value="SinTipoAlojamiento" />
+          <s:enumeration value="ApartHotel" />
+          <s:enumeration value="BandB" />
+          <s:enumeration value="Bodega" />
+          <s:enumeration value="Bungalows" />
+          <s:enumeration value="Cabanyas" />
+          <s:enumeration value="ComplejoTuristico" />
+          <s:enumeration value="EstanciaRanches" />
+          <s:enumeration value="Hospedaje" />
+          <s:enumeration value="Hostal" />
+          <s:enumeration value="Hosteria" />
+          <s:enumeration value="Hotel" />
+          <s:enumeration value="HotelBoutique" />
+          <s:enumeration value="HotelSpa" />
+          <s:enumeration value="Lodge" />
+          <s:enumeration value="Motel" />
+          <s:enumeration value="Parador" />
+          <s:enumeration value="Posada" />
+          <s:enumeration value="Resort" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="OrdenAlojamientos">
+        <s:restriction base="s:string">
+          <s:enumeration value="PorNombre" />
+          <s:enumeration value="PorPrecio" />
+          <s:enumeration value="PorCategoria" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SearchHotelsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchHotelsResult" type="tns:RespuestaBuscarAlojamientosEInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaBuscarAlojamientosEInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RespuestaBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AlojamientosDisponibles" type="tns:ArrayOfInfoAlojamientoDisponibleCompleta" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfInfoAlojamientoDisponibleCompleta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoAlojamientoDisponibleCompleta" nillable="true" type="tns:InfoAlojamientoDisponibleCompleta" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoAlojamientoDisponibleCompleta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Destino" type="tns:InfoDestino" />
+          <s:element minOccurs="0" maxOccurs="1" name="Alojamiento" type="tns:InfoAlojamiento" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoAlojamiento" nillable="true" type="tns:TipoAlojamiento" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdAlojamiento" nillable="true" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Moneda" nillable="true" type="tns:Moneda" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa1" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa2" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa3" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa4" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa5" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifa6" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo1" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo2" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo3" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo4" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo5" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cupo6" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoDestino">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdDestino" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoDestino" type="tns:TipoDestino" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreDestino" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoAlojamiento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdAlojamiento" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Destino" type="tns:InfoDestino" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="tns:TipoAlojamiento" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categoria" type="tns:CategoriaAlojamiento" />
+          <s:element minOccurs="0" maxOccurs="1" name="PoliticasCancelacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoAlojamientoUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoAlojamientoDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoUrlLista" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoDescripcionLista" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amenidades" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Regimen" type="tns:RegimenAlojamiento" />
+          <s:element minOccurs="1" maxOccurs="1" name="BajoPeticion" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Moneda" type="tns:Moneda" />
+          <s:element minOccurs="0" maxOccurs="1" name="Unidades" type="tns:ArrayOfInfoUnidad" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitud" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Longitud" nillable="true" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CategoriaAlojamiento">
+        <s:restriction base="s:string">
+          <s:enumeration value="OtraCategoria" />
+          <s:enumeration value="SinCategoria" />
+          <s:enumeration value="Estrellas1" />
+          <s:enumeration value="Estrellas2" />
+          <s:enumeration value="Estrellas3" />
+          <s:enumeration value="Estrellas4" />
+          <s:enumeration value="Estrellas5" />
+          <s:enumeration value="Estrellas6" />
+          <s:enumeration value="Estrellas7" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RegimenAlojamiento">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoInformado" />
+          <s:enumeration value="Desayuno" />
+          <s:enumeration value="MediaPension" />
+          <s:enumeration value="PensionCompleta" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Moneda">
+        <s:restriction base="s:string">
+          <s:enumeration value="ARS" />
+          <s:enumeration value="USD" />
+          <s:enumeration value="EUR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInfoUnidad">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoUnidad" nillable="true" type="tns:InfoUnidad" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoUnidad">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdUnidad" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreUnidad" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Personas" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Camas" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Disponibles" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MontoPorUnidad" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarMisReservasSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarMisReservas" />
+  </wsdl:message>
+  <wsdl:message name="BuscarMisReservasSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarMisReservasResponse" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPreciosSemanalesHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BuscarPreciosSemanalesHotel" />
+  </wsdl:message>
+  <wsdl:message name="BuscarPreciosSemanalesHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BuscarPreciosSemanalesHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchHotelsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchHotels" />
+  </wsdl:message>
+  <wsdl:message name="SearchHotelsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchHotelsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiciosSoapSoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarMisReservas">
+      <wsdl:input message="tns:BuscarMisReservasSoapIn" />
+      <wsdl:output message="tns:BuscarMisReservasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPreciosSemanalesHotel">
+      <wsdl:input message="tns:BuscarPreciosSemanalesHotelSoapIn" />
+      <wsdl:output message="tns:BuscarPreciosSemanalesHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchHotels">
+      <wsdl:input message="tns:SearchHotelsSoapIn" />
+      <wsdl:output message="tns:SearchHotelsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiciosSoapSoap" type="tns:ServiciosSoapSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.ineltur.com/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarMisReservas">
+      <soap:operation soapAction="http://www.ineltur.com/BuscarMisReservas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPreciosSemanalesHotel">
+      <soap:operation soapAction="http://www.ineltur.com/BuscarPreciosSemanalesHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchHotels">
+      <soap:operation soapAction="http://www.ineltur.com/SearchHotels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiciosSoap">
+    <wsdl:port name="ServiciosSoapSoap" binding="tns:ServiciosSoapSoap">
+      <soap:address location="http://localhost:61275/Servicios.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

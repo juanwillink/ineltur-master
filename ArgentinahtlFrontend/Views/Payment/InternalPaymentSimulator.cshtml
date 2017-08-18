@@ -1,0 +1,46 @@
+﻿@using CheckArgentina.Commons
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm("ProcessPaymentSimulation", "Payment"))
+    {
+        <div>
+            @Html.Hidden("ProcessAction", "Refuse").AddAttribute("runat", "server")
+
+            <h1>Simulador de pago con tarjeta de crédito</h1>
+
+            <h2>Este es un simulador de pago mediante tarjetas de crédito.</h2>
+
+            @*<ul>
+                <li>OrderCode = <label id="OrderCode"><%= Request.Form["OrderCode"] %></label></li>
+                <li>ShopCode = <label id="ShopCode"><%= Request.Form["ShopCode"]%></label></li>
+                <li>OrderAmount = <label id="OrderAmount"><%= Request.Form["OrderAmount"]%></label></li>
+                <li>Currency = <label id="Currency"><%= Request.Form["Currency"]%></label></li>
+                <li>AutomaticCapture = <label id="AutomaticCapture"><%= Request.Form["AutomaticCapture"]%></label></li>
+                <li>UserDocId = <label id="UserDocId"><%= Request.Form["UserDocId"]%></label></li>
+                <li>UserDocNumber = <label id="UserDocNumber"><%= Request.Form["UserDocNumber"]%></label></li>
+                <li>UserEmail = <label id="UserEmail"><%= Request.Form["UserEmail"]%></label></li>
+                <li>UserFirstName = <label id="UserFirstName"><%= Request.Form["UserFirstName"]%></label></li>
+                <li>UserLastName = <label id="UserLastName"><%= Request.Form["UserLastName"]%></label></li>
+            </ul>*@
+
+            @Html.Label("Clave")
+            @Html.Password("clave").AddAttribute("runat", "server")
+
+            @Html.Button("Aceptar Pago", new Dictionary<string, object> { { "id", "btnAcceptPayment" }, { "onclick", "javascript:$('#ProcessAction').val('Accept');" } }, true)
+            @Html.Button("Rechazar Pago", new Dictionary<string, object> { { "id", "btnRefusePayment" }, { "onclick", "javascript:$('#ProcessAction').val('Refuse');" } }, true)
+        </div>
+        Html.EndForm();
+    }
+</body>
+</html>

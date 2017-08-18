@@ -1,0 +1,98 @@
+﻿@using CheckArgentina.Commons;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Argentina HTL</title>
+    @Html.Partial("_HeadScripts")
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+</head>
+
+<body>
+    <div class="container-fluid" style="padding: 0px;">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse-navbar" aria-expanded="true">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/Home/Home" class="navbar-brand">
+                        <img src="~/Content/Images/logo.jpg" class="logo-image"/>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="collapse-navbar">
+                    @Html.Partial("Menu")
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </div>
+    @{ Html.RenderPartial("~/Views/Modals/ReservationModal.cshtml"); }
+    @{ Html.RenderPartial("~/Views/Modals/LodgingDetailsModal.cshtml"); }
+    @{ Html.RenderPartial("~/Views/Modals/LodgingPricesModal.cshtml"); }
+    @{ Html.RenderPartial("~/Views/Modals/AgregarPasajeroModal.cshtml"); }
+
+<script>
+    $(function () {
+        var date = new Date();
+        date.setDate(date.getDate() + 4);
+        $('#datetimepickerCheckin').datetimepicker({
+            format: "YYYY-MM-DD",
+            minDate: date,
+            useCurrent: false
+        });
+        $('#datetimepickerCheckout').datetimepicker({
+            format: "YYYY-MM-DD",
+            useCurrent: false,
+            widgetPositioning: {
+                horizontal: 'right',
+                vertical: 'top'
+            }//Important! See issue #1075
+        });
+        $("#datetimepickerCheckin").on("dp.change", function (e) {
+            $('#datetimepickerCheckout').data("DateTimePicker").minDate(e.date.add(1, "days"));
+        });
+
+        $("#datetimepickerCheckout").on("dp.change", function (e) {
+            CalcDateDiff();
+        });
+    });
+
+    function CalcDateDiff() {
+        var a = $('#datetimepickerCheckin').data("DateTimePicker").date();
+        var b = $('#datetimepickerCheckout').data("DateTimePicker").date();
+        var timeDiff = 0
+        if (b) {
+            timeDiff = (b - a) / 1000;
+        }
+        var DateDiff = Math.floor(timeDiff / (60 * 60 * 24));
+        var BalSecs = timeDiff - (DateDiff * (60 * 60 * 24));
+        $('#nightsCount').val(DateDiff)
+    }
+
+    $(function () {
+        var date = new Date();
+        date.setDate(date.getDate() + 4);
+        $('#datetimepickerCheckin2').datetimepicker({
+            minDate: date,
+            useCurrent: false
+        });
+        $('#datetimepickerCheckout2').datetimepicker({
+            useCurrent: false,
+            widgetPositioning: {
+                horizontal: 'right',
+                vertical: 'bottom'
+            }//Important! See issue #1075
+        });
+        $("#datetimepickerCheckin2").on("dp.change", function (e) {
+            $('#datetimepickerCheckout2').data("DateTimePicker").minDate(e.date);
+        });
+    });
+</script>
+</body>
+</html>

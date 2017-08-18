@@ -1,0 +1,22 @@
+﻿@model ArgentinahtlMVC.Models.TransactionModel
+           
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    function cancelTransaction() {
+        $.get('@Url.Content("~/Transaction/ProcessTransactionCancellation/")@(Model.ReservationCode)', function (data) {
+            showNotification(data);
+        });
+
+        $.colorbox.close();
+
+        return false;
+    }
+</script>
+
+<div class="modal-dialog">
+<h3>¿Seguro que desea cancelar la reserva?</h3>
+
+<a href="#" onclick="cancelTransaction()" style="float:right;margin-bottom:10px;">Sí, cancelar</a>
+</div>

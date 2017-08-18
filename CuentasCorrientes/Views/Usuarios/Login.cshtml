@@ -1,0 +1,44 @@
+﻿@model Ineltur.CuentasCorrientes.Modelos.ModeloLogin
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = "~/Views/Shared/_NoLayout.cshtml";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+@using (Html.BeginForm()) {
+    <div id="loginform">
+        <div id="title">
+            <h2>CUENTAS CORRIENTES</h2>
+            <h3>Ineltur</h3>
+        </div>
+
+        <div>
+            <span class="legend">@ViewBag.Title</span>
+
+            <div class="editor-label">@Html.LabelFor(m => m.NombreUsuario)</div>
+            
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.NombreUsuario)
+                @Html.ValidationMessageFor(m => m.NombreUsuario)
+            </div>
+
+            <div class="editor-label">@Html.LabelFor(m => m.Contrasenya)</div>
+            
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.Contrasenya)
+                @Html.ValidationMessageFor(m => m.Contrasenya)
+            </div>
+
+            <div class="editor-label">
+                @Html.CheckBoxFor(m => m.Recordarme)
+                @Html.LabelFor(m => m.Recordarme)
+            </div>
+
+            <p><input type="submit" value="Iniciar sesión" /></p>
+
+            @Html.ValidationSummary(true, "Inicio de sesión fallido. Por favor corrija los errores:")
+        </div>
+    </div>
+}

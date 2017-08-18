@@ -1,0 +1,8 @@
+﻿@if (Request.IsAuthenticated) {
+    @:Bienvenid@@ <b>@Context.User.Identity.Name</b>!
+    @:[ @Html.ActionLink("Salir", "Logout", "Usuarios") @Html.ActionLink("Cambiar Contraseña", "ChangePassword", "Users") ]
+}
+else
+{
+    @:[ @Html.ActionLink("Iniciar Sesión", "Login", "Usuarios") ]
+}

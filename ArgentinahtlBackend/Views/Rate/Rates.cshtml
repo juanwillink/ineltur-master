@@ -1,0 +1,171 @@
+﻿@model ArgentinahtlMVC.Models.SeasonsModel
+
+@{
+    ViewBag.Title = "Listado de Temporadas";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+@using ArgentinahtlMVC.Models;
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Atrás", "Menu", "Lodging")</span></h2>
+
+@*@Html.ValidationSummary(false, "Búsqueda incorrecta. Por favor, corrija los siguientes errores:")*@
+
+<script type="text/javascript">
+    $(function () {
+        var options = {
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-1:+0'
+        };
+
+        $.datepicker.setDefaults({
+            dateFormat: options.dateFormat,
+            yearRange: options.yearRange
+        });
+
+        $('#fechaDesde, #fechaHasta').datepicker();
+
+        $('#fechaDesde').change(function () {
+            $('#fechaHasta').datepicker('option', { minDate: addTimeToDate(1, 'd', $(this).datepicker('getDate'), false) });
+        });
+
+        $('#provinces').change(function () {
+            loadCities();
+        });
+
+        $('#cities').change(function () {
+            loadLodgings();
+        });
+
+        $('#lodgings').change(function () {
+            loadRooms();
+        });
+
+        $('#rooms').change(function () {
+            loadRateList('{' + $('#lodgings > option:selected').attr('value') + '}',
+                         '{' + $('#rooms > option:selected').attr('value') + '}',
+                         '{' + $("#fechaDesde").val() + '}',
+                         '{' + $("#fechaHasta").val() + '}');
+
+        });
+
+        //        $('#lodgingId').change(function () {
+        //            loadSeasonList('{' + $('#lodgingId').val() + '}');
+        //        });
+
+        //        $('#roomId').change(function () {
+        //            loadRateList('{' + $('#lodgings > option:selected').attr('value') + '}',
+        //                         '{' + $('#roomId').val() + '}',
+        //                         '{' + $('#fechaDesde').attr('value') + '}',
+        //                         '{' + $('#fechaHasta').attr('value') + '}');
+        //        });
+
+        $('#provinces').change();
+
+        $('.byDestination *').enable();
+    });
+
+    function loadCities() {
+        $.getJSON('@Url.Content("~/Lodging/GetCities/{")' + $('#provinces > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.DestinationId + "\">" + state.DestinationName + "</option>";
+            });
+            $('#cities').html(items);
+        });
+    }
+
+    function loadLodgings() {
+        $.getJSON('@Url.Content("~/Lodging/GetLodgings/{")' + $('#cities > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.LodgingId + "\">" + state.FirstName + state.LastName + "</option>";
+            });
+            $('#lodgings').html(items);
+        });
+    }
+
+    function loadRooms() {
+        $.getJSON('@Url.Content("~/Rate/GetRooms/{")' + $('#lodgings > option:selected').attr('value') + '}', function (data) {
+            var items = "<option value=\"\"></option>";
+            $.each(data, function (i, state) {
+                items += "<option value=\"" + state.RoomId + "\">" + state.RoomName + "</option>";
+            });
+            $('#rooms').html(items);
+       });
+    }
+
+    function loadRateList(lodgingId, roomId, fechaDesde, fechaHasta) {
+        if (lodgingId != null && lodgingId != '' && lodgingId != '{}') {
+            $('#transaction_list').fadeTo('slow', '0.3');
+            var notification = showNotification('Actualizando lista...', 'info');
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Content("~/Rate/RateList")',
+                data: { lodgingId: lodgingId, roomId: roomId, fechaDesde: fechaDesde, fechaHasta: fechaHasta },
+                dataType: "html",
+                traditional: true,
+                success: function (data) {
+                    $('#rate_list').html(data);
+                    $('#transaction_list').fadeTo('slow', '1');
+                    $("#new_rate").prop("href", '@Url.Content("~/Rate/CreateRate/{")' + $('#rooms > option:selected').attr('value') + '}');
+                    $("#cierres").prop("href", '@Url.Content("~/Rate/Cierres/?lodgingId=")' + $('#lodgings > option:selected').attr('value') + '&' +
+                                                                            'roomId=' + $('#rooms > option:selected').attr('value') + '&' +
+                                                                            'fechaDesde=' + $("#fechaDesde").val() + '&' +
+                                                                            'fechaHasta=' + $("#fechaHasta").val());
+                    $("#tarifas").prop("href", '@Url.Content("~/Rate/Tarifas/?lodgingId=")' + $('#lodgings > option:selected').attr('value') + '&' +
+                                                                            'roomId=' + $('#rooms > option:selected').attr('value') + '&' +
+                                                                            'fechaDesde=' + $("#fechaDesde").val() + '&' +
+                                                                            'fechaHasta=' + $("#fechaHasta").val());
+                    notification.close();
+                    showNotification('Lista actualizada', 'info');
+                },
+                error: function (data) {
+                    $('#transaction_list').fadeTo('slow', '1');
+                    notification.close();
+                    showNotification('Error al actualizar la lista', 'error');
+                }
+            });
+        }
+    }
+
+    function refreshRateList() {
+        loadRateList('{' + $('#lodgings > option:selected').attr('value') + '}',
+                         '{' + $('#rooms > option:selected').attr('value') + '}',
+                         '{' + $("#fechaDesde").val() + '}',
+                         '{' + $("#fechaHasta").val() + '}');
+        return false;
+    }
+</script>
+
+<div class="filter-container">
+    <div class="filter-group">
+        <div id="filters_by_destination" class="byDestination radio-filter">
+            @Html.Label("Desde"): @Html.TextBox("fechaDesde")
+            @Html.Label("Hasta"): @Html.TextBox("fechaHasta")
+            <br />
+            @Html.Label("Provincia"): @Html.DropDownList("provinces",
+                Model.Provinces.Select(d => new SelectListItem { Text = d.DestinationName, Value = d.DestinationId.ToString() }))
+
+            @Html.Label("Ciudad"): @Html.DropDownList("cities", new List<SelectListItem>())
+
+            <br />
+
+            @Html.Label("Alojamiento"): @Html.DropDownList("lodgings", new List<SelectListItem>())
+             <br />
+
+            @Html.Label("Habitación"): @Html.DropDownList("rooms", new List<SelectListItem>())
+        </div>
+    </div>
+</div>
+
+<br /><br />
+<a class="link-button" href="#" onclick="refreshRateList()" style="float:left;clear:both;margin-bottom:2em;">Refrescar</a>
+
+<br /><br />
+
+<div id="rate_list" style="float:left;clear:both;">
+@Html.Partial("RateList", new RateListModel())
+</div>

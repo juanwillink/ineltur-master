@@ -1,0 +1,201 @@
+﻿@{
+    Layout = "~/Views/Shared/_ResultLayout.cshtml";
+}
+
+@model CheckArgentina.Models.LodgingListModel
+@using CheckArgentina.Commons
+<div class="panel results-panel">
+    @*<div class="result-filter rounded roundedAuxiliarColor">
+        <h3>Filtrar la búsqueda</h3>
+        <div class="element-filter">
+            <label>Precio</label>
+            
+        </div>
+    </div>*@
+    <div class="panel-heading">
+        <h2>Resultados de la búsqueda</h2>
+    </div>
+    <div class="panel-body">
+        
+        
+        <div class="result-list">
+            @if (Model.Lodgings.Count() == 0)
+            {
+                <div class="no-results">
+                    No se encontraron resultados.
+                </div>
+            }
+            else
+            {
+                if (Model.DisplayType == "tar")
+                {
+                    <table class="table table-hover">
+                        <thead style="background-color: #00125A; color: #ffffff">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Direccion</th>
+                                <th>Tarifa en $</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    @foreach (var lodging in Model.Lodgings)
+                    {
+                        Html.RenderPartial("LodgingTable", lodging);
+                    }
+                        </tbody>
+                    </table>
+                }
+                else if (Model.DisplayType == "det")
+                {
+                    foreach (var lodging in Model.Lodgings)
+                    {
+                        Html.RenderPartial("Lodging", lodging);
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+@*<div class="modal fade" id="lodging-prices-modal" tabindex="-1" role="dialog" aria-labelledby="lodging-prices-modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="lodgingId" name="lodgingId" />
+                <input type="hidden" id="firstWeekDay" name="dateString" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="lodging-prices-modalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                
+                <button class="btn btn-sm btn-default" onclick="oneLessWeek()">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </button>
+                <label>Ver Fechas</label>     
+                <button class="btn btn-sm btn-default" onclick="oneMoreWeek()">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </button> 
+                <label style="display: inline-block; margin-left: 20px;">Seleccione fecha</label>
+                <input type="text" name="searchDate" value="" id="searchDate" class="form-control" style="display: inline-block; width: auto;" />
+                <button class="btn btn-sm btn-default" onclick="searchSpecificDate()">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button><br /><br />
+                <div id="spinnerModal" hidden style="margin-top: 50%;">
+
+                </div>
+                <table class="table table-curved" id="PricesTable" hidden></table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+@*<div class="modal fade" id="lodging-details-modal" tabindex="-1" role="dialog" aria-labelledby="lodging-details-modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="lodgingDetailsId" name="lodgingId" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="lodging-details-modalLabel"></h4>
+                <p id="lodging-details-modal-location"></p>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#Ubicacion" aria-controls="Ubicacion" role="tab" data-toggle="tab">Ubicacion</a></li>
+                    <li role="presentation"><a href="#Servicios" aria-controls="Servicios" role="tab" data-toggle="tab">Servicios</a></li>
+                    <li role="presentation"><a href="#Fotos" aria-controls="Fotos" role="tab" data-toggle="tab">Fotos</a></li>
+                    <li role="presentation"><a href="#Politicas" aria-controls="Fotos" role="tab" data-toggle="tab">Politicas de Cancelacion</a></li>
+                    <li role="presentation" onclick="GetHotelRoomsInfo()"><a href="#InfoUnidades" aria-controls="Politicas" role="tab" data-toggle="tab">Unidades</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="Ubicacion">
+                        <br />
+                        <div id="supermap">
+
+                        </div>
+                        <br />
+                        <div class="col-md-6" id="UbicacionDiv">
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active" id="Servicios">
+                        <br />
+                        <div class="col-md-12" id="ServiciosDiv" style="text-align: center;">
+
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active" id="Fotos">
+                        <br />
+                        <div class="col-md-12">
+                            <div id="carousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active" id="carousel-foto0">
+                                        
+                                    </div>
+                                    <div class="item" id="carousel-foto1">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto2">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto3">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto4">
+
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active" id="Politicas">
+                        <br />
+                        <div class="row" style="margin: 0 5% 0 5%;">
+                            <div class="col-md-6" id="PoliticasDiv">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active" id="InfoUnidades">
+                        <br />
+                        <div class="row" style="margin: 0 5% 0 5%;">
+                            <div class="col-md-6" id="UnitsInfoDiv">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="LoadingModal" hidden>
+                <h3>Cargando...</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+

@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "ArgentinaHTl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using CheckArgentina.Commons;
+
+@model CheckArgentina.Models.MyReservationListModel
+
+    <div class="container" style="margin-top: 20px;">
+        <div class="panel">
+            <div class="panel-heading">
+                <h1>Mis Reservas</h1>
+                <form action="/Login/BuscarMisReservas" method="post">
+                    <div class="radio">
+                        <label><input type="radio" name="searchParameter" value="busqNuevas" onclick="hideREservationCodeField()">Reservas Nuevas</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="searchParameter" value="busqHistoricas" onclick="hideReservationCodeField()">Reservas Historicas</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="searchParameter" value="busqCodigo" id="busqCodigo" onclick="showReservationCodeField()">Reservas por Codigo</label>
+                        <input hidden type="text" name="reservationCode" id="codigoReserva"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+            </div>
+            <div class="panel-body scrollablePage">
+                <div class="content">
+                    @if (Model.MyReservations.Count > 0)
+                    {
+                        foreach (var reserve in Model.MyReservations)
+                        {
+                            Html.RenderPartial("MyReservationDetail", reserve);
+
+                        }
+                    }
+                    else
+                    {
+                        <h3>No se encontraron reservas, pruebe buscar las reservas historicas</h3>
+                    }
+                </div>        
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="PaymentModal" tabindex="-1" role="dialog" aria-labelledby="PaymentModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="paymentModalLabel">Confirmar Reserva</h4>
+                </div>
+                <div class="modal-body">    
+                    <p>Seleccione el archivo de confirmacion de su deposito para subirlo asi nosotros podemos dar como efectiva su reserva.</p>
+                    <form action="/Home/SendDepositConfirmation" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Archivo de deposito</label>
+                            <input type="file" id="pdfDeposito" accept="application/pdf" name="file">
+                            <input hidden type="text" name="codigoReserva" id="codigoReservaInput"/>
+                            <input hidden type="text" name="nombreAlojamiento" id="nombreAlojamientoInput" />
+                        </div>
+                        <div class="modal-footer" style="margin-bottom: 0; padding-bottom: 0;">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Subir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="CancelationModal" tabindex="-1" role="dialog" aria-labelledby="CancelationModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="CancelationModalLabel">Cancelar Reserva</h3>
+                </div>
+                <div class="modal-body">
+                    <h4 id="cancelationText"></h4>
+                    <form action="/National/CancelReservation" method="post">
+                        <input type="text" name="reservationCode" id="reservationCode" hidden/>
+                        <button type="submit" class="btn btn-danger">Cancelar Reserva</button>
+                        <button class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openPaymentModal(nombreAlojamiento, codigoReserva) {
+            $('#PaymentModal').modal({
+                show: true
+            });
+            $('#PaymentModal').find('.modal-title').text('Confirmar reserva ' + codigoReserva + ' en ' + nombreAlojamiento)
+            $('#PaymentModal').find('#codigoReservaInput').val(codigoReserva)
+            $('#PaymentModal').find('#nombreAlojamientoInput').val(nombreAlojamiento)
+        }
+
+        function openCancelationModal(nombreAlojamiento, codigoReserva) {
+            $('#CancelationModal').modal({
+                show: true
+            });
+            $('#CancelationModal').find('.modal-title').text('Cancelar reserva ' + codigoReserva + ' en ' + nombreAlojamiento)
+            $('#CancelationModal').find('#cancelationText').text("Esta seguro que desea cancelar la reserva con codigo " + codigoReserva + " en el alojamiento " + nombreAlojamiento + "?")
+            $('#CancelationModal').find('#reservationCode').val(codigoReserva)
+        }
+
+        function showReservationCodeField(){
+            $('#codigoReserva').show()
+        };
+        function hideReservationCodeField() {
+            $('#codigoReserva').hide()
+        }
+    </script>

@@ -1,0 +1,455 @@
+﻿@model CheckArgentina.Models.ReservationModel
+@using CheckArgentina.Commons
+
+@{
+    Layout = null;
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    
+    var countries = string.Empty;
+    Model.Countries.Select(c => new SelectListItem() { Text = c.Value, Value = c.Key }).ToList()
+        .ForEach(c => countries += string.Format("<option value=\"{0}\" {1}>{2}</option>", c.Value, (c.Text == "Argentina" ? "selected" : string.Empty), c.Text));
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="@Href("~/Content/c-css.ashx?UserKey="+SessionData.User.UserId)" />
+    <link rel="stylesheet" type="text/css" href="@Href("~/Content/bootstrap.min.css")" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>  
+    <script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript" ></script>
+    <script src="@Url.Content("http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js")" type="text/javascript" ></script>
+    <script src="@Href("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript" ></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.ba-postmessage.min.js")" type="text/javascript"></script>
+    
+    <script src="@Href("~/Scripts/jquery.nicescroll.min.js")" type="text/javascript"></script>
+    <script src="@Href("~/Scripts/jquery.jWizard.min.js")" type="text/javascript"></script>
+
+    @*<script src="@Href("~/Scripts/check_functions.js")" type="text/javascript" ></script>*@
+    <script src="@Href("~/Scripts/check_functions.min.js")" type="text/javascript" ></script>
+    <script src="@Href("~/Scripts/check_functions.child.js")" type="text/javascript" ></script>
+
+    <script type="text/javascript">
+        $(function () {
+            sendGoTopMessage('iframe_results');
+
+            var options = {
+                dateFormat: 'yy-mm-dd',
+                yearRange: '-100:+0',
+                firstDay: 1,
+                minDate: null,
+                maxDate: 0,
+                changeMonth: true,
+                changeYear: true,
+                showOtherMonths: true
+            };
+
+            $.datepicker.setDefaults({
+                dateFormat: options.dateFormat,
+                yearRange: options.yearRange,
+                firstDay: options.firstDay,
+                minDate: options.minDate,
+                maxDate: options.maxDate,
+                changeMonth: options.changeMonth,
+                changeYear: options.changeYear,
+                showOtherMonths: options.showOtherMonths
+            });
+
+            $('.date-field').each(function () {
+                $(this).datepicker();
+            });
+
+            $('.room-traveler-container').each(function () {
+                addTraveler($(this).attr('id'), $(this).attr('vacancynumber'), $(this).attr('roomnumber'));
+            });
+
+//            $('.confirmation-list-container').jWizard({
+//                title: false,
+//                menu: false,
+//                progress: false,
+//                buttons: { cancel: null }
+//            });
+
+//            $('.confirmation-list').each(function () {
+//                $(this).niceScroll();
+//            });
+
+            $('.confirmation-list-container').each(function () {
+                $(this).niceScroll();
+            });
+        });
+
+        function addTraveler(roomTravelerContainerId, vacancyNumber, roomNumber) {
+            var travelerNumber = $('#' + roomTravelerContainerId + ' .room-traveler').length;
+
+            var htmlTraveler = '<div id="room_traveler_' + vacancyNumber + '_' + roomNumber + '_' + travelerNumber + '" class="room-traveler">';
+
+            if (travelerNumber > 0) {
+                htmlTraveler += '<button type="button" onclick="javascript: deleteTraveler(\'room_traveler_' + vacancyNumber + '_' + roomNumber + '_' + travelerNumber + '\'); return false;" class="btn btn-danger" style="float:right;">' +
+                    '<span class="glyphicon glyphicon-remove" style="color:white;"></span>' +
+                    '</button>';
+            }
+            else {
+                htmlTraveler += '<button type="button" onclick="javascript: copyFromOwner(\'room_traveler_' + vacancyNumber + '_' + roomNumber + '_' + travelerNumber + '\', ' + vacancyNumber + ', ' + roomNumber + ',' + travelerNumber + '); return false;" style="float:right;" class="btn btn-default">' +
+                    'Copiar datos del Titular' +
+                    '</button>';
+            }
+            
+            htmlTraveler += '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerCountry">País</label>' +
+                '    <select id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerCountry" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerCountry" class="form-control">' +
+                '       ' + $('#countries').val() +
+                '    </select>' +
+                '</div>' +
+                '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerFirstName">Nombre</label>' +
+                '    <input data-val="true" data-val-required="Debe indicar el nombre." id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerFirstName" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerFirstName" type="text" value="" class="form-control">' +
+                '</div>' +
+                '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerLastName">Apellido</label>' +
+                '    <input data-val="true" data-val-required="Debe indicar el apellido." id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerLastName" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerLastName" type="text" value="" class="form-control">' +
+                '</div>' +
+                '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerIdType">Tipo de identificación</label>' +
+                '    <select id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerIdType" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerIdType" class="form-control">' +
+                '        <option value="DNI">DNI</option>' +
+                '        <option value="LE">LE</option>' +
+                '        <option value="LC">LC</option>' +
+                '        <option value="CUIT">CUIT</option>' +
+                '        <option value="Pasaporte">Pasaporte</option>' +
+                '    </select>' +
+                '</div>' +
+                '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerId">Nro. de identificación</label>' +
+                '    <input data-val="true" data-val-required="Debe indicar el nro. de identificaci&amp;#243;n." id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerId" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerId" type="text" value="" class="form-control">' +
+                '</div>' +
+                '<div class="confirmation-field form-group">' +
+                '    <label for="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerBornDate">Fecha de Nac.</label>' +
+                '    <input data-val="true" data-val-required="Debe indicar la fecha de nacimiento." id="Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerBornDate" name="Vacancies[' + vacancyNumber + '].Rooms[' + roomNumber + '].Travelers[' + travelerNumber + '].TravelerBornDate" type="text" value="" class="date-field hasDatepicker form-control" >' +
+                '</div>' +
+                '<div class="clear">' +
+                '</div>' +
+                '</div><br/>';
+
+            $('#' + roomTravelerContainerId).append(htmlTraveler);
+
+            disableAddButton();
+            
+        }
+
+        function deleteTraveler(roomTravelerId) {
+            $('#' + roomTravelerId).remove();
+        }
+
+        function checkRoomTravelers() {
+//            $('.room-traveler-container').each(function () {
+//                if ($(this).attr('id'))
+//                addTraveler($(this).attr('id'), $(this).attr('vacancynumber'), $(this).attr('roomnumber'));
+//            });
+        }
+
+        function clearTraveler(roomTravelerId, vacancyNumber, roomNumber, travelerNumber) {
+            var room = $('#' + roomTravelerId);
+
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerCountry > option:selected').attr('value', '');
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerFirstName').val('');
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerLastName').val('');
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerIdType > option:selected').attr('value', '');
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerId').val('');
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerBornDate').val('');
+
+            return false;
+        }
+
+        function copyFromOwner(roomTravelerId, vacancyNumber, roomNumber, travelerNumber) {
+            if ($('#OwnerAsTraveler').val() != "")
+                clearTraveler($('#OwnerAsTraveler').val(), vacancyNumber, roomNumber, travelerNumber);
+
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerCountry option[value=' + $('#ReservationOwner_TravelerCountry').val() + ']').attr('selected', true);
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerFirstName').val($('#ReservationOwner_TravelerFirstName').val());
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerLastName').val($('#ReservationOwner_TravelerLastName').val());
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerIdType option[value=' + $('#ReservationOwner_TravelerIdType').val() + ']').attr('selected', true);
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerId').val($('#ReservationOwner_TravelerId').val());
+            $('#Vacancies_' + vacancyNumber + '__Rooms_' + roomNumber + '__Travelers_' + travelerNumber + '__TravelerBornDate').val($('#ReservationOwner_TravelerBornDate').val());
+
+            $('#OwnerAsTraveler').val(roomTravelerId);
+
+            return false;
+        }
+
+        function getRoomCapacity() {
+            var tipoDeHabitacion = $('#tipoDeHabitacion').text();
+            var cantidadDeHabitaciones = $('#cantidadDeHabitaciones').text();
+            debugger;
+            if (tipoDeHabitacion.indexOf('Cuadruple') !== -1) {
+                return 4 * cantidadDeHabitaciones;
+            } else if (tipoDeHabitacion.indexOf('Triple') !== -1) {
+                return (3 * cantidadDeHabitaciones);
+            } else if (tipoDeHabitacion.indexOf('Doble') !== -1) {
+                return 2 * cantidadDeHabitaciones;
+            } else if (tipoDeHabitacion.indexOf('Single') !== -1) {
+                return 1 * cantidadDeHabitaciones;
+            }
+            else {
+                return 10;
+            }
+        }
+
+        function disableAddButton() {
+            var travelers = $('[id^=room_traveler_0]');
+            var roomCapacity = getRoomCapacity();
+            debugger;
+            if (travelers.length >= roomCapacity) {
+                $('#addButton').prop('disabled', true);
+            } else {
+                $('#addButton').prop('disabled', false);
+            }
+        }
+
+    </script>
+</head>
+<body id="confirmation_body">
+    @Html.Hidden("countries", countries)
+    <div class="panel confirmation-panel">
+        <div class="panel-heading">
+            <h2>Confirmacion</h2>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("PaymentMethods", "Payment", FormMethod.Post, new { id = "confirmation_form" }))
+            {
+                
+
+                <div class="confirmation-container">
+
+                    <div class="confirmation-list-container">
+                        @if (Session["userkey"].ToString() == "7c918834-8c21-4b4c-b72b-1b8498e24304")
+                        {
+                        <div class="form-group">
+                            <label>Operar como:</label>
+                            <small>*Dejar vacio para operar como Mariajose</small>
+                            @Html.TextBoxFor(m => m.SecondaryUserName).AddClasses("form-control").AddAttribute("placeholder", "Ingrese el nombre de usuario con el que desea operar...")
+                            <script type="text/javascript">
+                                $('#SecondaryUserName').autocomplete({
+                                    source: function (request, response) {
+                                        $.ajax({
+                                            url: '@Url.Action("SearchUsers", "Home")',
+                                            dataType: 'json',
+                                            data: { username: request.term},
+                                            success: function (data) {
+                                                if (data.length == 0) {
+                                                    data.push({ UserName: "No encontrado", UserPass: null });
+                                                    $('#SecondaryUserName').val(null);
+                                                };
+                                                response($.map(data, function (item) {
+                                                    return { label: item.UserName + ", " + item.UserUsername, value: item.UserUsername, id: item.UserPass };
+                                                }));
+                                            }
+                                        });
+                                    },
+                                    minLength: 1,
+                                    select: function (event, ui) {
+                                        debugger
+                                        if (ui.item.id == null) return false;
+                                        $('#SecondaryUserPass').val(ui.item.id);
+                                    }
+                                });
+                            </script>
+                            @Html.HiddenFor(m => m.SecondaryUserPass)
+                        </div>
+                        }
+                        <div class="confirmation-list" title="Datos de su reserva">
+                            <h4>Datos de su reserva</h4>
+
+                            @Html.Label("Hotel: " + Model.LodgingName).AddInlineStyles("font-weight:bold; display:block;")
+                            @Html.Label("Checkin: " + Model.Vacancies.Min(v => v.VacancyCheckin).ToString("dd/MM/yyyy")).AddInlineStyles("display:block;")
+                            @Html.Label("Checkout: " + Model.Vacancies.Max(v => v.VacancyCheckout).ToString("dd/MM/yyyy")).AddInlineStyles("display:block;")
+
+                            @Html.HiddenFor(m => m.LodgingId)
+                            @Html.HiddenFor(m => m.LodgingName)
+                            @Html.HiddenFor(m => m.LodgingCurrency)
+                            @Html.HiddenFor(m => m.LodgingCurrencyCode)
+
+                            <ul style="padding-left: 0px">
+                                @foreach (var vacancy in Model.Vacancies)
+                                {
+                                    <li>
+                                        <div>
+                                            @{
+                                                var description = string.Empty;
+                                                vacancy.Rooms.ForEach(r => description += r.RoomName + " / ");
+                                                description = description.TrimEnd(' ', '/');
+                                            }
+                                            @Html.Label("Tipo de Habitacion: " + description).AddAttribute("id", "tipoDeHabitacion") <br />
+                                            @Html.Label("Cantidad de Habitaciones: ")@Html.Label(vacancy.VacancyReserved.ToString()).AddAttribute("id", "cantidadDeHabitaciones")<br />
+                                            @Html.Label("Precio por Noche: " + Model.LodgingCurrency + " " + vacancy.ConfirmedVacancyPrice.ToString())<br />
+                                            @Html.Label("Precio Total: " + Model.LodgingCurrency + " " + (vacancy.ConfirmedVacancyPrice * (decimal)(vacancy.VacancyCheckout - vacancy.VacancyCheckin).TotalDays).ToString())<br />
+                                            @if (!vacancy.Available)
+                                            {
+                                                @Html.Label(" - No disponible!").AddInlineStyles("color:red;float:left;")
+                                            }
+                                            else if (vacancy.VacancyPrice != vacancy.ConfirmedVacancyPrice)
+                                            {
+                                                @Html.Label(" - Precio modificado! Anterior: " + Model.LodgingCurrency + " " + vacancy.VacancyPrice).AddInlineStyles("color:red;float:left;")
+                                            }
+                                        </div>
+                                    </li>
+                                }   
+                            </ul>
+                            <div class="confirmation-field">
+                                @Html.LabelFor(m => m.Observations)
+                                @Html.TextAreaFor(m => m.Observations).AddClasses("form-control")
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="confirmation-list" title="Datos del pasajero titular">
+                            <h4>Datos del pasajero titular</h4>
+
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerCountry)
+                                @Html.DropDownListFor(m => m.ReservationOwner.TravelerCountry, Model.Countries.Select(c => new SelectListItem() { Text = c.Value, Value = c.Key, Selected = c.Value == "Argentina" })).AddClasses("form-control")
+                            </div>
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerFirstName)
+                                @Html.TextBoxFor(m => m.ReservationOwner.TravelerFirstName).AddClasses("form-control")
+                            </div>
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerLastName)
+                                @Html.TextBoxFor(m => m.ReservationOwner.TravelerLastName).AddClasses("form-control")
+                            </div>
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerIdType)
+                                @Html.DropDownListFor(m => m.ReservationOwner.TravelerIdType, new List<SelectListItem> {
+                                    new SelectListItem(){Text = "DNI", Value = "DNI"},
+                                    new SelectListItem(){Text = "LE", Value = "LE"},
+                                    new SelectListItem(){Text = "LC", Value = "LC"},
+                                    new SelectListItem(){Text = "CUIT", Value = "CUIT"},
+                                    new SelectListItem(){Text = "Pasaporte", Value = "Pasaporte"}
+                                }).AddClasses("form-control")
+                            </div>
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerId)
+                                @Html.TextBoxFor(m => m.ReservationOwner.TravelerId).AddClasses("form-control")
+                            </div>
+                            <div class="confirmation-field form-group">
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerBornDate)
+                                @Html.TextBoxFor(m => m.ReservationOwner.TravelerBornDate).AddClasses("date-field form-control")
+                            </div>
+                            <div class="confirmation-field form-group" hidden>
+                                @Html.LabelFor(m => m.ReservationOwner.TravelerEmail)
+                                @(Html.TextBoxFor(m => m.ReservationOwner.TravelerEmail)
+                            .AddAttribute("data-val", "true")
+                            //.AddAttribute("data-val-required", "Debe indicar el email del titular.")
+                            .AddAttribute("data-val-regex", @"^(\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)$")
+                            .AddAttribute("data-val-pattern", "Debe indicar el email del titular.").AddClasses("form-control"))
+                            </div>
+
+                            @if (!SessionData.User.UsesPaymentInterface)
+                            {
+                                <div class="confirmation-field form-group">
+                                    @Html.LabelFor(m => m.PaymentMethodId)
+                                    @Html.DropDownListFor(m => m.PaymentMethodId, Model.PaymentMethods.Select(pm => new SelectListItem() { Text = pm.Value, Value = pm.Key })).AddClasses("form-control")
+                                </div>
+                            }
+
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="confirmation-list" title="Datos de los pasajeros">
+                            <h4>Datos de los pasajeros</h4>
+
+                            @Html.Hidden("OwnerAsTraveler", "")
+
+                            @for (int i = 0; i < Model.Vacancies.Count; i++)
+                            {
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyId", i), Model.Vacancies[i].VacancyId)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyName", i), Model.Vacancies[i].VacancyName)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyCheckin", i), Model.Vacancies[i].VacancyCheckin)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyCheckout", i), Model.Vacancies[i].VacancyCheckout)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyCount", i), Model.Vacancies[i].VacancyCount)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyPrice", i), Model.Vacancies[i].VacancyPrice)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancyReserved", i), Model.Vacancies[i].VacancyReserved)
+                                @Html.Hidden(string.Format("Vacancies[{0}].VacancySelected", i), Model.Vacancies[i].VacancySelected)
+
+                                for (int k = 0; k < Model.Vacancies[i].VacancyDates.Count; k++)
+                                {
+                                    @Html.Hidden(string.Format("Vacancies[{0}].VacancyDates[{1}]", i, k), Model.Vacancies[i].VacancyDates[k])
+                                }
+
+                                <div id="@string.Format("Vacancy_{0}", Model.Vacancies[i].VacancyId)" class="lodging-vacancy-container">
+
+                                    <span id="@string.Format("span_vacancy_{0}", Model.Vacancies[i].VacancyId)">@Model.Vacancies[i].VacancyName</span>
+
+                                    @for (int j = 0; j < Model.Vacancies[i].Rooms.Count; j++)
+                                    {
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomId", i, j), Model.Vacancies[i].Rooms[j].RoomId)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomName", i, j), Model.Vacancies[i].Rooms[j].RoomName)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomType", i, j), Model.Vacancies[i].Rooms[j].RoomType)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomTypeCode", i, j), Model.Vacancies[i].Rooms[j].RoomTypeCode)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomAdults", i, j), Model.Vacancies[i].Rooms[j].RoomAdults)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomBeds", i, j), Model.Vacancies[i].Rooms[j].RoomBeds)
+                                        @Html.Hidden(string.Format("Vacancies[{0}].Rooms[{1}].RoomCount", i, j), Model.Vacancies[i].Rooms[j].RoomCount)
+
+                                        <div id="@string.Format("Room_{0}", Model.Vacancies[i].Rooms[j].RoomId.CleanString())" class="lodging-vacancy" style="color:black">
+                                            @if (Model.Vacancies[i].Rooms.Count > 1)
+                                            {
+                                                <span id="@string.Format("span_room_{0}", Model.Vacancies[i].Rooms[j].RoomId.CleanString())" style="color:black;">@Model.Vacancies[i].Rooms[j].RoomName</span>
+                                            }
+
+                                            <div id="@string.Format("room_traveler_container_{0}", Model.Vacancies[i].Rooms[j].RoomId.CleanString())" class="room-traveler-container" roomid="@Model.Vacancies[i].Rooms[j].RoomId" vacancynumber="@i" roomnumber="@j">
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <button type="button" id="addButton" onclick="javascript:addTraveler('@string.Format("room_traveler_container_{0}", Model.Vacancies[i].Rooms[j].RoomId.CleanString())', @i, @j); return false;" class="btn btn-default">
+                                                    Agregar pasajero
+                                                </button>
+                                            </div>
+                                            <br />
+                                        </div>
+                                    }
+                                </div>
+
+                                if (i < Model.Vacancies.Count - 1)
+                                {
+                                    <div class="clear" style="height:20px;"></div>
+                                }
+                            }
+
+                            <div class="confirmation-field">
+                                @Html.Label("confirmation_validation_error", string.Empty)
+                            </div>
+
+                            <div class="clear">
+                                @Html.ValidationSummary()
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    @(Html.Button("Continuar el pedido", true).AddId("confirmation_continue_button").AddClasses("btn btn-default btn-main"))
+
+                    @*@(Html.Button("Cancelar").AddId("confirmation_cancel_button").AddClasses("btn btn-danger")
+                            .AddAttribute("onclick", "javascript:document.location = '" + Request.UrlReferrer.ToString() + "';"))*@
+
+                    <div class="clear">
+                    </div>
+                </div>
+                Html.EndForm();
+            }
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    jQuery("#confirmation_form").submit(function (e) {
+        var self = this;
+        e.preventDefault();
+        $("#ReservationOwner_TravelerId").val("0");
+        self.submit()
+        return false; //is superfluous, but I put it here as a fallback
+    });
+</script>

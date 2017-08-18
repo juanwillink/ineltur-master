@@ -1,0 +1,44 @@
+﻿@model CheckArgentina.Models.NPSPaymentModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Redirecting</title>
+    <script src="@Url.Content("http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Scripts/jquery.ba-postmessage.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.ba-bbq.min.js")" type="text/javascript"></script>
+
+    <script src="@Href("~/Scripts/check_functions.min.js")" type="text/javascript" ></script>
+    <script src="@Href("~/Scripts/check_functions.child.js")" type="text/javascript" ></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var formObject = $('<form></form>', {
+                id: 'redirectResultNPS',
+                action: '@Url.Action("ProcessResultPaymentNPS")',
+                target: 'iframe_results',
+                method: 'post'
+            });
+
+
+            formObject.append('<input type="hidden" id="psp_TransactionId" name="psp_TransactionId" value="@Model.psp_TransactionId"/>');
+            formObject.append('<input type="hidden" id="psp_MerchTxRef" name="psp_MerchTxRef" value="@Model.psp_MerchTxRef"/>');
+
+            sendReservationResultMessage(formObject.toHtmlString(), window.opener.parent);
+
+            sendResizeMessage(window.opener.parent);
+            window.close();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        
+    </div>
+</body>
+</html>

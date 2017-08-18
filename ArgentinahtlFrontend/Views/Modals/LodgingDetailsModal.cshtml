@@ -1,0 +1,101 @@
+﻿<div class="modal fade bs-example-modal-lg" id="lodging-details-modal" tabindex="-1" role="dialog" aria-labelledby="lodging-details-modalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="lodgingDetailsId" name="lodgingId" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="lodging-details-modalLabel"></h4>
+                <p id="lodging-details-modal-location"></p>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" class="active"><a href="#Ubicacion" aria-controls="Ubicacion" role="tab" data-toggle="tab">Ubicacion</a></li>
+                        <li role="presentation"><a href="#Servicios" aria-controls="Servicios" role="tab" data-toggle="tab">Servicios</a></li>
+                        <li role="presentation"><a href="#Fotos" aria-controls="Fotos" role="tab" data-toggle="tab">Fotos</a></li>
+                        <li role="presentation"><a href="#Politicas" aria-controls="Fotos" role="tab" data-toggle="tab">Politicas de Cancelacion</a></li>
+                        <li role="presentation" onclick="GetHotelRoomsInfo()"><a href="#InfoUnidades" aria-controls="Politicas" role="tab" data-toggle="tab">Unidades</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="Ubicacion">
+                            <br />
+                            <div id="supermap" class="col-md-6" style="height: 400px;">
+
+                            </div>
+                            <br />
+                            <div class="col-md-6" id="UbicacionDiv">
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="Servicios">
+                            <br />
+                            <div class="col-md-12" id="ServiciosDiv">
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="Fotos">
+                            <br />
+                            <div id="carousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active" id="carousel-foto0">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto1">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto2">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto3">
+
+                                    </div>
+                                    <div class="item" id="carousel-foto4">
+
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: black;"></span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: black;"></span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                            </div>                           
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="Politicas">
+                            <br />
+                            <div class="col-md-12" id="PoliticasDiv">
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="InfoUnidades">
+                            <br />
+                            <div class="col-md-8 col-md-offset-2" id="UnitsInfoDiv">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="LoadingModal" hidden>
+                <h3>Cargando...</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

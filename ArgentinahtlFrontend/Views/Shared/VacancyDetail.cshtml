@@ -1,0 +1,23 @@
+﻿@model CheckArgentina.Models.VacancyModel
+@using CheckArgentina.Commons
+
+<div class="lodging-vacancy-detail">
+    @Html.HiddenFor(m => m.VacancyId)
+    <div class="lodging-vacancy-select">
+        @Html.CheckBoxFor(m => m.VacancySelected)
+    </div>
+    <div class="lodging-vacancy-description">
+        @{
+            var description = string.Empty;
+            Model.Rooms.ForEach(r => description += r.RoomName + " / ");
+            description.TrimEnd(' ', '/');
+         }
+        @Html.Label(description)
+    </div>
+    <div class="lodging-vacancy-date">
+        @Html.Label(Model.VacancyCheckin.ToString("dd/MM/yy"))
+    </div>
+    <div class="lodging-vacancy-date">
+        @Html.Label(Model.VacancyCheckout.ToString("dd/MM/yy"))
+    </div>
+</div>

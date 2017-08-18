@@ -1,0 +1,43 @@
+﻿@model ArgentinahtlMVC.Models.LogInModel
+
+@{
+    ViewBag.Title = "Entrar";
+    Layout = "~/Views/Shared/_NoLayout.cshtml";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+@using (Html.BeginForm()) {
+    <div id="loginform">
+        <div id="title">
+            <h2>Argentinahtl</h2>
+        </div>
+
+        <div>
+            <span class="legend">@ViewBag.Title</span>
+
+            <div class="editor-label">@Html.Label("Usuario")</div>
+            
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </div>
+
+            <div class="editor-label">@Html.Label("Contraseña")</div>
+            
+            <div class="editor-field">
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+
+            <div class="editor-label">
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.Label("Recordarme")
+            </div>
+
+            <p><input type="submit" value="Entrar" /></p>
+
+            @Html.ValidationSummary(true, "Error. Por favor, corrija los siguientes errores:")
+        </div>
+    </div>
+}

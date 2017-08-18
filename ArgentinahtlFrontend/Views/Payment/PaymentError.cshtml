@@ -1,0 +1,25 @@
+﻿@using CheckArgentina.Commons
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="@Href("~/Content/c-css.ashx?UserKey="+SessionData.User.UserId)" />
+
+    <script src="@Url.Content("http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.min.js")" type="text/javascript"></script>  
+    <script src="@Url.Content("http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.21/jquery-ui.min.js")" type="text/javascript" ></script>
+
+    <script src="@Href("~/Scripts/check_functions.js")" type="text/javascript" ></script>
+</head>
+<body>
+    <div class="payment-result-container rounded roundedLightMainColor">
+        <h3>Error</h3>
+        <p>Se produjo un error durante el pago de la reserva. Por favor, revise el problema y vuelva a intentarlo.</p>
+        <p>Muchas gracias por confiar en nosotros. Lo esperamos nuevamente.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿<div class="col-md-12" id="resultsContainer">
+    <br />
+    <h3 style="display: inline">Hoteles encontrados</h3> <button id="showFiltersButton" class="btn btn-main pull-right" onclick="showSearchFilters()">Mostrar Filtros</button> <br /> <br />
+    <div id="lodgingList"></div>
+    <h3>No encontro el hotel que busca?</h3>
+    <button class="btn btn-default" onclick="searchMoreHotels();">Mostrar mas Hoteles</button>
+</div>
+<div class="col-md-4" id="filtersDiv" hidden>
+    <form style="position: fixed; border-color: #162B66;" class="col-md-2 panel panel-default">
+        <h3>Filtros</h3>
+        <div class="form-group">
+            <label>Ordenar Por:</label>
+            <select class="form-control" id="orderFilter">
+                <option value="PorNombre">Nombre</option>
+                <option value="PorPrecio">Precios</option>
+                <option value="PorCategoria">Estrellas</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Visualizacion</label>
+            <select class="form-control" id="displaytypeFilter">
+                <option value="det">Detalles</option>
+                <option value="tar">Tarifas</option>
+            </select>
+        </div>
+        @*<div class="form-group">
+            <label>Tipo de Habitacion</label>
+            <select class="form-control" id="roomTypeFilter">
+                <option selected value="">Todas</option>
+                <option value="single">Single</option>
+                <option value="doble">Doble</option>
+                <option value="triple">Triple</option>
+                <option value="cuadruple">Cuadruple</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Nacionalidad</label>
+            <select class="form-control" id="nationalityFilter">
+                <option value="arg">Argentina</option>
+                <option value="mer">Mercosur</option>
+                <option value="ext">Exterior</option>
+            </select>
+        </div>*@
+        <div class="form-group">
+            <label>Desayuno</label>
+            <select class="form-control" id="breakfastFilter">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Tarifa</label>
+            <select class="form-control" id="tarifaFilter">
+                <option value="1">Reembolsable</option>
+                <option value="0">No Reembolsable</option>
+            </select>
+        </div>
+    </form>
+</div>
+<script>
+    function initMap(latitud, longitud) {
+        debugger;
+        latitud = latitud * (1);
+        longitud = longitud * (1);
+        var hotel = { lat: latitud, lng: longitud };
+        var map = new google.maps.Map(document.getElementById('supermap'), {
+            zoom: 18,
+            center: hotel
+        });
+        var marker = new google.maps.Marker({
+            position: hotel,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCj55S22zk3VOCAIGUw7eprZEGR_2hV4U&callback=initMap">
+</script>

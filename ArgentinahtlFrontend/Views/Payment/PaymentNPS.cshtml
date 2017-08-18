@@ -1,0 +1,17 @@
+﻿@model CheckArgentina.Models.ReservationModel
+
+<script type="text/javascript">
+    $(function () {
+        $('#payment_form').attr('action', '@Url.Action("ProcessPaymentNPS")');
+    });
+</script>
+
+<h3>Luego de seleccionar su tarjeta de crédito, será redirigido a un sitio seguro para ingresar la información de la misma.<br />
+Dicha información no será recopilada por este sitio bajo ninguna circunstancia.
+</h3>
+
+@Html.ListBoxFor(m => m.PaymentMethodId, new List<SelectListItem>{
+        new SelectListItem{ Value = "F67980B4-A618-4A90-8CB5-70FC60025A9F", Text = "American Express", Selected = true },
+        new SelectListItem{ Value = "C0B32B6F-1A98-4038-83A9-A265E7B7C908", Text = "Mastercard" },
+        new SelectListItem{ Value = "2E9D9D2B-C497-4110-BE0D-2BEBCAF4984B", Text = "Visa" }
+})

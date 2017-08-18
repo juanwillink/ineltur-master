@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+@Html.Partial("_HeadScripts")
+</head>
+
+<body>
+    <div class="page">
+        <div id="header">
+            <div id="title"><img src="@Url.Content("~/Content/logo.gif")" alt="GFT logo" /></div>
+
+            <div id="logindisplay">
+                @Html.Partial("_LogInPartial")
+            </div>
+            <div class="clear"></div>
+            <hr />
+        </div>
+
+        <div id="main">
+            @RenderBody()
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

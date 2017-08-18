@@ -1,0 +1,76 @@
+﻿@model ArgentinahtlMVC.Models.RateListModel
+
+@{
+    ViewBag.Title = "Tarifas";
+    Layout = null;
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+
+    function actualizarTarifa() {
+        $.ajax({
+            type: "POST",
+            url: "/Rate/ActualizarTarifa",
+            data: $("#frmTarifas").serialize(),
+            datatype: "json",
+            success: function (result) {
+                if (result.OK == true) {
+                    alert("Las tarifas se actualizaron correctamente.");
+                    $.colorbox.close();
+                    refreshRateList();
+                    return;
+                }
+                else {
+                    alert("Error al actualizar las tarifas: " & result.Descripcion);
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+    $('table.tablesorter').floatThead({
+        position: 'fixed'
+    })
+</script>
+
+<form id="frmTarifas" action="">
+
+@Html.LabelFor(m => m.Rates[0].UnidadAlojamiento.RoomName): @Html.TextBoxFor(m => m.Rates[0].UnidadAlojamiento.RoomName, new { style = "width:20%", disabled = "disabled" })
+<table class="borderless">
+    <tr><td>@Html.LabelFor(m => m.Rates[0].MontoRACDTR):</td><td>@if (Model.Rates[0].Id != default(Guid))
+                                                                    {
+                                                            @Html.TextBoxFor(m => m.Rates[0].MontoRACDTR, new { style = "width:40%" })
+                                                                    }
+                                                                    else
+                                                                    {
+                                                            @Html.TextBoxFor(m => m.Rates[0].UnidadAlojamiento.RoomCost, new { style = "width:40%" })
+                                                                    }
+                                                        </td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoEXTCDTR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoEXTCDTR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoMERCDTR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoMERCDTR, new { style = "width:40%" })</td></tr>
+    <tr><td>@Html.LabelFor(m => m.Rates[0].MontoRASDTR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoRASDTR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoEXTSDTR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoEXTSDTR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoMERSDTR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoMERSDTR, new { style = "width:40%" })</td></tr>
+    <tr><td>@Html.LabelFor(m => m.Rates[0].MontoRACDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoRACDTNR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoEXTCDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoEXTCDTNR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoMERCDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoMERCDTNR, new { style = "width:40%" })</td></tr>
+    <tr><td>@Html.LabelFor(m => m.Rates[0].MontoRASDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoRASDTNR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoEXTSDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoEXTSDTNR, new { style = "width:40%" })</td>
+    <td>@Html.LabelFor(m => m.Rates[0].MontoMERSDTNR):</td><td>@Html.TextBoxFor(m => m.Rates[0].MontoMERSDTNR, new { style = "width:40%" })</td></tr>
+
+    <tr><td colspan="2"><a href="#" onclick="actualizarTarifa()" class="link-button">Guardar</a></td></tr>
+
+    @Html.Raw(Model.TablaCupos)
+
+    @if (ViewBag.Message != null)
+    {
+        <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+    }
+</table>
+
+</form>
+
+

@@ -1,0 +1,143 @@
+﻿@model ArgentinahtlMVC.Models.PromocionModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Crear/Modificar Promocion";
+
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+    $(function () {
+        var options = {
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-1:+0'
+        };
+
+        $.datepicker.setDefaults({
+            dateFormat: options.dateFormat,
+            yearRange: options.yearRange
+        });
+
+        $('#StartDate, #EndDate').datepicker();
+
+        $('#StartDate').change(function () {
+            $('#EndDate').datepicker('option', { minDate: addTimeToDate(1, 'd', $(this).datepicker('getDate'), false) });
+        });
+
+        $('#StartDate').change();
+
+        $('#Nombre').focus();
+    });
+
+    function createEditPromocion() {
+        debugger;
+        var message = 'Error al guardar la Promocion.';
+        var messageType = 'error';
+
+        var Activo = $('input[name=Activo]:checked').val();
+
+        var dateParts = $('#StartDate').val().split('/');
+        var startDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        dateParts = $('#EndDate').val().split('/');
+        var endDate = new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+
+        $.ajax({
+            type: "POST",
+            url: '@(Model.PromocionId.ToString() == "00000000-0000-0000-0000-000000000000" ? Url.Action("CreatePromocion", "Lodging") : Url.Action("EditPromocion", "Lodging"))',
+            data: {
+                PromocionId: $('#PromocionId').val(),
+                LodgingId: $('#LodgingId').val(),
+                Nombre: $('#Nombre').val(),
+                Descripcion1: $('#Descripcion1').val(),
+                Descripcion2: $('#Descripcion2').val(),
+                StartDate: startDate.toDateString(),
+                EndDate: endDate.toDateString(),
+                Activo: Activo,
+                IdUnidadPromo: $('#IdUnidadPromo').val(),
+                PromocionTypeId: $('#PromocionTypeId').val(),
+                Slogan: $('#Slogan').val(),
+                MinimoNoches: $('#MinimoNoches').val(),
+                MaximoNoches: $('#MaximoNoches').val(),
+                Descuento: $('#Descuento').val(),
+                DiasReservados: $("#DiasReservados").val(),
+                DiasACobrar: $("#DiasACobrar").val()
+            },
+            dataType: "json",
+            traditional: true,
+            success: function (data) {
+                debugger;
+                if (data.success) {
+                    debugger;
+                    message = 'Promocion guardada con éxito';
+                    messageType = 'success';
+                    $.colorbox.close();
+                }
+
+                //$.colorbox.close();
+                showNotification(message, messageType);
+            },
+            error: function (data) {
+                //$.colorbox.close();
+                debugger;
+                showNotification(message, messageType);
+            }
+        });
+
+
+        refreshPromocionesList();
+
+        return false;
+    }
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreatePromocion", "Lodging", FormMethod.Post, new { id = "promocion_data" }))
+{
+    @Html.HiddenFor(m => m.PromocionId)
+    @Html.HiddenFor(m => m.LodgingId)
+    @Html.HiddenFor(m => m.Activo)
+
+    <table class="borderless">
+        <tr><td>@Html.LabelFor(m => m.Nombre):</td><td>@Html.TextBoxFor(m => m.Nombre)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.Descripcion1):</td><td>@Html.TextAreaFor(m => m.Descripcion1)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.Descripcion2):</td><td>@Html.TextAreaFor(m => m.Descripcion2)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.StartDate):</td><td>@Html.TextBoxFor(m => m.StartDate, "{0:dd/MM/yyyy}")</td></tr>
+        <tr><td>@Html.LabelFor(m => m.EndDate):</td><td>@Html.TextBoxFor(m => m.EndDate, "{0:dd/MM/yyyy}")</td></tr>
+        <tr><td>@Html.LabelFor(m => m.DiasReservados):</td><td>@Html.TextBoxFor(m => m.DiasReservados)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.DiasACobrar):</td><td>@Html.TextBoxFor(m => m.DiasACobrar)</td></tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.PromocionTypeId):</td>
+            <td>
+                @Html.DropDownListFor(m => m.PromocionTypeId,
+            @Model.PromocionesType.Select(st => new SelectListItem { Text = st.Nombre, Value = st.PromocionTypeId.ToString() }))
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(m => m.IdUnidadPromo):</td>
+            <td>
+                @Html.DropDownListFor(m => m.IdUnidadPromo,
+            @Model.Lodging.Rooms.Select(st => new SelectListItem { Text = st.RoomName, Value = st.RoomId.ToString() })))
+            </td>
+        </tr>
+        <tr><td>@Html.LabelFor(m => m.Activo)</td><td> <input type="radio" name="Activo" value="true" checked/> Si <input type="radio" name="Activo" value="False" /> No</td></tr>
+        <tr><td>@Html.LabelFor(m => m.Slogan):</td><td>@Html.TextBoxFor(m => m.Slogan)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MinimoNoches):</td><td>@Html.TextBoxFor(m => m.MinimoNoches)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.MaximoNoches):</td><td>@Html.TextBoxFor(m => m.MaximoNoches)</td></tr>
+        <tr><td>@Html.LabelFor(m => m.Descuento):</td><td>@Html.TextBoxFor(m => m.Descuento)</td></tr>
+
+        <tr><td colspan="2"><a href="#" onclick="createEditPromocion()" class="link-button">Guardar</a></td></tr>
+
+        @if (ViewBag.Message != null)
+        {
+            <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+        }
+    </table>
+
+    @Html.ValidationSummary(false, "La Promocion no pudo ser guardada. Por favor, revise los siguientes errores:")
+
+    Html.EndForm();
+}

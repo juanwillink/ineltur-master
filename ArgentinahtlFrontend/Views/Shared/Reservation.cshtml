@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "ArgentinaHTl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using CheckArgentina.Commons
+@model CheckArgentina.Models.ReservationModel
+
+<div class="container">
+    <div class="panel" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <h1 id="reservationHeader">Pidiendo reserva</h1>
+            @if (Session["userkey"].ToString() == "7c918834-8c21-4b4c-b72b-1b8498e24304")
+            {
+                if (!string.IsNullOrEmpty(Model.SecondaryUserName) || !string.IsNullOrEmpty(Model.SecondaryUserPass))
+                {
+                    <p>Operando como @Model.SecondaryUserName</p>
+                    <button type="button" class="btn btn-default" onclick="$('#secondaryUserSelector2').show();">Cambiar</button>
+                    <div class="form-group" hidden id="secondaryUserSelector2">
+                        <label>Operar como:</label>
+                        <small>*Dejar vacio para operar como Mariajose</small>
+                        <input type="text" id="SecondaryUserName" class="form-control" placeholder="Ingrese el nombre de usuario con el que desea operar..." />
+                        <button class="btn btn-default" onclick="cambiarOperador()">Cambiar</button>
+                        <script type="text/javascript">
+                                $('#SecondaryUserName').autocomplete({
+                                    source: function (request, response) {
+                                        $.ajax({
+                                            url: '@Url.Action("SearchUsers", "Home")',
+                                            dataType: 'json',
+                                            data: { username: request.term},
+                                            success: function (data) {
+                                                if (data.length == 0) {
+                                                    data.push({ UserName: "No encontrado", UserPass: null });
+                                                    $('#SecondaryUserName').val(null);
+                                                };
+                                                response($.map(data, function (item) {
+                                                    return { label: item.UserName + ", " + item.UserUsername, value: item.UserUsername, id: item.UserPass };
+                                                }));
+                                            }
+                                        });
+                                    },
+                                    minLength: 1,
+                                    select: function (event, ui) {
+                                        debugger
+                                        if (ui.item.id == null) return false;
+                                        $('#SecondaryUserPass').val(ui.item.id);
+                                    }
+                                });
+                        </script>
+                        <input type="hidden" id="SecondaryUserPass" />
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group" id="secondaryUserSelector">
+                        <label>Operar como:</label>
+                        <small>*Dejar vacio para operar como Mariajose</small>
+                        <input type="text" id="SecondaryUserName" class="form-control" placeholder="Ingrese el nombre de usuario con el que desea operar..." />
+                        <button type="button" class="btn btn-default" onclick="cambiarOperador()">Cambiar</button>
+                        <script type="text/javascript">
+                                $('#SecondaryUserName').autocomplete({
+                                    source: function (request, response) {
+                                        $.ajax({
+                                            url: '@Url.Action("SearchUsers", "Home")',
+                                            dataType: 'json',
+                                            data: { username: request.term},
+                                            success: function (data) {
+                                                if (data.length == 0) {
+                                                    data.push({ UserName: "No encontrado", UserPass: null });
+                                                    $('#SecondaryUserName').val(null);
+                                                };
+                                                response($.map(data, function (item) {
+                                                    return { label: item.UserName + ", " + item.UserUsername, value: item.UserUsername, id: item.UserPass };
+                                                }));
+                                            }
+                                        });
+                                    },
+                                    minLength: 1,
+                                    select: function (event, ui) {
+                                        debugger
+                                        if (ui.item.id == null) return false;
+                                        $('#SecondaryUserPass').val(ui.item.id);
+                                    }
+                                });
+                        </script>
+                        <input type="hidden" id="SecondaryUserPass" />
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-responsive" src="~/Content/Images/Hotels/@string.Format("{0}.jpg", Model.LodgingId)" />
+                    <br />
+                    @if (Model.TienePromocion)
+                    {
+                        <h2 class="text-center"><strong>Precio Promocional: $@Decimal.Round(Model.PromotionPrice)</strong></h2>
+                        <h3 class="text-center"><small>Precio Regular: $@Decimal.Round(Model.TotalAmount)</small></h3>
+                    }
+                    else
+                    {
+                        <h2 class="text-center">Precio Total: $@Decimal.Round(Model.TotalAmount, 0)</h2>
+                    }
+                    
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 style="margin-top: 0px;"><b>@Model.LodgingName</b></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            @{ 
+                                if (Model.Vacancies.Count != 0)
+                                {
+                                    int i = 0;
+                                    foreach (var vacancy in Model.Vacancies)
+                                    {
+                                        <div id="vacancyDiv_@i">
+                                            <input type="hidden" id="reserved_vacancy_vacancyId_@i" value="@Model.Vacancies[i].VacancyId" />
+                                            <input type="hidden" id="reserved_vacancy_vacancyName_@i" value="@Model.Vacancies[i].VacancyName" />
+                                            <input type="hidden" id="reserved_vacancy_vacancyPrice_@i" value="@Model.Vacancies[i].VacancyPrice" />
+                                            <input type="hidden" id="reserved_vacancy_roomId_@i" value="@Model.Vacancies[i].Rooms.FirstOrDefault().RoomId" />
+                                            <input type="hidden" id="reserved_vacancy_roomName_@i" value="@Model.Vacancies[i].Rooms.FirstOrDefault().RoomName" />
+                                            <input type="hidden" id="reserved_vacancy_roomType_@i" value="@Model.Vacancies[i].Rooms.FirstOrDefault().RoomType" />
+                                            <input type="hidden" id="reserved_vacancy_vacancyReserved_@i" value="@Model.Vacancies[i].VacancyReserved" />
+                                            <div class="col-md-8" style="padding-left: 0px;">
+                                                <h4 style="display: inline-block"><b>Habitacion:</b> @Model.Vacancies[i].VacancyName</h4>
+                                                @if (Model.Vacancies.Count != 1)
+                                                {
+                                                    <button class="btn btn-danger btn-xs" onclick="borrarHabitacion('@Model.Vacancies[i].VacancyId');" style="display: inline-block">X</button>
+                                                }                                               
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button class="btn btn-main" onclick="openAgregarPasajeroModal('@Model.Vacancies[i].VacancyId')">Agregar Pasajeros</button>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h4 id="pasajerosTitle" hidden><b>Pasajeros:</b></h4>
+                                                <ul style="list-style-type: none;" id="@string.Format("vacancy_{0}_travelerList",i)">
+                                                    @{ 
+                                                        int j = 0;
+                                                        foreach (var pasajero in Model.Vacancies[i].Rooms[0].Travelers)
+                                                        {
+                                                            <li>@pasajero.TravelerFirstName @pasajero.TravelerLastName <button class="btn btn-warning btn-xs" style="margin:2px;">Modificar</button> <button class="btn btn-danger btn-xs" onclick="eliminarPasajero('@pasajero.TravelerFirstName', '@pasajero.TravelerLastName')">X</button></li>
+                                                            <input type="hidden" id="@string.Format("vacancy_{0}_travelerName_{1}", i, j)" value="@pasajero.TravelerFirstName" />
+                                                            <input type="hidden" id="@string.Format("vacancy_{0}_travelerLastName_{1}", i, j)" value="@pasajero.TravelerLastName"/>
+                                                            j++;
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <table class="table table-bordered text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Fecha de Entrada</th>
+                                                        <th class="text-center">Fecha de Salida</th>
+                                                        <th class="text-center">Cantidad de Habitaciones</th>
+                                                        <th class="text-center">Precio por Noche</th>
+                                                        <th class="text-center">Precio Final por Habitacion</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>@Model.Vacancies[i].VacancyCheckin.ToShortDateString()</td>
+                                                        <td>@Model.Vacancies[i].VacancyCheckout.ToShortDateString()</td>
+                                                        <td>@Model.Vacancies[i].VacancyReserved.ToString()</td>
+                                                        <td>@Model.LodgingCurrency @Model.Vacancies[i].ConfirmedVacancyPrice</td>
+                                                        <td>@Model.LodgingCurrency @decimal.Round((Model.Vacancies[i].ConfirmedVacancyPrice * (int)(Model.Vacancies[i].VacancyCheckout - Model.Vacancies[i].VacancyCheckin).TotalDays), 0)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        i++;
+                                    }
+                                }
+                            }
+                            <button class="btn btn-main" onclick="agregarHabitacion('@Model.LodgingName', '@Model.DestinationId', '@Model.Vacancies[0].VacancyCheckin', '@Model.Vacancies[0].VacancyCheckout')">Agregar Habitacion</button>                    
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+                @if (Model.ReservationOwner == null)
+                {
+                    <button class="btn btn-main" onclick="alert('Debe agregar al menos un pasajero');">Continuar reserva</button>
+                }
+                else
+                {
+                    <a href="PaymentMethods"><button type="button" class="btn btn-main">Continuar Pedido</button></a>
+                }  
+        </div>
+    </div>
+</div>

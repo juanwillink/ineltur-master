@@ -1,0 +1,42 @@
+﻿@model Ineltur.CuentasCorrientes.Modelos.ModeloPago
+
+@{
+    ViewBag.Title = "Pago";
+    
+    var @readonly = new { @readonly = "readonly" };
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Volver", "Cuentas", "Administracion")</span></h2>
+
+@using (Html.BeginForm()) {
+@Html.HiddenFor(m => m.IdUsuario)
+<table class="borderless" id="Pago">
+<tr>
+    <td>@Html.LabelFor(m => m.Nombre):</td><td>@Html.TextBoxFor(m => m.Nombre, @readonly)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.Saldo):</td><td>@Html.TextBoxFor(m => m.Saldo, @readonly)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.FechaPago):</td><td>@Html.EditorFor(m => m.FechaPago)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.Moneda):</td><td>@Html.EnumDropDownListFor(m => m.Moneda)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.MontoPagado):</td><td>@Html.TextBoxFor(m => m.MontoPagado)</td>
+</tr>
+<tr>
+    <td>@Html.LabelFor(m => m.TipoCambio):</td><td>@Html.TextBoxFor(m => m.TipoCambio)</td>
+</tr>
+<tr>
+    <td rowspan="2">
+        <input type="submit" value="Aceptar" />
+        <input type="button" value="Cancelar" onclick="window.location.href = '@Url.Action("Cuentas", new { id = Model.IdUsuario })';return false" />
+    </td>
+</tr>
+@if (ViewBag.Message != null) {
+    <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+}
+</table>
+}

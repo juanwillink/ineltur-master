@@ -1,0 +1,18 @@
+﻿@model CheckArgentina.Models.ReservationModel
+
+<script type="text/javascript">
+    $(function () {
+        $('#payment_form').attr('action', 'https://www.epayments.hsbc.com.ar/Public/Ssl/Routing.aspx');
+    });
+</script>
+
+@Html.Hidden("OrderCode", Model.ReservationId, new { id = "Hidden1" })
+@Html.Hidden("ShopCode", "TestCheckArg", new { id = "Hidden2" })
+@Html.Hidden("OrderAmount", Model.Vacancies.Sum(v => v.VacancyReserved * v.VacancyPrice * v.VacancyDates.Count).ToString(), new { id = "Hidden3" })
+@Html.Hidden("Currency", "ARS", new { id = "Hidden4" })
+@Html.Hidden("AutomaticCapture", "1", new { id = "Hidden5" })
+@Html.Hidden("UserDocId", Model.ReservationOwner.TravelerIdType, new { id = "Hidden6" })
+@Html.Hidden("UserDocNumber", Model.ReservationOwner.TravelerId, new { id = "Hidden7" })
+@Html.Hidden("UserEmail", Model.ReservationOwner.TravelerEmail, new { id = "Hidden8" })
+@Html.Hidden("UserFirstName", Model.ReservationOwner.TravelerFirstName, new { id = "Hidden9" })
+@Html.Hidden("UserLastName", Model.ReservationOwner.TravelerLastName, new { id = "Hidden10" })

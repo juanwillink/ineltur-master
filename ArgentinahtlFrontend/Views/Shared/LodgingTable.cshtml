@@ -1,0 +1,216 @@
+﻿@model CheckArgentina.Models.LodgingModel
+
+@using CheckArgentina.Commons
+
+<tr>
+    <td data-toggle="modal" data-target="@string.Format("#lodging-detail-modal_{0}", Model.LodgingId)">@Model.LodgingName</td>
+    <td>
+        @for (int i = 0; i < CheckArgentina.Models.LodgingModel.GetCategoryImage(Model.LodgingCategory); i++)
+            {
+            <span class="glyphicon glyphicon-star"></span>
+        }
+    </td>
+    <td>@Model.LodgingLocation</td>
+    <td>@string.Format("{0}", Model.LodgingPrice.ToString())</td>
+    <td>
+        @if (Model.Vacancies.Count() != 0 && !Model.LodgingUnderPetition)
+        {
+            @Html.Button("Reserva On-Line").AddId("btnReserve_" + Model.LodgingId).AddClasses("btn btn-sm btn-main").AddAttribute("onclick", "toggleReserve('" + Model.LodgingId + "');")
+        }
+        else
+        {
+            if (SessionData.User.UserId.ToString() == "7c918834-8c21-4b4c-b72b-1b8498e24304")
+            {
+                @Html.Button("Reserva On-Line").AddId("btnReserve_" + Model.LodgingId).AddClasses("btn btn-sm btn-main").AddAttribute("onclick", "toggleReserve('" + Model.LodgingId + "');")
+            }
+            else
+            {
+                <button type="button" onclick="pasarDatos('@Model.LodgingName', '@Model.LodgingCity', '@Model.LodgingId')" class="btn btn-sm btn-default" data-toggle="modal" data-target="@string.Format("#lodging-reservation-modal_{0}", Model.LodgingId)">Reservar via Email</button>
+            }
+        }
+    </td>
+</tr>
+@if (Model.Vacancies.Count() != 0 && !Model.LodgingUnderPetition)
+{
+    using (@Html.BeginForm("Confirmation", "Payment"))
+    {
+        <tr id="@string.Format("Lodging_{0}", Model.LodgingId)" class="lodging-vacancy-container" hidden style="background-color: #ffffff">
+
+            @Html.HiddenFor(m => m.LodgingId)
+            @Html.HiddenFor(m => m.LodgingName)
+            @Html.HiddenFor(m => m.LodgingCategory)
+            @Html.HiddenFor(m => m.LodgingCurrency)
+            @Html.HiddenFor(m => m.LodgingCurrencyCode)
+            @Html.HiddenFor(m => m.LodgingPrice)
+            @Html.HiddenFor(m => m.DestinationId)
+            @Html.HiddenFor(m => m.LodgingSupplierId)
+            <th>
+                @Html.Label("Cantidad")
+            </th>                   
+            <th>
+                @Html.Label("Descripción")
+            </th>
+            <th>
+                @Html.Label("Checkin")
+            </th>
+            <th>
+                @Html.Label("Checkout")
+            </th>
+            <th>
+                @Html.Label("Total")
+            </th>
+        </tr>
+
+        for (int i = 0; i < Model.Vacancies.Count(); i++)
+        {
+            <tr id="@string.Format("LodgingInfo_{0}", Model.LodgingId)" hidden style="background-color:#ffffff">
+                @Html.HiddenFor(m => m.Vacancies[i].LodgingId)
+                @Html.HiddenFor(m => m.Vacancies[i].LodgingName)
+                @Html.HiddenFor(m => m.Vacancies[i].LodgingCurrency)
+
+                @Html.HiddenFor(m => m.Vacancies[i].VacancyId)
+                @Html.HiddenFor(m => m.Vacancies[i].VacancyName)
+                @Html.HiddenFor(m => m.Vacancies[i].VacancyCheckin)
+                @Html.HiddenFor(m => m.Vacancies[i].VacancyCheckout)
+                @Html.HiddenFor(m => m.Vacancies[i].VacancyPrice)
+
+                @{
+                    for (int j = 0; j < Model.Vacancies[i].Rooms.Count(); j++)
+                    {
+                        @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomId)
+                        @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomName)
+                        @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomType)
+                    }
+                }
+                           
+                <td>
+                    @Html.TextBoxFor(m => m.Vacancies[i].VacancyReserved).AddClasses("form-control").AddInlineStyles("text-align: center;")
+                    <script>
+							    $("[id$=VacancyReserved]").val("1");
+                    </script>
+                </td>  
+                <td>
+                    @Html.Label(Model.Vacancies[i].VacancyName)
+                </td>       
+                <td>
+                    @Html.Label(Model.Vacancies[i].VacancyCheckin.ToString("dd/MM/yy"))
+                </td>
+                <td>
+                    @Html.Label(Model.Vacancies[i].VacancyCheckout.ToString("dd/MM/yy"))
+                </td>
+                <td>
+                    @Html.Label(string.Format("{0}\t{1:0.00}", Model.LodgingCurrency, Model.Vacancies[i].VacancyPrice * Convert.ToDecimal((Model.Vacancies[i].VacancyCheckout - Model.Vacancies[i].VacancyCheckin).TotalDays)))
+                    @Html.Button("RESERVAR", true).AddId("btnReserve_Disp_" + Model.LodgingId).AddClasses("btn btn-success").AddInlineStyles("float:right;")
+                </td>
+            </tr>
+
+            <div class="clear">
+            </div>
+            Html.EndForm();
+        }
+    }
+}
+else
+{
+    if (SessionData.User.UserId.ToString() == "7c918834-8c21-4b4c-b72b-1b8498e24304")
+    {
+        using (@Html.BeginForm("Confirmation", "Payment"))
+        {
+            <tr id="@string.Format("Lodging_{0}", Model.LodgingId)" class="lodging-vacancy-container" hidden style="background-color: #ffffff">
+
+                @Html.HiddenFor(m => m.LodgingId)
+                @Html.HiddenFor(m => m.LodgingName)
+                @Html.HiddenFor(m => m.LodgingCategory)
+                @Html.HiddenFor(m => m.LodgingCurrency)
+                @Html.HiddenFor(m => m.LodgingCurrencyCode)
+                @Html.HiddenFor(m => m.LodgingPrice)
+                @Html.HiddenFor(m => m.DestinationId)
+                @Html.HiddenFor(m => m.LodgingSupplierId)
+                <th>
+                    @Html.Label("Cantidad")
+                </th>
+                <th>
+                    @Html.Label("Descripción")
+                </th>
+                <th>
+                    @Html.Label("Checkin")
+                </th>
+                <th>
+                    @Html.Label("Checkout")
+                </th>
+                <th>
+                    @Html.Label("Total")
+                </th>
+            </tr>
+
+            for (int i = 0; i < Model.Vacancies.Count(); i++)
+            {
+                <tr id="@string.Format("LodgingInfo_{0}", Model.LodgingId)" hidden style="background-color:#ffffff">
+                    @Html.HiddenFor(m => m.Vacancies[i].LodgingId)
+                    @Html.HiddenFor(m => m.Vacancies[i].LodgingName)
+                    @Html.HiddenFor(m => m.Vacancies[i].LodgingCurrency)
+
+                    @Html.HiddenFor(m => m.Vacancies[i].VacancyId)
+                    @Html.HiddenFor(m => m.Vacancies[i].VacancyName)
+                    @Html.HiddenFor(m => m.Vacancies[i].VacancyCheckin)
+                    @Html.HiddenFor(m => m.Vacancies[i].VacancyCheckout)
+                    @Html.HiddenFor(m => m.Vacancies[i].VacancyPrice)
+
+                    @{
+                        for (int j = 0; j < Model.Vacancies[i].Rooms.Count(); j++)
+                        {
+                            @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomId)
+                            @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomName)
+                            @Html.HiddenFor(m => m.Vacancies[i].Rooms[j].RoomType)
+                        }
+                    }
+
+                    <td>
+                        @Html.TextBoxFor(m => m.Vacancies[i].VacancyReserved).AddClasses("form-control").AddInlineStyles("text-align: center;")
+                        <script>
+							$("[id$=VacancyReserved]").val("1");
+                        </script>
+                    </td>
+                    <td>
+                        @Html.Label(Model.Vacancies[i].VacancyName)
+                    </td>
+                    <td>
+                        @Html.Label(Model.Vacancies[i].VacancyCheckin.ToString("dd/MM/yy"))
+                    </td>
+                    <td>
+                        @Html.Label(Model.Vacancies[i].VacancyCheckout.ToString("dd/MM/yy"))
+                    </td>
+                    <td>
+                        @Html.Label(string.Format("{0}\t{1:0.00}", Model.LodgingCurrency, Model.Vacancies[i].VacancyPrice * Convert.ToDecimal((Model.Vacancies[i].VacancyCheckout - Model.Vacancies[i].VacancyCheckin).TotalDays)))
+                        @Html.Button("RESERVAR", true).AddId("btnReserve_Disp_" + Model.LodgingId).AddClasses("btn btn-success")
+                    </td>
+                </tr>
+
+                <div class="clear">
+                </div>
+                Html.EndForm();
+            }
+        }
+    }
+}
+<div id="@string.Format("lodging-detail-modal_{0}", Model.LodgingId)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Lodging-detail-modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @Html.Partial("LodgingDetail")
+        </div>
+    </div>
+</div>
+<div id="@string.Format("lodging-reservation-modal_{0}", Model.LodgingId)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Lodging-detail-modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @Html.Partial("LodgingReservationEmail", new CheckArgentina.Models.EmailReservationModel())
+        </div>
+    </div>
+</div>
+
+<script>
+    function pasarDatos(lodgingName, lodgingCity, lodgingId) {
+        $("#lodging-reservation-modal_" + lodgingId).find("#LodgingName").val(lodgingName);
+        $("#lodging-reservation-modal_" + lodgingId).find("#DestinationName").val(lodgingCity);
+    }
+</script>

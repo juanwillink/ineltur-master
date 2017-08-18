@@ -1,0 +1,68 @@
+﻿@model Ineltur.CuentasCorrientes.Modelos.ModeloListaDetallesCuentas
+
+@{
+    ViewBag.Title = "Detalles de Cuenta";
+    
+    var pags = new List<int>();
+    int p = Model.Pagina;
+    int up = Model.UltimaPagina;
+    int pa = 0;
+
+    pags.Add(1);
+    if (up > 1) {
+        for (int i = Math.Max(p - 1, 1); i <= p + 1 && i <= up - 1; ++i) {
+            if (!pags.Contains(i)) {
+                pags.Add(i);
+            }
+        }
+        pags.Add(up);
+    }
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Volver", "Cuentas", "Administracion")</span></h2>
+
+@using (Html.BeginForm()) {
+<table class="borderless">
+<tr>
+    <td>@Html.LabelFor(m => m.Desde):</td><td>@Html.EditorFor(m => m.Desde, "Date")</td>
+    <td rowspan="2">
+        <input type="submit" value="Buscar" onclick="$('form').attr('action', $('form').attr('action').replace('/Exportar', '/'))" /><br />
+        <input type="submit" value="Exportar" onclick="$('form').attr('action', $('form').attr('action').replace('/Detalles', '/ExportarDetalles'))" /><br />
+    </td>
+</tr>
+<tr><td>@Html.LabelFor(m => m.Hasta):</td><td>@Html.EditorFor(m => m.Hasta, "Date")</td></tr>
+@if (ViewBag.Message != null) {
+    <tr><td colspan="3" class="message">@ViewBag.Message</td></tr>
+}
+</table>
+}
+
+<h3>@Model.Nombre</h3>
+<table id="Detalles">
+<thead><tr><th>Fecha</th><th>Tipo</th><th>Monto</th><th>Monto $</th><th>Cliente</th></tr></thead>
+<tbody>
+@foreach (var u in Model.Detalles) {
+    <tr>
+        <td>@u.Fecha</td>
+        <td>@System.ComponentModel.TypeDescriptor.GetConverter(u.Tipo).ConvertToString(u.Tipo)</td>
+        <td>@u.Moneda @u.Monto</td>
+        <td>ARS @u.MontoPesos</td>
+        <td>@(u.Cliente ?? "-")</td>
+    </tr>
+}
+</tbody>
+</table>
+<div class="pag">
+@foreach (int np in pags) {
+    if (pa + 1 != np) {
+    @: ...
+    }
+    if (np != p) {
+    <a href="?pagina=@np">@np</a>
+    }
+    else {
+    <a>@np</a>
+    }
+    pa = np;
+}
+</div>

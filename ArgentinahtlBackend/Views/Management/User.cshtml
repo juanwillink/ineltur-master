@@ -1,0 +1,29 @@
+﻿@model ArgentinahtlMVC.Models.UserModel
+
+@{
+    ViewBag.Title = "Create/Update User";
+    Html.EnableUnobtrusiveJavaScript();
+    Html.EnableClientValidation();
+}
+
+<h2>@ViewBag.Title <span>@Html.ActionLink("Back", "Menu", "Management")</span></h2>
+
+<p>Passwords are required to be a minimum of @ViewBag.PasswordLength characters in length.</p>
+
+@using (Html.BeginForm()) {
+@Html.HiddenFor(m => m.UserId)
+@Html.HiddenFor(m => m.Enabled)
+<table class="borderless">
+<tr><td>@Html.LabelFor(m => m.UserName):</td><td>@Html.TextBoxFor(m => m.UserName)</td></tr>
+<tr><td>@Html.LabelFor(m => m.UserDescription):</td><td>@Html.TextBoxFor(m => m.UserDescription)</td></tr>
+<tr><td>@Html.LabelFor(m => m.Email):</td><td>@Html.TextBoxFor(m => m.Email)</td></tr>
+<tr><td>@Html.LabelFor(m => m.Profile):</td><td>@Html.EnumDropDownListFor(m => m.Profile)</td></tr>
+<tr><td>@Html.LabelFor(m => m.Client):</td><td>@Html.DropDownListFor(m => m.Client, Model.Clients)</td></tr>
+<tr><td colspan="2"><input type="submit" value="Save" /></td></tr>
+@if (ViewBag.Message != null)
+{
+    <tr><td colspan="2" class="message">@ViewBag.Message</td></tr>
+}
+</table>
+}
+@Html.ValidationSummary(false, "User could not be saved. Please correct the following errors:")
